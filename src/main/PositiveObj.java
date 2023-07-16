@@ -1,7 +1,7 @@
-public class PositiveObj {
+private class PositiveObj {
     private float point;
 
-    public PositiveObj(int point) {
+    PositiveObj(int point) {
         this.point = point;
     }
     public float getPoint() {
