@@ -1,5 +1,5 @@
 interface DataAcessInterface {
     final public String fileName;
-    void read(String data);
+    String read();
     void write(String data);
 }
