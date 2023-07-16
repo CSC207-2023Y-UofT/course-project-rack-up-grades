@@ -1,10 +1,10 @@
 private class PositiveObj {
-    private float point;
+    private int point;
 
     PositiveObj(int point) {
         this.point = point;
     }
-    public float getPoint() {
+    public int getPoint() {
         return this.point;
     }
 }
