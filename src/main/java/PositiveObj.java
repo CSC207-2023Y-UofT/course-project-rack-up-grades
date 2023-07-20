@@ -1,4 +1,4 @@
-private class PositiveObj {
+public class PositiveObj {
     private int point;
 
     PositiveObj(int point) {
