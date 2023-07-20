@@ -1,7 +1,7 @@
 public class NegativeObj {
     // This is the class that creates the negative objects and its getter and setters
 
-    private float point;
+    private int point;
 
 
     public NegativeObj(String name, int point){
@@ -15,12 +15,12 @@ public class NegativeObj {
 
     }
 
-    public float getPoint(){
+    public int getPoint(){
         return this.point;
     }
 }
 
 abstract class PositiveObj{
-    private float point;
+    private int point;
 
 }
