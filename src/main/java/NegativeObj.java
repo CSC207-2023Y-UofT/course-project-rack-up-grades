@@ -4,7 +4,7 @@ public class NegativeObj {
     private int point;
 
 
-    public NegativeObj(String name, int point){
+    public NegativeObj(int point){
         //the point has to be negative
         if(Math.signum(point) >= 0){
             this.point = - point;
