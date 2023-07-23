@@ -8,9 +8,13 @@ public class InputBoundaryImpl implements InputBoundary{
 
     @Override
     public void setName(String newName) {
-        useCase.setName(NewName);
+        useCase.setName(newName);
     }
 
+    @Override
+    public void click(Integer i) {
+        useCase.click(i);
+    }
 
 
 }
