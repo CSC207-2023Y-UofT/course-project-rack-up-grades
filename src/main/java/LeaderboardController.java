@@ -20,7 +20,7 @@ public class LeaderboardController {
      * @param newName
      */
     public void setName(String newName) {
-        input.name = newName;
+        input.setName(newName);
     }
 
 }
