@@ -1,17 +1,20 @@
-import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
-public class DataAccess implemenets DataAccessInterface {
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+public class DataAccess implements DataAccessInterface {
     private static String fileName;
 
-    private DataAccess(String name) {
+    DataAccess(String name) {
         this.fileName = name;
     }
 
     @Override
-    public ArrayList<String> read() {
-        Bufferedreader reader = new BufferedReader(new FileReader("sample.txt"));
+    public ArrayList<String> read() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(this.fileName));
         String line = reader.readLine();
         ArrayList<String> scores =  new ArrayList<String>();
         while (line != null) {
@@ -22,8 +25,8 @@ public class DataAccess implemenets DataAccessInterface {
     }
 
     @Override
-    public void write() {
-        FileWriter writer = new FileWriter("sample.txt", true);;
+    public void write(String a) {
+
     }
 
 }
