@@ -10,9 +10,25 @@ public class GameUseCase {
     private String difficulty;
     private int timeGame;
     private int timeBetweenObjects;
-    private GameEntity gameEntity;
+    //private GameEntity gameEntity;
+
+    private String currPosition;
+    private ArrayList<String> preset;
 
     private int location;
+
+
+    public GameUseCase(){
+        this.preset = new ArrayList<>();
+        this.preset.add("2P");
+        this.preset.add("3P");
+        this.preset.add("4P");
+
+
+        run();
+    }
+
+
 
     public void setName(String name){
         this.name = name;
@@ -65,8 +81,6 @@ public class GameUseCase {
         }
     }
 
-    public
-
 
     // give current time
     public void giveCurrentTime(){
@@ -76,17 +90,39 @@ public class GameUseCase {
     // Initialize data access --> What does this mean?
 
     // Initializes the game
-    public void setGame(){
+    public void run(){
+        java.util.Timer T = new java.util.Timer();
+        TimerTask TT = new TimerTask() {
 
+            @Override
+            public void run() {
+
+                if (!preset.isEmpty()) {
+                    currPosition = preset.remove(0);
+                    System.out.println(currPosition);
+                }
+                else {
+                    System.out.println("Game Over");
+                    T.cancel();
+                }
+            }
+        };
+        T.scheduleAtFixedRate(TT, 3000, 1000);
     }
 
     public void click(Integer i){}
 
     public String toString(){
-        return String.valueOf(gameEntity) + String.valueOf(location);
+        return currPosition;
     }
 
     //
     // toString sends current position to presenter
     //
+
+    public static void main(String[] args){
+        GameUseCase test = new GameUseCase();
+
+
+    }
 }
