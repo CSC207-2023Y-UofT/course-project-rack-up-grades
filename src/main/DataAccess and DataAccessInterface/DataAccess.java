@@ -1,29 +1,29 @@
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 public class DataAccess implemenets DataAccessInterface {
     private static String fileName;
-    private FileReader reader;
-    private FileWriter writer;
 
     private DataAccess(String name) {
         this.fileName = name;
-        this.reader = new FileReader("sample.txt");
-        this.writer = new FileWriter("sample.txt", true);
     }
 
     @Override
-    public String read() {
-        int i;
-        ArrayList<String> data = new ArrayList<String>;
-        while ((i = reader.read()) != -1) {
-
+    public ArrayList<String> read() {
+        Bufferedreader reader = new BufferedReader(new FileReader("sample.txt"));
+        String line = reader.readLine();
+        ArrayList<String> scores =  new ArrayList<String>();
+        while (line != null) {
+            scores.add(line);
+            line = reader.readLine();
         }
+        return scores;
     }
 
     @Override
     public void write() {
-
+        FileWriter writer = new FileWriter("sample.txt", true);;
     }
 
 }
