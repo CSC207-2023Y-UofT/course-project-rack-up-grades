@@ -30,12 +30,10 @@ public class GameUseCase {
         //this.DataAccIn = new DataAccess();
         //this.gameEntity = new GameEntity(difficulty);
 
-
         this.preset = new ArrayList<>();
         this.preset.add("2P");
         this.preset.add("3P");
         this.preset.add("4P");
-
 
         run();
     }
@@ -56,10 +54,13 @@ public class GameUseCase {
 
 
 
-
-    // leaderboard will only store top 10 scores
-    // read data on leaderboard and store
-    public ArrayList<String[]> read(){
+    /*
+    leaderboard will only store top 10 scores
+    read data on leaderboard and store
+    // data          ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
+    // refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
+     */
+    public ArrayList<String[]> addToLeaderboard(){
         ArrayList<String> data = DataAccessInterface.read();
         ArrayList<String[]> refinedData = new ArrayList<>();
 
@@ -68,14 +69,9 @@ public class GameUseCase {
             refinedData.add(temp);
         }
         return refinedData;
-        // data          ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
-        // refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
-    }
 
-    // if data makes it in the top 10, add it where appropriate
-    // if data doesn't make it in the top 10, do nothing
-
-    public void write(){
+        // if data makes it in the top 10, add it where appropriate
+        // if data doesn't make it in the top 10, do nothing
         ArrayList<String> topTen = DataAccessInterface.read();
 
         // at the time of launch of this game, leaderboard is empty, so just add until the list is 10
