@@ -80,6 +80,8 @@ public class GameUseCase {
 
     }
 
+    public void click(Integer i){}
+
     public String toString(){
         return String.valueOf(gameEntity) + String.valueOf(location);
     }
