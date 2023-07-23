@@ -25,8 +25,13 @@ public class DataAccess implements DataAccessInterface {
     }
 
     @Override
-    public void write(String a) {
-
+    public void write(ArrayList<String> scores) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(this.fileName, false));
+        for (String score : scores) {
+            writer.write(score);
+            writer.newLine();
+        }
+        writer.close();
     }
 
 }

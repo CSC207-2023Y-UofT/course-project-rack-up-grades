@@ -5,5 +5,5 @@ import java.util.ArrayList;
 interface DataAccessInterface {
     static String fileName = null;
     public ArrayList<String> read() throws IOException;
-    public void write(String data);
+    public void write(ArrayList<String> data) throws IOException;
 }
