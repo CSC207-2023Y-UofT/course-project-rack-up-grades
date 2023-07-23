@@ -10,10 +10,16 @@ public class GameUseCase {
     private String difficulty;
     private int timeGame;
     private int timeBetweenObjects;
+
     //private GameEntity gameEntity;
 
     private String currPosition;
     private ArrayList<String> preset;
+
+    private GameEntity gameEntity;
+    private DataAccessInterface DataAccIn;
+    private ArrayList<String> presetGame;
+
 
     private int location;
 
@@ -40,6 +46,12 @@ public class GameUseCase {
 
     public void decreaseScore(int decrement){
         this.score -= decrement;
+    }
+
+    public GameUseCase(String name, int score, String difficulty) {
+        name = this.name;
+        score = this.score;
+        difficulty = this.difficulty;
     }
 
     // If user wants to add to leaderboard, passes user’s name and score through DataAccessInterface
