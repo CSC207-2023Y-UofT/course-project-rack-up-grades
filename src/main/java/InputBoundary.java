@@ -1,3 +1,3 @@
 public interface InputBoundary {
-    void setName(String newName);
+    public void setName(String newName);
 }
