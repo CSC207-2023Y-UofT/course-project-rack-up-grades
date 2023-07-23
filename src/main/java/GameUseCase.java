@@ -9,22 +9,28 @@ public class GameUseCase {
     private int score;
     private String difficulty;
     private int timeGame;
-    private int timeBetweenObjects;
 
     //private GameEntity gameEntity;
 
     private String currPosition;
     private ArrayList<String> preset;
 
-    private GameEntity gameEntity;
-    private DataAccessInterface DataAccIn;
+    //private GameEntity gameEntity;
+    //private DataAccessInterface DataAccIn;
     private ArrayList<String> presetGame;
 
 
     private int location;
 
 
-    public GameUseCase(){
+    public GameUseCase(String difficulty) {
+        this.name = "";
+        this.score = 0;
+        this.difficulty = difficulty;
+        //this.DataAccIn = new DataAccess();
+        //this.gameEntity = new GameEntity(difficulty);
+
+
         this.preset = new ArrayList<>();
         this.preset.add("2P");
         this.preset.add("3P");
@@ -48,17 +54,8 @@ public class GameUseCase {
         this.score -= decrement;
     }
 
-    public GameUseCase(String name, int score, String difficulty) {
-        name = this.name;
-        score = this.score;
-        difficulty = this.difficulty;
-    }
 
-    // If user wants to add to leaderboard, passes user’s name and score through DataAccessInterface
-    // call read, do sorting to figure out the right place to put the data in
-    public void addToLeaderBoard(){
-        DataAccessInterface.addToLeaderBoard(this.name, this.score);
-    }
+
 
     // leaderboard will only store top 10 scores
     // read data on leaderboard and store
