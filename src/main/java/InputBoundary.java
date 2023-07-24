@@ -1,5 +1,5 @@
 public interface InputBoundary {
-    public void setName(String newName);
+    void setName(String newName);
 
-    public void click(Integer i);
+    void click(Integer i);
 }
