@@ -22,6 +22,19 @@ public class GameUseCase {
 
     private int location;
 
+    public GameUseCase() {
+        this.name = "";
+        this.score = 0;
+        //this.DataAccIn = new DataAccess();
+        //this.gameEntity = new GameEntity(difficulty);
+
+        this.preset = new ArrayList<>();
+        this.preset.add("2P");
+        this.preset.add("3P");
+        this.preset.add("4P");
+
+        run();
+    }
 
     public GameUseCase(String difficulty) {
         this.name = "";
@@ -38,12 +51,6 @@ public class GameUseCase {
         run();
     }
 
-
-
-    public void setName(String name){
-        this.name = name;
-    }
-
     public void increaseScore(int increment){
         this.score += increment;
     }
@@ -52,7 +59,12 @@ public class GameUseCase {
         this.score -= decrement;
     }
 
-
+    public String setName(){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter username");
+        this.name = s.nextLine();
+        return this.name;
+    }
 
     /*
     leaderboard will only store top 10 scores
@@ -60,30 +72,31 @@ public class GameUseCase {
     // data          ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
     // refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
      */
-    public ArrayList<String[]> addToLeaderboard(){
+    public void addToLeaderboard(){
         ArrayList<String> data = DataAccessInterface.read();
         ArrayList<String[]> refinedData = new ArrayList<>();
+        ArrayList<String> dataToReturn = null;
 
+        // load refinedData (original element: strings, new element: lists of strings)
         for (String s : data) {
             String[] temp = s.split(",");
             refinedData.add(temp);
         }
-        return refinedData;
-
-        // if data makes it in the top 10, add it where appropriate
-        // if data doesn't make it in the top 10, do nothing
-        ArrayList<String> topTen = DataAccessInterface.read();
 
         // at the time of launch of this game, leaderboard is empty, so just add until the list is 10
-        if (topTen.size() == 0) {
-
-            DataAccessInterface.write(this.name, this.score, this.difficulty);
+        if (refinedData.size() == 0) {
+            dataToReturn.add(this.name + "," + this.score + "," + this.difficulty);
         }
 
         // leaderboard has one or more data
-        for (int i=0; i<topTen.size(); i++) {
-
+        else {
+            for (int i=refinedData.size(); i>0; i--) {
+                if (this.score < Integer.parseInt(refinedData.get(i)[1])) {
+                    dataToReturn.add(i+1, this.name + "," + this.score + "," + this.difficulty);
+                }
+            }
         }
+        DataAccessInterface.write(dataToReturn);
     }
 
 
