@@ -21,7 +21,7 @@ public class GameController {
      * @param i
      */
     public void click(Integer i) {
-        input.click(i);
+        this.input.click(i);
     }
 
 
