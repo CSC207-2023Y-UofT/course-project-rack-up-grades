@@ -21,7 +21,7 @@ public class NavigatorController {
      * @param newName
      */
     public void setName(String newName) {
-        LC.setName(newName);
+        this.LC.setName(newName);
     }
 
 
@@ -30,7 +30,7 @@ public class NavigatorController {
      * @param i
      */
     public void click(Integer i) {
-        GC.click(i);
+        this.GC.click(i);
     }
 
 }
