@@ -56,11 +56,8 @@ public class GameUseCase {
         // this.run();
     }
 
-    public void setName(){
-        Scanner s = new Scanner(System.in);
-        System.out.println("Enter username: ");
-        this.name = s.nextLine();
-        s.close();
+    public void setName(String name){
+        this.name = name;
     }
 
     public void increaseScore(int increment){
