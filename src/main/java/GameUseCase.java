@@ -79,8 +79,6 @@ public class GameUseCase {
         ArrayList<String[]> refinedData = new ArrayList<>();
         ArrayList<String> dataToReturn = null;
 
-        this.setName();
-
         // load refinedData (original element: strings, new element: lists of strings)
         for (String s : data) {
             String[] temp = s.split(",");
