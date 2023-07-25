@@ -1,6 +1,7 @@
-import java.util.*;
-import java.io.*;
-// ScheduleExecutionTime
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.TimerTask;
+import java.util.Random;
 
 public class GameUseCase {
 
@@ -8,62 +9,66 @@ public class GameUseCase {
     private String name;
     private int score;
     private String difficulty;
-    private int timeGame;
+    // private int timeGame;
 
-    //private GameEntity gameEntity;
+    private GameEntity gameEntity;
+    private int increment;
+    private int decrement;
 
     private String currPosition;
     private ArrayList<String> preset;
 
-    //private GameEntity gameEntity;
-    //private DataAccessInterface DataAccIn;
+    private DataAccessInterface DataAccIn;
     private ArrayList<String> presetGame;
-
 
     private int location;
 
-    public GameUseCase() {
-        this.name = "";
-        this.score = 0;
-        //this.DataAccIn = new DataAccess();
-        //this.gameEntity = new GameEntity(difficulty);
+    final int[] gameTime = {60};
+    private Random randomGen;
 
-        this.preset = new ArrayList<>();
-        this.preset.add("2P");
-        this.preset.add("3P");
-        this.preset.add("4P");
-
-        run();
-    }
-
+    /**
+     * Initialize GameUseCase
+     * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
+     */
     public GameUseCase(String difficulty) {
         this.name = "";
         this.score = 0;
         this.difficulty = difficulty;
-        //this.DataAccIn = new DataAccess();
-        //this.gameEntity = new GameEntity(difficulty);
+        this.DataAccIn = new DataAccess("file.txt");
+        this.gameEntity = new GameEntity(difficulty);
+        this.increment = this.gameEntity.getIncrement();
+        this.decrement = this.gameEntity.getDecrement();
 
+        this.randomGen = new Random();
         this.preset = new ArrayList<>();
-        this.preset.add("2P");
-        this.preset.add("3P");
-        this.preset.add("4P");
 
-        run();
+        // Preset the array of objects that will show up
+        for (int i=0; i<31; i++){
+            int position = randomGen.nextInt(4);
+            int type = randomGen.nextInt(2);
+            if (type == 0){
+                preset.add(Integer.toString(position+1) + "P");
+            } else {
+                preset.add(Integer.toString(position+1) + "N");
+            }
+        }
+
+        // this.run();
+    }
+
+    public void setName(){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Enter username: ");
+        this.name = s.nextLine();
+        s.close();
     }
 
     public void increaseScore(int increment){
-        this.score += increment;
+        this.score += this.increment;
     }
 
     public void decreaseScore(int decrement){
-        this.score -= decrement;
-    }
-
-    public String setName(){
-        Scanner s = new Scanner(System.in);
-        System.out.println("Enter username");
-        this.name = s.nextLine();
-        return this.name;
+        this.score -= this.decrement;
     }
 
     /*
@@ -76,6 +81,8 @@ public class GameUseCase {
         ArrayList<String> data = DataAccessInterface.read();
         ArrayList<String[]> refinedData = new ArrayList<>();
         ArrayList<String> dataToReturn = null;
+
+        this.setName();
 
         // load refinedData (original element: strings, new element: lists of strings)
         for (String s : data) {
@@ -96,13 +103,17 @@ public class GameUseCase {
                 }
             }
         }
+
+        if (refinedData.size() > 10) {
+            refinedData.remove(refinedData.size()-1);
+        }
         DataAccessInterface.write(dataToReturn);
     }
 
 
     // give current time
-    public void giveCurrentTime(){
-
+    public int giveCurrentTime(){
+        return this.gameTime[0];
     }
 
     // Initialize data access --> What does this mean?
@@ -118,8 +129,13 @@ public class GameUseCase {
                 if (!preset.isEmpty()) {
                     currPosition = preset.remove(0);
                     System.out.println(currPosition);
+
+                    // prints out the time left (60, 59, 58, ..., 1, Game Over)
+                    System.out.println(gameTime[0]);
+                    gameTime[0]--;
                 }
                 else {
+                    System.out.println("You Scored: " + score);
                     System.out.println("Game Over");
                     T.cancel();
                 }
@@ -128,18 +144,25 @@ public class GameUseCase {
         T.scheduleAtFixedRate(TT, 3000, 1000);
     }
 
-    public void click(Integer i){}
+    public void click(Integer i){
+        // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
+        if (i==Integer.parseInt(this.currPosition.substring(0, 1))) {
+            System.out.println("Clicked " + this.currPosition + " +" + this.increment);
+            this.increaseScore(this.increment);
+        } else {
+            this.score -= 1;
+            System.out.println("Wrong -1");
+        }
+    }
 
     public String toString(){
         return currPosition;
     }
 
-    //
     // toString sends current position to presenter
-    //
 
     public static void main(String[] args){
-        GameUseCase test = new GameUseCase();
+        GameUseCase test = new GameUseCase("e");
 
 
     }

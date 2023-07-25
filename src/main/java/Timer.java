@@ -7,14 +7,18 @@ public class Timer {
         lst.add("1P");
         lst.add("2N");
         lst.add("3P");
+        lst.add("4P");
+        lst.add("5N");
+        final int[] gameTime = {5};
         java.util.Timer T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override
             public void run() {
-
                 if (!lst.isEmpty()) {
                     System.out.println(lst.remove(0));
+                    System.out.println(gameTime[0]);
+                    gameTime[0]--;
                 }
                 else {
                     System.out.println("Game Over");
@@ -22,6 +26,6 @@ public class Timer {
                 }
             }
         };
-        T.scheduleAtFixedRate(TT, 3000, 1000);
+        T.scheduleAtFixedRate(TT, 3000, 500);
     }
 }
