@@ -38,36 +38,36 @@ public class GameUseCase {
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();
-
-        this.randomGen = new Random();
         this.preset = new ArrayList<>();
 
-        // Preset the array of objects that will show up
-        for (int i=0; i<31; i++){
-            int position = randomGen.nextInt(4);
-            int type = randomGen.nextInt(2);
-            if (type == 0){
-                preset.add(Integer.toString(position+1) + "P");
-            } else {
-                preset.add(Integer.toString(position+1) + "N");
-            }
-        }
-        // This genPreset method creates a preset depending on gamemode. Can be combined with the code above
-        public ArrayList<String> genPreset(String difficulty){
+        // this.run();
+    }
+
+    // This genPreset method creates a preset depending on gamemode. Can be combined with the code above
+    public ArrayList<String> genPreset(String difficulty){
         ArrayList<String> preset = new ArrayList<>();
         Random r = new Random();
-        if (difficulty == "e") {
-            for (int i = 0; i<60; i++) {
-                Integer rand = r.nextInt(6)+1;
-                preset.add(rand.toString() + "P");
+
+        if (difficulty.equals("e") || difficulty.equals("m")) {
+            for (int i=0; i<60; i++) {
+                int rand = r.nextInt(6)+1;
+                preset.add(rand + "P");
+            }
+        }
+
+        // hard mode
+        else {
+            for (int i=0; i<60; i++){
+                int position = r.nextInt(4);
+                int type = r.nextInt(2);
+                if (type == 0){
+                    preset.add((position+1) + "P");
+                } else {
+                    preset.add((position+1) + "N");
+                }
             }
         }
         return preset;
-    }
-
-        
-
-        // this.run();
     }
 
     public void setName(String name){
