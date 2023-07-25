@@ -52,6 +52,20 @@ public class GameUseCase {
                 preset.add(Integer.toString(position+1) + "N");
             }
         }
+        // This genPreset method creates a preset depending on gamemode. Can be combined with the code above
+        public ArrayList<String> genPreset(String difficulty){
+        ArrayList<String> preset = new ArrayList<>();
+        Random r = new Random();
+        if (difficulty == "e") {
+            for (int i = 0; i<60; i++) {
+                Integer rand = r.nextInt(6)+1;
+                preset.add(rand.toString() + "P");
+            }
+        }
+        return preset;
+    }
+
+        
 
         // this.run();
     }
