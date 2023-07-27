@@ -11,6 +11,7 @@ public class Leaderboard_Frame extends JFrame {
                 "NO.","Player Name","Points","Game Level"
         };
         JTable table = new JTable(ViewModel.getData(),columns);
+        table.setEnabled(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.add(new JScrollPane(table));
         this.pack();

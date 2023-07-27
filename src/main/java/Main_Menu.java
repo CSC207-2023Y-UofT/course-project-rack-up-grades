@@ -76,7 +76,12 @@ public class Main_Menu extends JFrame {
                 TimerTask timertask = new TimerTask() {
                     @Override
                     public void run() {
-                        Game_Frame game_frame = new Game_Frame(V.getInfo(), NC);
+//                        Game_Frame game_frame = new Game_Frame(V.getInfo(), NC);
+                        if (V.getInfo().get(1) != "0") {
+                            System.out.println(V.getInfo()); }
+                        else {
+                            timer.cancel();
+                        }
                     }
                 };
                 //Slight more delay than usecase cause there is some time required for things to set up
