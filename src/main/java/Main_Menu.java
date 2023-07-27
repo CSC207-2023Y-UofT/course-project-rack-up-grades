@@ -1,11 +1,8 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main_Menu extends JFrame {
     JButton i,easy,medium,hard,leader;
-    JDialog leaderboard;
     public Main_Menu(String title) {
         super(title);
         this.i = new JButton("I"); //Icon will be done
@@ -56,7 +53,9 @@ public class Main_Menu extends JFrame {
                         new ImageIcon("/Users/magicbook/Desktop/UI/intro.png"));
             }
             if (click == easy){
-                System.out.println("easy");
+                Easy_Game_View_Frame easy_view = new Easy_Game_View_Frame();
+                easy_view.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                easy_view.setVisible(true);
             }
             if (click == medium){
                 System.out.println("medium");

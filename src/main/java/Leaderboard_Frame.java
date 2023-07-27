@@ -3,7 +3,6 @@ import javax.swing.*;
 public class Leaderboard_Frame extends JFrame {
 
     public Leaderboard_Frame(){
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(700,700);
         this.setTitle("TOP 10 Leaderboard");
         this.setLocationRelativeTo(null);
@@ -15,6 +14,7 @@ public class Leaderboard_Frame extends JFrame {
         this.add(new JScrollPane(table));
         this.pack();
         this.setLayout(null);
+        setResizable(false);
         this.setVisible(true);
     };
 };
