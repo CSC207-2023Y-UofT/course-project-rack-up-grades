@@ -17,18 +17,29 @@ public class LeaderboardPresenter implements InterfaceLeaderboardPresenter{
         // [[1, "Cathy", "90", "Easy"], [2, "Ivy", "80", "Medium"]] to ->
         // {{1, "Cathy", "90", "Easy"}, {2, "Ivy", "80", "Medium"}}
         for (String s : data) {
+            char k = s.charAt(s.length()-1);
+            switch (k) {
+                case 'e':
+                    s = s.substring(0,s.length()-1) + "Easy";
+                    break;
+                case 'm':
+                    s = s.substring(0,s.length()-1) + "Medium";
+                    break;
+                case 'h':
+                    s = s.substring(0,s.length()-1) + "Hard";
+                    break;
+            }
+
             i++;
             subarr.add(i);
             subarr.addAll(new ArrayList<>(Arrays.asList(s.split(","))));
             arr.add(subarr);
             subarr = new ArrayList<>();
         }
-        ArrayList<Object[]> r = new ArrayList<>();
-        for (ArrayList<Object> a : arr) {
-            r.add(a.toArray());
-
+        Object[][] arr2 = new Object[arr.size()][];
+        for (int a = 0; a < arr.size(); a++) {
+            arr2[a] = arr.get(a).toArray(new Object[0]);
         }
-        Object[][] ret = (Object[][]) r.toArray();
-        v.setData(ret);
+        v.setData(arr2);
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * ViewModel for LeaderboardPresenter and GamePresenter
  */
 public class ViewModel {
-    Object[][] data;
+    static Object[][] data;
     ArrayList<String> info;
 
     /**
@@ -12,7 +12,7 @@ public class ViewModel {
      * @param data stores top 10 of leaderboard if they exist. In the form "<Place> <Name> <Points> <Difficulty> \n <Place> <Name> <Points> <Difficulty> ..."
      */
     public void setData(Object[][] data) {
-        this.data = data;
+        ViewModel.data = data;
     }
 
     /**
@@ -27,8 +27,8 @@ public class ViewModel {
      * getter for data
      * @return data (refer above)
      */
-    public Object[][] getData(){
-        return this.data;
+    public static Object[][] getData(){
+        return data;
     }
 
     /**
