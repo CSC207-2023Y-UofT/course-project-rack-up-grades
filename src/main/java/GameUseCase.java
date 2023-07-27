@@ -40,7 +40,7 @@ public class GameUseCase {
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();
-        this.preset = new ArrayList<>();
+        this.preset = genPreset(difficulty);
         this.LP = LP;
 
         // this.run();

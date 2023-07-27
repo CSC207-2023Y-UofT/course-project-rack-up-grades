@@ -33,4 +33,12 @@ public class NavigatorController {
         this.GC.click(i);
     }
 
+    public void setData() {
+        this.input.setData();
+    }
+
+    public void run() {
+        this.input.run();
+    }
+
 }

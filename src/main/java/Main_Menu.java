@@ -29,10 +29,19 @@ public class Main_Menu extends JFrame {
     }
 
     public static void main(String[] args) {
+
         Main_Menu mainmenu = new Main_Menu("Rack Up Grade - Main Menu");
         mainmenu.setSize(1200,700);
         mainmenu.setLocationRelativeTo(null);
-        mainmenu.setUpButtonListeners();
+
+
+        ViewModel V = new ViewModel();
+        InterfaceLeaderboardPresenter P = new LeaderboardPresenter(V);
+        GameUseCase G = new GameUseCase("e", P);
+        InputBoundary IB = new InputBoundaryImpl(G);
+        NavigatorController NC = new NavigatorController(IB);
+
+        mainmenu.setUpButtonListeners(NC);
         JPanel menu = new JPanel();
         menu.setLayout(null);
         mainmenu.setAndAdd(menu);
@@ -43,7 +52,7 @@ public class Main_Menu extends JFrame {
         menu.setVisible(true);
 
     }
-    public void setUpButtonListeners() {
+    public void setUpButtonListeners(NavigatorController NC) {
         ActionListener bs = e -> {
             Object click = e.getSource();
             if(click == i) {
@@ -57,6 +66,7 @@ public class Main_Menu extends JFrame {
             }
             if (click == easy){
                 System.out.println("easy");
+                NC.run();
             }
             if (click == medium){
                 System.out.println("medium");
@@ -65,6 +75,7 @@ public class Main_Menu extends JFrame {
                 System.out.println("hard");
             }
             if (click == leader){
+                NC.setData();
                 Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();
             }
         };

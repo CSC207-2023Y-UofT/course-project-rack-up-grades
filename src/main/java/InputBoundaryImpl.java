@@ -16,5 +16,14 @@ public class InputBoundaryImpl implements InputBoundary{
         useCase.click(i);
     }
 
+    @Override
+    public void setData() {
+        useCase.setData();
+    }
+
+    public void run() {
+        useCase.run();
+    }
+
 
 }
