@@ -26,11 +26,13 @@ public class GameUseCase {
     final int[] gameTime = {60};
     private Random randomGen;
 
+    private InterfaceLeaderboardPresenter LP;
+
     /**
      * Initialize GameUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
      */
-    public GameUseCase(String difficulty) {
+    public GameUseCase(String difficulty, InterfaceLeaderboardPresenter LP) {
         this.name = "";
         this.score = 0;
         this.difficulty = difficulty;
@@ -39,6 +41,7 @@ public class GameUseCase {
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();
         this.preset = new ArrayList<>();
+        this.LP = LP;
 
         // this.run();
     }
@@ -89,7 +92,7 @@ public class GameUseCase {
     // refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
      */
     public void addToLeaderboard(){
-        ArrayList<String> data = DataAccessInterface.read();
+        ArrayList<String> data = this.DataAccIn.read();
         ArrayList<String[]> refinedData = new ArrayList<>();
         ArrayList<String> dataToReturn = null;
 
@@ -116,7 +119,7 @@ public class GameUseCase {
         if (refinedData.size() > 10) {
             refinedData.remove(refinedData.size()-1);
         }
-        DataAccessInterface.write(dataToReturn);
+        this.DataAccIn.write(dataToReturn);
     }
 
 
@@ -159,6 +162,7 @@ public class GameUseCase {
             System.out.println("Clicked " + this.currPosition + " +" + this.increment);
             this.increaseScore(this.increment);
         } else {
+            // May needs to be changed
             this.score -= 1;
             System.out.println("Wrong -1");
         }
@@ -169,5 +173,9 @@ public class GameUseCase {
     }
 
     // toString sends current position to presenter
+
+    public void setData() {
+        this.LP.setData(DataAccIn.read());
+    }
 
 }

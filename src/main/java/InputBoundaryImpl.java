@@ -2,7 +2,7 @@ public class InputBoundaryImpl implements InputBoundary{
 
     private GameUseCase useCase;
 
-    InputBoundaryImpl(UseCase useCase) {
+    InputBoundaryImpl(GameUseCase useCase) {
         this.useCase = useCase;
     }
 
