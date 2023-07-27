@@ -55,7 +55,7 @@ public class GameUseCase {
 
         if (difficulty.equals("e") || difficulty.equals("m")) {
             for (int i=0; i<60; i++) {
-                int rand = r.nextInt(6)+1;
+                int rand = r.nextInt(4)+1;
                 preset.add(rand + "P");
             }
         }
