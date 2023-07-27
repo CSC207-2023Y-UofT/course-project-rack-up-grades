@@ -1,17 +1,18 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Main_Menu extends JFrame {
-    JButton i,easy,medium,hard,leaderboard;
-
+    JButton i,easy,medium,hard,leader;
+    JDialog leaderboard;
     public Main_Menu(String title) {
         super(title);
         this.i = new JButton("I"); //Icon will be done
         this.easy = new JButton("Easy");
         this.medium = new JButton("Medium");
         this.hard = new JButton("Hard");
-        this.leaderboard = new JButton("Leaderboard");//buttons
+        this.leader = new JButton("Leaderboard");//buttons
     }
 
     public void setAndAdd(JPanel menu) {
@@ -23,8 +24,8 @@ public class Main_Menu extends JFrame {
         medium.setBounds(500,350,200,100);
         menu.add(hard);
         hard.setBounds(800,350,200,100);
-        menu.add(leaderboard);
-        leaderboard.setBounds(400,500,400,80);
+        menu.add(leader);
+        leader.setBounds(400,500,400,80);
     }
 
     public static void main(String[] args) {
@@ -46,7 +47,13 @@ public class Main_Menu extends JFrame {
         ActionListener bs = e -> {
             Object click = e.getSource();
             if(click == i) {
-                System.out.println("INFO");
+                JOptionPane.showMessageDialog(this,
+                        "Moles living underground of Toronto" +
+                                " are taking over the U of T library," +
+                                "protect the library and stop moles'" +
+                                "evil plan by clicking them!",
+                        "Introduction",JOptionPane.INFORMATION_MESSAGE,
+                        new ImageIcon("/Users/magicbook/Desktop/UI/intro.png"));
             }
             if (click == easy){
                 System.out.println("easy");
@@ -57,15 +64,15 @@ public class Main_Menu extends JFrame {
             if (click == hard){
                 System.out.println("hard");
             }
-            if (click == leaderboard){
-                System.out.println("Leaderboard");
+            if (click == leader){
+                Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();
             }
         };
         i.addActionListener(bs);
         easy.addActionListener(bs);
         medium.addActionListener(bs);
         hard.addActionListener(bs);
-        leaderboard.addActionListener(bs);
+        leader.addActionListener(bs);
     }
 
 }
