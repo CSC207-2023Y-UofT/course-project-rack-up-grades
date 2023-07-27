@@ -170,9 +170,4 @@ public class GameUseCase {
 
     // toString sends current position to presenter
 
-    public static void main(String[] args){
-        GameUseCase test = new GameUseCase("e");
-
-
-    }
 }
