@@ -1,3 +1,3 @@
 public interface GameOutputBoundary {
-    void presenter(String position, int time, int score);
+    void updateGame(String position, int time, int score);
 }

@@ -7,13 +7,17 @@ public class GamePresenter implements GameOutputBoundary {
 
      */
 
-    GamePresenter(MainMenu view, GameUseCase gameUseCase){
-        this.gameUseCase = gameUseCase;
-        this.view = MainMenu;
+    GamePresenter(ViewModel vm){
+        this.viewModel = vm;
     }
-    public void presenter(String position, int time, int score) {
+    public void updateGame(String position, int time, int score) {
         // another way is for the presenter to return something but that would mean the main menu takes care of the
         // timing which is a violation of CA
-        view.updateGame(position, time, score);
+        this.viewModel.updateGame(position, time, score);
+    }
+
+    public ViewModel getViewModel(){
+        return this.viewModel;
     }
 }
+
