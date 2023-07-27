@@ -19,8 +19,3 @@ public class NegativeObj {
         return this.point;
     }
 }
-
-abstract class PositiveObj{
-    private int point;
-
-}

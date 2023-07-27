@@ -1,0 +1,6 @@
+cathy,100,h
+ivy,99,m
+sakura,98,e
+henry,97,e
+andy,96,m
+bob,10,e
