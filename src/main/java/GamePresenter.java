@@ -11,8 +11,7 @@ public class GamePresenter implements GameOutputBoundary {
         this.viewModel = vm;
     }
     public void updateGame(String position, int time, int score) {
-        // another way is for the presenter to return something but that would mean the main menu takes care of the
-        // timing which is a violation of CA
+        // This will call on view model to set the data (trusting that view will get that data from view model)
         this.viewModel.updateGame(position, time, score);
     }
 
