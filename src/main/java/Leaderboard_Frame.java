@@ -9,9 +9,9 @@ public class Leaderboard_Frame extends JFrame {
         String[] columns = new String[]{
                 "NO.","Player Name","Points","Game Level"
         };
-        JTable table = new JTable(ViewModel.getData(),columns);
+        //JTable table = new JTable(ViewModel.getData(),columns);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.add(new JScrollPane(table));
+        //this.add(new JScrollPane(table));
         this.pack();
         this.setLayout(null);
         setResizable(false);

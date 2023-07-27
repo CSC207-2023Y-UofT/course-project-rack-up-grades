@@ -53,7 +53,7 @@ public class Main_Menu extends JFrame {
                         new ImageIcon("/Users/magicbook/Desktop/UI/intro.png"));
             }
             if (click == easy){
-                Easy_Game_View_Frame easy_view = new Easy_Game_View_Frame();
+                Easy_Game_View_Frame easy_view = new Easy_Game_View_Frame(ViewMoudel);
                 easy_view.setDefaultCloseOperation(EXIT_ON_CLOSE);
                 easy_view.setVisible(true);
             }
