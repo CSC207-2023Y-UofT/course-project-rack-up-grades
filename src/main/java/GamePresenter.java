@@ -27,16 +27,11 @@ public class GamePresenter implements GameOutputBoundary {
      */
     public void updateGame(String position, int time, int score) {
 
-        // another way is for the presenter to return something but that would mean the main menu takes care of the
-        // timing which is a violation of CA
         ArrayList<String> info = new ArrayList<String>();
         info.add(position);
         info.add(Integer.toString(time));
         info.add(Integer.toString(score));
         this.viewModel.updateGame(info);
-
-        // This will call on view model to set the data (trusting that view will get that data from view model)
-        this.viewModel.updateGame(position, time, score);
     }
 
 }
