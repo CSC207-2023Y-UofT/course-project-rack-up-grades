@@ -14,6 +14,8 @@ public class GamePresenter implements GameOutputBoundary {
      * It stores the view model so that it can be accessed by the presenter in the later methods
      * @param vm
      */
+    ViewModel viewModel;
+    
     GamePresenter(ViewModel vm){
         this.viewModel = vm;
     }
