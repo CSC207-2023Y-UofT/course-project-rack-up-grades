@@ -7,10 +7,14 @@ public class Leaderboard_Frame extends JFrame {
         this.setSize(700,700);
         this.setTitle("TOP 10 Leaderboard");
         this.setLocationRelativeTo(null);
-        JScrollPane ld = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        this.add(ld);
-        this.setContentPane(ld);
+        String[] columns = new String[]{
+                "NO.","Player Name","Points","Game Level"
+        };
+        JTable table = new JTable(ViewModel.getData(),columns);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.add(new JScrollPane(table));
+        this.pack();
         this.setLayout(null);
         this.setVisible(true);
-    }
-}
+    };
+};
