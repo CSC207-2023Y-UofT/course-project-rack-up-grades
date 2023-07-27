@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.TimerTask;
+
 
 public class Main_Menu extends JFrame {
     JButton i,easy,medium,hard,leader;
@@ -37,11 +39,12 @@ public class Main_Menu extends JFrame {
 
         ViewModel V = new ViewModel();
         InterfaceLeaderboardPresenter P = new LeaderboardPresenter(V);
-        GameUseCase G = new GameUseCase("e", P);
+        GameOutputBoundary GP = new GamePresenter(V);
+        GameUseCase G = new GameUseCase("e", P, GP);
         InputBoundary IB = new InputBoundaryImpl(G);
         NavigatorController NC = new NavigatorController(IB);
 
-        mainmenu.setUpButtonListeners(NC);
+        mainmenu.setUpButtonListeners(NC, V);
         JPanel menu = new JPanel();
         menu.setLayout(null);
         mainmenu.setAndAdd(menu);
@@ -52,7 +55,7 @@ public class Main_Menu extends JFrame {
         menu.setVisible(true);
 
     }
-    public void setUpButtonListeners(NavigatorController NC) {
+    public void setUpButtonListeners(NavigatorController NC, ViewModel V) {
         ActionListener bs = e -> {
             Object click = e.getSource();
             if(click == i) {
@@ -67,6 +70,19 @@ public class Main_Menu extends JFrame {
             if (click == easy){
                 System.out.println("easy");
                 NC.run();
+
+
+                java.util.Timer timer = new java.util.Timer();
+                TimerTask timertask = new TimerTask() {
+                    @Override
+                    public void run() {
+                        Game_Frame game_frame = new Game_Frame(V.getInfo(), NC);
+                    }
+                };
+                //Slight more delay than usecase cause there is some time required for things to set up
+                timer.scheduleAtFixedRate(timertask, 3050, 1000);
+
+
             }
             if (click == medium){
                 System.out.println("medium");

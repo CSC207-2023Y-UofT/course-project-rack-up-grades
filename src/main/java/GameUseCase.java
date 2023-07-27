@@ -27,12 +27,13 @@ public class GameUseCase {
     private Random randomGen;
 
     private InterfaceLeaderboardPresenter LP;
+    private GameOutputBoundary GP;
 
     /**
      * Initialize GameUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
      */
-    public GameUseCase(String difficulty, InterfaceLeaderboardPresenter LP) {
+    public GameUseCase(String difficulty, InterfaceLeaderboardPresenter LP, GameOutputBoundary GP) {
         this.name = "";
         this.score = 0;
         this.difficulty = difficulty;
@@ -42,6 +43,7 @@ public class GameUseCase {
         this.decrement = this.gameEntity.getDecrement();
         this.preset = genPreset(difficulty);
         this.LP = LP;
+        this.GP = GP;
 
         // this.run();
     }
@@ -140,11 +142,12 @@ public class GameUseCase {
 
                 if (!preset.isEmpty()) {
                     currPosition = preset.remove(0);
-                    System.out.println(currPosition);
+//                    System.out.println(currPosition);
 
                     // prints out the time left (60, 59, 58, ..., 1, Game Over)
-                    System.out.println(gameTime[0]);
+//                    System.out.println(gameTime[0]);
                     gameTime[0]--;
+                    GP.updateGame(currPosition, gameTime[0], score);
                 }
                 else {
                     System.out.println("You Scored: " + score);
@@ -161,10 +164,6 @@ public class GameUseCase {
         if (i==Integer.parseInt(this.currPosition.substring(0, 1))) {
             System.out.println("Clicked " + this.currPosition + " +" + this.increment);
             this.increaseScore(this.increment);
-        } else {
-            // May needs to be changed
-            this.score -= 1;
-            System.out.println("Wrong -1");
         }
     }
 
