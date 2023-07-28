@@ -37,7 +37,7 @@ public class GameUseCase {
         this.name = "";
         this.score = 0;
         this.difficulty = difficulty;
-        this.DataAccIn = new DataAccess("C:\\Users\\andyh\\OneDrive - University of Toronto\\Documents\\GitHub\\course-project-rack-up-grades\\src\\main\\java\\file.txt");
+        this.DataAccIn = new DataAccess("C:\\Users\\sakur\\Documents\\GitHub\\course-project-rack-up-grades\\src\\main\\java\\file.txt");
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();

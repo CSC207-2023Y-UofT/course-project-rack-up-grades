@@ -77,6 +77,7 @@ public class EasyUI extends JFrame implements ActionListener {
                     but2.setVisible(false);
                     but3.setVisible(false);
                     but4.setVisible(false);
+                    title.setText("Score: "+viewM.getInfo().get(2));
                     String position = (viewM.getInfo().get(0)).substring(0,1);
                     switch (position){
                         case "1":
@@ -100,6 +101,10 @@ public class EasyUI extends JFrame implements ActionListener {
                 else {
                     setDialog();
                     T.cancel();
+                    but1.setVisible(false);
+                    but2.setVisible(false);
+                    but3.setVisible(false);
+                    but4.setVisible(false);
 
                 }
             }
