@@ -10,10 +10,10 @@ import java.util.TimerTask;
 public class EasyUI extends JFrame implements ActionListener {
     private ViewModel viewM;
     private NavigatorController nc;
-    Icon pig = new ImageIcon("/Users/magicbook/Desktop/UI/Test-Pig.png");
-    Icon cat = new ImageIcon("/Users/magicbook/Desktop/UI/Test-Cat.png");
-    Icon bunny = new ImageIcon("/Users/magicbook/Desktop/UI/Test-Bunny.png");
-    Icon panda = new ImageIcon("/Users/magicbook/Desktop/UI/Test-Panda.png");
+    Icon pig = new ImageIcon(System.getProperty("user.dir")+"\\src\\main\\UI\\Test-Pig.png");
+    Icon cat = new ImageIcon(System.getProperty("user.dir")+"\\src\\main\\UI\\Test-Cat.png");
+    Icon bunny = new ImageIcon(System.getProperty("user.dir")+"\\src\\main\\UI\\Test-Bunny.png");
+    Icon panda = new ImageIcon(System.getProperty("user.dir")+"\\src\\main\\UI\\Test-Panda.png");
     JLabel easy,time,pt;
     JButton but1, but2,but3,but4;
     JFrame easy_game_view = new JFrame("Easy-Rack_Up_Grades");
@@ -26,6 +26,7 @@ public class EasyUI extends JFrame implements ActionListener {
         //
         this.setLayout(null);
         this.setSize(1200,700);
+        this.setLocationRelativeTo(null);
         //
         Container view = easy_game_view.getContentPane();
         //
