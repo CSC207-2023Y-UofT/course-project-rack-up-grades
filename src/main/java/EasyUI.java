@@ -1,84 +1,72 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 import java.util.TimerTask;
 
 
-public class EasyUI extends JPanel implements ActionListener {
-
+public class EasyUI extends JFrame implements ActionListener {
     private ViewModel viewM;
     private NavigatorController nc;
-    
-    JButton but1;
-    JButton but2;
-    JButton but3;
-    JButton but4;
-    
+    Icon pig = new ImageIcon("/Users/magicbook/Desktop/UI/Test-Pig.png");
+    Icon cat = new ImageIcon("/Users/magicbook/Desktop/UI/Test-Cat.png");
+    Icon bunny = new ImageIcon("/Users/magicbook/Desktop/UI/Test-Bunny.png");
+    Icon panda = new ImageIcon("/Users/magicbook/Desktop/UI/Test-Panda.png");
+    JLabel easy,time,pt;
+    JButton but1, but2,but3,but4;
+    JFrame easy_game_view = new JFrame("Easy-Rack_Up_Grades");
 
-    EasyUI(NavigatorController NC, ViewModel V){
 
+    public EasyUI(NavigatorController NC, ViewModel V){
+        //
         this.nc = NC;
         this.viewM = V;
-
-        JFrame frame = new JFrame("the game");
-        JLabel title = new JLabel("The actual game");
-        this.but1 = new JButton("1");
-        this.but1.setVerticalAlignment(AbstractButton.TOP);
-        this.but1.setHorizontalAlignment(AbstractButton.LEFT);
-
-        this.but2 = new JButton("2");
-        this.but2.setVerticalAlignment(AbstractButton.TOP);
-        this.but2.setHorizontalAlignment(AbstractButton.RIGHT);
-
-        this.but3 = new JButton("3");
-        this.but3.setVerticalAlignment(AbstractButton.BOTTOM);
-        this.but3.setHorizontalAlignment(AbstractButton.LEFT);
-
-        this.but4 = new JButton("4");
-        this.but4.setVerticalAlignment(AbstractButton.BOTTOM);
-        this.but4.setHorizontalAlignment(AbstractButton.RIGHT);
-
-        this.but1.setName("1");
-        this.but2.setName("2");
-        this.but3.setName("3");
-        this.but4.setName("4");
-
-
+        //
+        this.setLayout(null);
+        this.setSize(1200,700);
+        //
+        Container view = easy_game_view.getContentPane();
+        //
+        view.setLayout(null);
+        view.setBounds(0,0,1200,700);
+        this.add(view);
+        //
+        this.easy = new JLabel("Easy Model");
+        view.add(this.easy);
+        //
+        this.time = new JLabel("Time: 60");
+        view.add(this.time);
+        //
+        this.pt = new JLabel("Points: 0");
+        view.add(this.pt);
+        //
+        this.but1 = new JButton("1",pig);
+        view.add(this.but1);
         this.but1.addActionListener(this);
-        this.but2.addActionListener(this);
-        this.but3.addActionListener(this);
-        this.but4.addActionListener(this);
-
-        title.setBounds(0,0,100,50);
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.setVisible(true);
-
-
-        this.but1.setBounds(10,50,100,50);
-        this.but2.setBounds(220,50,100,50);
-        this.but3.setBounds(10,150,100,50);
-        this.but4.setBounds(220,150,100,50);
-
         this.but1.setVisible(false);
+        //
+        this.but2 = new JButton("2",cat);
+        view.add(this.but2);
+        this.but2.addActionListener(this);
         this.but2.setVisible(false);
+        //
+        this.but3 = new JButton("3",bunny);
+        view.add(this.but3);
+        this.but3.addActionListener(this);
         this.but3.setVisible(false);
+        //
+        this.but4 = new JButton("4",panda);
+        view.add(this.but4);
+        this.but4.addActionListener(this);
         this.but4.setVisible(false);
-
-        frame.add(title);
-
-        frame.add(this.but1);
-
-        frame.add(this.but2);
-        frame.add(this.but3);
-        frame.add(this.but4);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 420);
-        frame.setLayout(null);
-        frame.setVisible(true);
-
-
+        //
+        set_Labels();
+        set_buttons();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+        //
         java.util.Timer T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
@@ -104,40 +92,87 @@ public class EasyUI extends JPanel implements ActionListener {
                             but4.setVisible(true);
                             break;
                     }
+                    time.setText("Time " + viewM.getInfo().get(1) + "s");
+                    pt.setText("Points: " + viewM.getInfo().get(2));
                     System.out.println(viewM.getInfo());
-                    }
+                }
 
                 else {
+                    setDialog();
                     T.cancel();
 
                 }
             }
         };
-        T.scheduleAtFixedRate(TT, 3050, 1000);
+        T.scheduleAtFixedRate(TT, 3050, 1000);};
+        public void set_Labels(){
+            this.easy.setBounds(50,50,100,50);
+            this.time.setBounds(500,50,100,50);
+            this.pt.setBounds(1050,50,100,50);
+    };
 
-    }
+        public void set_buttons(){
+            this.but1.setVerticalAlignment(AbstractButton.TOP);
+            this.but1.setHorizontalAlignment(AbstractButton.LEFT);
+            this.but1.setBounds(200,300,300,300);
+            this.but1.setName("1");
+            //
+            this.but2.setVerticalAlignment(AbstractButton.TOP);
+            this.but2.setHorizontalAlignment(AbstractButton.RIGHT);
+            this.but2.setBounds(500,300,300,300);
+            this.but2.setName("1");
+            //
+            this.but3.setVerticalAlignment(AbstractButton.BOTTOM);
+            this.but3.setHorizontalAlignment(AbstractButton.LEFT);
+            this.but3.setBounds(800,300,300,300);
+            this.but3.setName("1");
+            //
+            this.but4.setVerticalAlignment(AbstractButton.BOTTOM);
+            this.but4.setHorizontalAlignment(AbstractButton.RIGHT);
+            this.but4.setBounds(450,250,300,300);
+            this.but4.setName("1");
+            //
+        }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton o = (JButton)e.getSource(); //the button that was clicked name
-        String name = o.getName();
+        String name = o.getText();
         switch (name){
             case "1":
                 this.nc.click(1);
+                this.but1.setVisible(false);
                 break;
             case "2":
                 this.nc.click(2);
+                this.but2.setVisible(false);
                 break;
             case "3":
                 this.nc.click(3);
+                this.but3.setVisible(false);
                 break;
             case "4":
                 this.nc.click(4);
+                this.but4.setVisible(false);
                 break;
         }
-//        this.but1.setVisible(false);
-//        this.but2.setVisible(false);
-//        this.but3.setVisible(false);
-//        this.but4.setVisible(false);
+
     }
+    public void setDialog(){
+
+        int event = JOptionPane.showConfirmDialog(null,
+                "Your Final Grade is "+ this.viewM.getInfo().get(2) +"! Would you like to save it?", "Congratulation!",JOptionPane.YES_NO_OPTION);
+        if(event == 0){
+            String input_name,output_name;
+            input_name = JOptionPane.showInputDialog("Type your name in 8 characters.");
+            output_name = input_name.substring(0,8);
+            ///output_name should link with view model
+        };
+        if(event == 1){
+            dispose();
+        };
+    }
+
+
 }
