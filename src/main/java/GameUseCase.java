@@ -26,19 +26,24 @@ public class GameUseCase {
     final int[] gameTime = {60};
     private Random randomGen;
 
+    private InterfaceLeaderboardPresenter LP;
+    private GameOutputBoundary GP;
+
     /**
      * Initialize GameUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
      */
-    public GameUseCase(String difficulty) {
+    public GameUseCase(String difficulty, InterfaceLeaderboardPresenter LP, GameOutputBoundary GP) {
         this.name = "";
         this.score = 0;
         this.difficulty = difficulty;
-        this.DataAccIn = new DataAccess("file.txt");
+        this.DataAccIn = new DataAccess("C:\\Users\\sakur\\Documents\\GitHub\\course-project-rack-up-grades\\src\\main\\java\\file.txt");
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();
-        this.preset = new ArrayList<>();
+        this.preset = genPreset(difficulty);
+        this.LP = LP;
+        this.GP = GP;
 
         // this.run();
     }
@@ -50,7 +55,7 @@ public class GameUseCase {
 
         if (difficulty.equals("e") || difficulty.equals("m")) {
             for (int i=0; i<60; i++) {
-                int rand = r.nextInt(6)+1;
+                int rand = r.nextInt(4)+1;
                 preset.add(rand + "P");
             }
         }
@@ -89,7 +94,7 @@ public class GameUseCase {
     // refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
      */
     public void addToLeaderboard(){
-        ArrayList<String> data = DataAccessInterface.read();
+        ArrayList<String> data = this.DataAccIn.read();
         ArrayList<String[]> refinedData = new ArrayList<>();
         ArrayList<String> dataToReturn = null;
 
@@ -116,7 +121,7 @@ public class GameUseCase {
         if (refinedData.size() > 10) {
             refinedData.remove(refinedData.size()-1);
         }
-        DataAccessInterface.write(dataToReturn);
+        this.DataAccIn.write(dataToReturn);
     }
 
 
@@ -137,11 +142,12 @@ public class GameUseCase {
 
                 if (!preset.isEmpty()) {
                     currPosition = preset.remove(0);
-                    System.out.println(currPosition);
+//                    System.out.println(currPosition);
 
                     // prints out the time left (60, 59, 58, ..., 1, Game Over)
-                    System.out.println(gameTime[0]);
+//                    System.out.println(gameTime[0]);
                     gameTime[0]--;
+                    GP.updateGame(currPosition, gameTime[0], score);
                 }
                 else {
                     System.out.println("You Scored: " + score);
@@ -158,9 +164,6 @@ public class GameUseCase {
         if (i==Integer.parseInt(this.currPosition.substring(0, 1))) {
             System.out.println("Clicked " + this.currPosition + " +" + this.increment);
             this.increaseScore(this.increment);
-        } else {
-            this.score -= 1;
-            System.out.println("Wrong -1");
         }
     }
 
@@ -169,5 +172,9 @@ public class GameUseCase {
     }
 
     // toString sends current position to presenter
+
+    public void setData() {
+        this.LP.setData(DataAccIn.read());
+    }
 
 }
