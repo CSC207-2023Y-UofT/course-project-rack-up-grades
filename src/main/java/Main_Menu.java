@@ -65,7 +65,7 @@ public class Main_Menu extends JFrame {
                                 "protect the library and stop moles'" +
                                 "evil plan by clicking them!",
                         "Introduction",JOptionPane.INFORMATION_MESSAGE,
-                        new ImageIcon("/Users/magicbook/Desktop/UI/intro.png"));
+                        new ImageIcon(System.getProperty("user.dir")+"\\src\\main\\UI\\Intro.png"));
             }
             if (click == easy){
                 System.out.println("easy");
