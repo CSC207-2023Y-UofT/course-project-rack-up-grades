@@ -74,7 +74,7 @@ public class EasyUI extends JFrame implements ActionListener {
 
             @Override
             public void run() {
-                if (!Objects.equals(viewM.getInfo().get(1), "50")) {
+                if (!Objects.equals(viewM.getInfo().get(1), "0")) {
                     but1.setVisible(false);
                     but2.setVisible(false);
                     but3.setVisible(false);
