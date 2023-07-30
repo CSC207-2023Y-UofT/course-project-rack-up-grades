@@ -17,7 +17,7 @@ public class GameUseCase {
 
     private final DataAccessInterface DataAccIn;
 
-    final int[] gameTime = {60};
+    private int[] gameTime;
 
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
@@ -36,9 +36,10 @@ public class GameUseCase {
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();
-        this.preset = genPreset(difficulty);
+        this.preset = new ArrayList<>();//genPreset(difficulty);
         this.LP = LP;
         this.GP = GP;
+        this.gameTime = new int[1];
 
         // this.run();
     }
@@ -137,6 +138,9 @@ public class GameUseCase {
 
     // Initializes the game
     public void run(){
+        this.preset = genPreset(this.difficulty);
+        this.gameTime = new int[]{60};
+        this.score = 0;
         java.util.Timer T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 

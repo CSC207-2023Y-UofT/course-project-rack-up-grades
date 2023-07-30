@@ -66,7 +66,7 @@ public class EasyUI extends JFrame implements ActionListener {
         //
         set_Labels();
         set_buttons();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
         //
         java.util.Timer T = new java.util.Timer();
@@ -74,7 +74,7 @@ public class EasyUI extends JFrame implements ActionListener {
 
             @Override
             public void run() {
-                if (!Objects.equals(viewM.getInfo().get(1), "55")) {
+                if (!Objects.equals(viewM.getInfo().get(1), "0")) {
                     but1.setVisible(false);
                     but2.setVisible(false);
                     but3.setVisible(false);
@@ -178,6 +178,7 @@ public class EasyUI extends JFrame implements ActionListener {
             NC.addToLeaderboard(input_name);
             nc.setData();
             Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();
+            dispose();
 
             ///output_name should link with view model
         };
