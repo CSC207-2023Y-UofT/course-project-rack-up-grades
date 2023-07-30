@@ -29,6 +29,8 @@ public class GameUseCase {
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
 
+    final String FILE = System.getProperty("user.dir")+"\\src\\main\\java\\file.txt";
+
     /**
      * Initialize GameUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
@@ -37,7 +39,7 @@ public class GameUseCase {
         this.name = "";
         this.score = 0;
         this.difficulty = difficulty;
-        this.DataAccIn = new DataAccess("C:\\Users\\andyh\\OneDrive - University of Toronto\\Documents\\GitHub\\course-project-rack-up-grades\\src\\main\\java\\file.txt");
+        this.DataAccIn = new DataAccess(FILE);
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();
@@ -55,7 +57,7 @@ public class GameUseCase {
 
         if (difficulty.equals("e") || difficulty.equals("m")) {
             for (int i=0; i<60; i++) {
-                int rand = r.nextInt(6)+1;
+                int rand = r.nextInt(4)+1;
                 preset.add(rand + "P");
             }
         }

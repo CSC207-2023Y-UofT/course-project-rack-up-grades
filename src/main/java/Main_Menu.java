@@ -65,27 +65,28 @@ public class Main_Menu extends JFrame {
                                 "protect the library and stop moles'" +
                                 "evil plan by clicking them!",
                         "Introduction",JOptionPane.INFORMATION_MESSAGE,
-                        new ImageIcon("/Users/magicbook/Desktop/UI/intro.png"));
+                        new ImageIcon(System.getProperty("user.dir")+"\\src\\main\\UI\\Intro.png"));
             }
             if (click == easy){
                 System.out.println("easy");
+                EasyUI temp = new EasyUI(NC, V);
                 NC.run();
 
 
-                java.util.Timer timer = new java.util.Timer();
-                TimerTask timertask = new TimerTask() {
-                    @Override
-                    public void run() {
-//                        Game_Frame game_frame = new Game_Frame(V.getInfo(), NC);
-                        if (V.getInfo().get(1) != "0") {
-                            System.out.println(V.getInfo()); }
-                        else {
-                            timer.cancel();
-                        }
-                    }
-                };
-                //Slight more delay than usecase cause there is some time required for things to set up
-                timer.scheduleAtFixedRate(timertask, 3050, 1000);
+//                java.util.Timer timer = new java.util.Timer();
+//                TimerTask timertask = new TimerTask() {
+//                    @Override
+//                    public void run() {
+////                        Game_Frame game_frame = new Game_Frame(V.getInfo(), NC);
+//                        if (V.getInfo().get(1) != "0") {
+//                            System.out.println(V.getInfo()); }
+//                        else {
+//                            timer.cancel();
+//                        }
+//                    }
+//                };
+//                //Slight more delay than usecase cause there is some time required for things to set up
+//                timer.scheduleAtFixedRate(timertask, 3050, 1000);
 
 
             }

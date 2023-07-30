@@ -20,9 +20,6 @@ public class GameEntity {
             //this.posObj = new PositiveObj(5);
             this.negObj = new NegativeObj(5);
         }
-        //else{
-            // return "enter correct level";
-        //}
     }
 
     public int getIncrement() {return this.posObj.getPoint();}
