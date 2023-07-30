@@ -28,8 +28,8 @@ public class GameUseCase {
 
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
-
-    final String FILE = System.getProperty("user.dir")+"\\src\\main\\java\\file.txt";
+    final String fs = System.getProperty("file.separator");
+    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+"file.txt";
 
     /**
      * Initialize GameUseCase
