@@ -7,8 +7,9 @@ public class InputBoundaryImpl implements InputBoundary{
     }
 
     @Override
-    public void setName(String newName) {
+    public void addToLeaderboard(String newName) {
         useCase.setName(newName);
+        useCase.addToLeaderboard();
     }
 
     @Override

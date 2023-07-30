@@ -1,5 +1,5 @@
 public interface InputBoundary {
-    void setName(String newName);
+    void addToLeaderboard(String newName);
 
     void click(Integer i);
 

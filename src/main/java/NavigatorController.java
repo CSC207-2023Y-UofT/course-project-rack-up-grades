@@ -20,8 +20,8 @@ public class NavigatorController {
      * Refer to Leaderboard Controller documentation
      * @param newName
      */
-    public void setName(String newName) {
-        this.LC.setName(newName);
+    public void addToLeaderboard(String newName) {
+        this.LC.addToLeaderboard(newName);
     }
 
 

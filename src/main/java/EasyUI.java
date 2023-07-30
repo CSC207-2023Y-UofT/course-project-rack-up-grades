@@ -74,7 +74,7 @@ public class EasyUI extends JFrame implements ActionListener {
 
             @Override
             public void run() {
-                if (!Objects.equals(viewM.getInfo().get(1), "0")) {
+                if (!Objects.equals(viewM.getInfo().get(1), "50")) {
                     but1.setVisible(false);
                     but2.setVisible(false);
                     but3.setVisible(false);
@@ -100,7 +100,7 @@ public class EasyUI extends JFrame implements ActionListener {
                 }
 
                 else {
-                    setDialog();
+                    setDialog(NC);
                     T.cancel();
                     but1.setVisible(false);
                     but2.setVisible(false);
@@ -165,14 +165,15 @@ public class EasyUI extends JFrame implements ActionListener {
         }
 
     }
-    public void setDialog(){
+    public void setDialog(NavigatorController NC){
 
         int event = JOptionPane.showConfirmDialog(null,
                 "Your Final Grade is "+ this.viewM.getInfo().get(2) +"! Would you like to save it?", "Congratulation!",JOptionPane.YES_NO_OPTION);
         if(event == 0){
             String input_name,output_name;
             input_name = JOptionPane.showInputDialog("Type your name in 8 characters.");
-            output_name = input_name.substring(0,8);
+            NC.addToLeaderboard(input_name);
+
             ///output_name should link with view model
         };
         if(event == 1){
