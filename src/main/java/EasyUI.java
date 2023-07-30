@@ -74,7 +74,7 @@ public class EasyUI extends JFrame implements ActionListener {
 
             @Override
             public void run() {
-                if (!Objects.equals(viewM.getInfo().get(1), "0")) {
+                if (!Objects.equals(viewM.getInfo().get(1), "55")) {
                     but1.setVisible(false);
                     but2.setVisible(false);
                     but3.setVisible(false);
@@ -100,6 +100,9 @@ public class EasyUI extends JFrame implements ActionListener {
                 }
 
                 else {
+                    time.setText("Time " + viewM.getInfo().get(1) + "s");
+                    pt.setText("Points: " + viewM.getInfo().get(2));
+                    System.out.println(viewM.getInfo());
                     setDialog(NC);
                     T.cancel();
                     but1.setVisible(false);
@@ -173,6 +176,7 @@ public class EasyUI extends JFrame implements ActionListener {
             String input_name,output_name;
             input_name = JOptionPane.showInputDialog("Type your name in 8 characters.");
             NC.addToLeaderboard(input_name);
+            Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();
 
             ///output_name should link with view model
         };

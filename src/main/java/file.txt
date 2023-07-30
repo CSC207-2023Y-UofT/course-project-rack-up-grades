@@ -4,4 +4,7 @@ ivy,99,m
 sakura,98,e
 henry,97,e
 andy,96,m
-bob,10,e
+tom,95,e
+thomas,80,e
+brian,70,e
+gab,20,e

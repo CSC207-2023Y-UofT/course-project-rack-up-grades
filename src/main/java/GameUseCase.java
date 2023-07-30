@@ -100,7 +100,7 @@ public class GameUseCase {
     public void addToLeaderboard(){
         ArrayList<String> data = this.DataAccIn.read();
         ArrayList<String[]> refinedData = new ArrayList<>();
-        ArrayList<String> dataToReturn = null;
+        ArrayList<String> dataToReturn = this.DataAccIn.read();
 
         // load refinedData (original element: strings, new element: lists of strings)
         for (String s : data) {
@@ -115,15 +115,16 @@ public class GameUseCase {
 
         // leaderboard has one or more data
         else {
-            for (int i=refinedData.size(); i>0; i--) {
+            for (int i=refinedData.size()-1; i>0; i--) {
                 if (this.score < Integer.parseInt(refinedData.get(i)[1])) {
                     dataToReturn.add(i+1, this.name + "," + this.score + "," + this.difficulty);
+                    break;
                 }
             }
         }
 
-        if (refinedData.size() > 10) {
-            refinedData.remove(refinedData.size()-1);
+        if (dataToReturn.size() > 10) {
+            dataToReturn.remove(dataToReturn.size()-1);
         }
         this.DataAccIn.write(dataToReturn);
     }
