@@ -95,6 +95,8 @@ public class GameUseCase {
     // data          ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
     // refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
      */
+
+    //MAKE SURE this.name is only 8 letters max and remove commas in it
     public void addToLeaderboard(){
         ArrayList<String> data = this.DataAccIn.read();
         ArrayList<String[]> refinedData = new ArrayList<>();
