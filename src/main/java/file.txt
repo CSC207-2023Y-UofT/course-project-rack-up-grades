@@ -1,3 +1,4 @@
+
 Sally,101,e
 cathy,100,h
 ivy,99,m
@@ -8,3 +9,14 @@ tom,95,e
 thomas,80,e
 brian,70,e
 kura,20,e
+gab,50,e
+leo,45,e
+Sally,30,e
+cathy,29,h
+ivy,28,m
+sakura,27,e
+henry,26,e
+andy,24,m
+tom,20,e
+thomas,15,e
+

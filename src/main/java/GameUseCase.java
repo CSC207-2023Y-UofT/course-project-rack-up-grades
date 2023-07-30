@@ -44,7 +44,11 @@ public class GameUseCase {
         // this.run();
     }
 
-    // This genPreset method creates a preset depending on gamemode. Can be combined with the code above
+    /**
+     * This genPreset method creates a preset depending on gamemode. Can be combined with the code above
+     * @param difficulty: a string that represents difficulty
+     * @return an arraylist of strings that will show up as moles when the game runs
+     */
     public ArrayList<String> genPreset(String difficulty){
         ArrayList<String> preset = new ArrayList<>();
         Random r = new Random();
@@ -71,6 +75,10 @@ public class GameUseCase {
         return preset;
     }
 
+    /**
+     * Set the name as the name given through assignment
+     * @param name: string
+     */
     public void setName(String name){
         this.name = name;
     }
@@ -84,49 +92,53 @@ public class GameUseCase {
     }
 
     /*
-    leaderboard will only store top 10 scores
-    read data on leaderboard and store
-    // data          ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
-    // refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
-     */
+    - leaderboard will only store top 10 scores
+    - read data on leaderboard, modify appropriately, send it back to store
 
+    [Clarifications on variables used in this method]
+    data          ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
+    refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
+    dataToReturn  ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
+     */
     public void addToLeaderboard(){
         ArrayList<String> data = this.DataAccIn.read();
         ArrayList<String[]> refinedData = new ArrayList<>();
         ArrayList<String> dataToReturn = this.DataAccIn.read();
 
-        // load refinedData (original element: strings, new element: lists of strings)
+        // Load refinedData (original element: strings, new element: lists of strings)
         for (String s : data) {
             String[] temp = s.split(",");
             refinedData.add(temp);
         }
 
-        // remove possible commas in the name
+        // Remove possible commas in the name
         this.name = this.name.replaceAll(",", "");
 
-        // cut the name to 8 letters if longer
+        // Cut the name to 8 letters if longer
         if (this.name.length() > 8){
             this.name = this.name.substring(0, 7);
         }
 
-        // at the time of launch of this game, leaderboard is empty, so just add until the list is 10
+        // If there is no data and so the leaderboard is empty, just add the data
         if (refinedData.size() == 0) {
             dataToReturn.add(this.name + "," + this.score + "," + this.difficulty);
         }
 
-        // leaderboard has one or more data
+        // Leaderboard has one or more data
         else {
-            for (int i=refinedData.size()-1; i>0; i--) {
-                if (this.score < Integer.parseInt(refinedData.get(i)[1])) {
-                    dataToReturn.add(i+1, this.name + "," + this.score + "," + this.difficulty);
+            for (int i=0; i<refinedData.size(); i++) {
+                if (this.score > Integer.parseInt(refinedData.get(i)[1])) {
+                    dataToReturn.add(i, this.name + "," + this.score + "," + this.difficulty);
                     break;
                 }
             }
         }
 
+        // If the finalized list for leaderboard is longer than 10, remove the last line
         if (dataToReturn.size() > 10) {
             dataToReturn.remove(dataToReturn.size()-1);
         }
+
         this.DataAccIn.write(dataToReturn);
     }
 
