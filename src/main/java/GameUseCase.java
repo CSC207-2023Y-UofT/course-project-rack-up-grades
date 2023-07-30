@@ -28,6 +28,8 @@ public class GameUseCase {
 
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
+    final String fs = System.getProperty("file.separator");
+    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+"file.txt";
 
     /**
      * Initialize GameUseCase
@@ -37,7 +39,7 @@ public class GameUseCase {
         this.name = "";
         this.score = 0;
         this.difficulty = difficulty;
-        this.DataAccIn = new DataAccess("C:\\Users\\sakur\\Documents\\GitHub\\course-project-rack-up-grades\\src\\main\\java\\file.txt");
+        this.DataAccIn = new DataAccess(FILE);
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();
