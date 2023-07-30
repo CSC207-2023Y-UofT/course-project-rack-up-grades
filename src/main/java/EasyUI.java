@@ -166,8 +166,8 @@ public class EasyUI extends JFrame implements ActionListener {
                 this.but4.setVisible(false);
                 break;
         }
-
     }
+
     public void setDialog(NavigatorController NC){
 
         int event = JOptionPane.showConfirmDialog(null,
@@ -176,6 +176,7 @@ public class EasyUI extends JFrame implements ActionListener {
             String input_name,output_name;
             input_name = JOptionPane.showInputDialog("Type your name in 8 characters.");
             NC.addToLeaderboard(input_name);
+            nc.setData();
             Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();
 
             ///output_name should link with view model

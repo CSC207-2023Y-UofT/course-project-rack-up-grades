@@ -1,15 +1,12 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.TimerTask;
 import java.util.Random;
 
 public class GameUseCase {
 
-    // use case classes will get point from Entity class directly
     private String name;
     private int score;
     private String difficulty;
-    // private int timeGame;
 
     private GameEntity gameEntity;
     private int increment;
@@ -18,13 +15,9 @@ public class GameUseCase {
     private String currPosition;
     private ArrayList<String> preset;
 
-    private DataAccessInterface DataAccIn;
-    private ArrayList<String> presetGame;
-
-    private int location;
+    private final DataAccessInterface DataAccIn;
 
     final int[] gameTime = {60};
-    private Random randomGen;
 
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
@@ -96,7 +89,6 @@ public class GameUseCase {
     // refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
      */
 
-    //MAKE SURE this.name is only 8 letters max and remove commas in it
     public void addToLeaderboard(){
         ArrayList<String> data = this.DataAccIn.read();
         ArrayList<String[]> refinedData = new ArrayList<>();
@@ -106,6 +98,14 @@ public class GameUseCase {
         for (String s : data) {
             String[] temp = s.split(",");
             refinedData.add(temp);
+        }
+
+        // remove possible commas in the name
+        this.name = this.name.replaceAll(",", "");
+
+        // cut the name to 8 letters if longer
+        if (this.name.length() > 8){
+            this.name = this.name.substring(0, 7);
         }
 
         // at the time of launch of this game, leaderboard is empty, so just add until the list is 10
@@ -134,8 +134,6 @@ public class GameUseCase {
     public int giveCurrentTime(){
         return this.gameTime[0];
     }
-
-    // Initialize data access --> What does this mean?
 
     // Initializes the game
     public void run(){
