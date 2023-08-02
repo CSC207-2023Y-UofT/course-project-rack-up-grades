@@ -6,7 +6,6 @@
 public class LeaderboardController {
 
     private InputBoundary input;
-    private String name;
 
     /**
      * constructs a Leaderboard Controller and stores the InputBoundary for use

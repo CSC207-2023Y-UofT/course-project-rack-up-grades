@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.TimerTask;
-import java.util.Random;
+import java.util.*;
 
 public class GameUseCase {
 
@@ -15,14 +13,16 @@ public class GameUseCase {
     private String currPosition;
     private ArrayList<String> preset;
 
-    private final DataAccessInterface DataAccIn;
+
+    final String fs = System.getProperty("file.separator");
+    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+"file.txt";
+
+    private final DataAccessInterface DataAccIn = new DataAccess(FILE);;
 
     private int[] gameTime;
 
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
-    final String fs = System.getProperty("file.separator");
-    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+"file.txt";
 
     /**
      * Initialize GameUseCase
@@ -32,7 +32,6 @@ public class GameUseCase {
         this.name = "";
         this.score = 0;
         this.difficulty = difficulty;
-        this.DataAccIn = new DataAccess(FILE);
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();
@@ -100,48 +99,95 @@ public class GameUseCase {
     refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
     dataToReturn  ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
      */
-    public void addToLeaderboard(){
+//    public void addToLeaderboard(){
+//        ArrayList<String> data = this.DataAccIn.read();
+//        ArrayList<String[]> refinedData = new ArrayList<>();
+//        ArrayList<String> dataToReturn = this.DataAccIn.read();
+//
+//        if (!this.name.equals("")) {
+//
+//
+//            // Load refinedData (original element: strings, new element: lists of strings)
+//            for (String s : data) {
+//                String[] temp = s.split(",");
+//                refinedData.add(temp);
+//            }
+//
+////        // Remove possible commas in the name
+////        this.name = this.name.replaceAll(",", "");
+////
+////        // Cut the name to 8 letters if longer
+////        if (this.name.length() > 8){
+////            this.name = this.name.substring(0, 7);
+////        }
+//
+//            // If there is no data and so the leaderboard is empty, just add the data
+//            if (refinedData.size() == 0) {
+//                dataToReturn.add(this.name + "," + this.score + "," + this.difficulty);
+//            }
+//
+//            // Leaderboard has one or more data
+//            else {
+//                for (int i = 0; i < refinedData.size(); i++) {
+//                    if (this.score > Integer.parseInt(refinedData.get(i)[1])) {
+//                        dataToReturn.add(i, this.name + "," + this.score + "," + this.difficulty);
+//                        break;
+//                    }
+//                }
+//            }
+//
+//            // If the finalized list for leaderboard is longer than 10, remove the last line
+//            if (dataToReturn.size() > 10) {
+//                dataToReturn.remove(dataToReturn.size() - 1);
+//            }
+//
+//            this.DataAccIn.write(dataToReturn);
+//        }
+//    }
+
+    public void addToLeaderboard() {
         ArrayList<String> data = this.DataAccIn.read();
-        ArrayList<String[]> refinedData = new ArrayList<>();
-        ArrayList<String> dataToReturn = this.DataAccIn.read();
+        ArrayList<Integer> mod = new ArrayList<>();
+        ArrayList<String> r = new ArrayList<>();
 
-        // Load refinedData (original element: strings, new element: lists of strings)
-        for (String s : data) {
-            String[] temp = s.split(",");
-            refinedData.add(temp);
-        }
+        if (!this.name.equals("")) {
+            for (String s : data) {
+                String[] temp = s.split(",");
+                mod.add(Integer.parseInt(temp[1]));
+            }
 
-        // Remove possible commas in the name
-        this.name = this.name.replaceAll(",", "");
+            this.name = this.name.replaceAll(",", "");
 
-        // Cut the name to 8 letters if longer
-        if (this.name.length() > 8){
-            this.name = this.name.substring(0, 7);
-        }
+            // Cut the name to 8 letters if longer
+            if (this.name.length() > 8){
+                this.name = this.name.substring(0, 7);
+            }
 
-        // If there is no data and so the leaderboard is empty, just add the data
-        if (refinedData.size() == 0) {
-            dataToReturn.add(this.name + "," + this.score + "," + this.difficulty);
-        }
+            data.add(this.name + "," + this.score + "," + this.difficulty);
 
-        // Leaderboard has one or more data
-        else {
-            for (int i=0; i<refinedData.size(); i++) {
-                if (this.score > Integer.parseInt(refinedData.get(i)[1])) {
-                    dataToReturn.add(i, this.name + "," + this.score + "," + this.difficulty);
-                    break;
+            class dataComparator implements Comparator<String> {
+                public int compare(String e1, String e2) {
+                    if (Integer.parseInt(e1.split(",")[1]) < Integer.parseInt(e2.split(",")[1])) {
+                        return 1;
+                    }
+                    else if (Integer.parseInt(e1.split(",")[1]) > Integer.parseInt(e2.split(",")[1])) {
+                        return -1;
+                    }
+                    else {
+                        return 0;
+                    }
+
                 }
             }
-        }
+            Collections.sort(data , new dataComparator());
 
-        // If the finalized list for leaderboard is longer than 10, remove the last line
-        if (dataToReturn.size() > 10) {
-            dataToReturn.remove(dataToReturn.size()-1);
-        }
+            if (data.size() > 10) {
+                data.remove(data.size() - 1);
+            }
 
-        this.DataAccIn.write(dataToReturn);
+            this.DataAccIn.write(data);
+        }
     }
-
 
     // give current time
     public int giveCurrentTime(){
@@ -193,7 +239,7 @@ public class GameUseCase {
     // toString sends current position to presenter
 
     public void setData() {
-        this.LP.setData(DataAccIn.read());
+        this.LP.setData(this.DataAccIn.read());
     }
 
 }

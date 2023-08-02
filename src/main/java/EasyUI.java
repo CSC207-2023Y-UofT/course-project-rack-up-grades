@@ -13,8 +13,8 @@ public class EasyUI extends JFrame implements ActionListener {
     final String fs = System.getProperty("file.separator");
     Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Pig.png");
     Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Cat.png");
-    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Bunny.png");
-    Icon panda = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Panda.png");
+    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Magician_Kura.png");
+    Icon panda = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Love&Mimi.png");
     JLabel easy,time,pt;
     JButton but1, but2,but3,but4;
     JFrame easy_game_view = new JFrame("Easy-Rack_Up_Grades");
@@ -175,8 +175,8 @@ public class EasyUI extends JFrame implements ActionListener {
         if(event == 0){
             String input_name,output_name;
             input_name = JOptionPane.showInputDialog("Type your name in 8 characters.");
-            NC.addToLeaderboard(input_name);
-            nc.setData();
+            this.nc.addToLeaderboard(input_name);
+//            this.nc.setData();
             Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();
             dispose();
 

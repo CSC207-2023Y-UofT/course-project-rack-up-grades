@@ -3,7 +3,5 @@ public interface InputBoundary {
 
     void click(Integer i);
 
-    void setData();
-
     void run();
 }

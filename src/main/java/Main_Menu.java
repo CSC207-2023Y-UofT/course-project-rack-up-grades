@@ -98,7 +98,7 @@ public class Main_Menu extends JFrame {
                 System.out.println("hard");
             }
             if (click == leader){
-                NC.setData();
+                NC.addToLeaderboard("");
                 Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();
             }
         };
