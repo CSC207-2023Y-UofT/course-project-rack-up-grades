@@ -1,16 +1,21 @@
-# Project Template
+# Rack-Up-Grades
 
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+This is a single-player game with a time limit and a leaderboard. We took inspiration from the classic carnival game Whack-A-Mole and digitalized it. 
+The goal of the game remains the same. The player's main goal is to hit the mole however the specific rules change between the three levels provided: Easy, Medium, and Hard.
+
+The Easy level is meant to be almost a tutorial for how the game works at the basic level. The player needs to click the moles as they appear and they just accumulate points as time goes by.
+The Medium Level takes it a bit further by adding the rule that missing a mole means a certain amount of points is deducted from your overall score. 
+The Hard Level is the master level where not only do the 2 rules above apply but we have an additional bomb where clicking that will also result in deduction of points. 
+
+As the user finishes playing the game, the game prompts them with a message if they would like to add their score to the leaderboard. If they choose yes then they can enter their name and depending on whether or not they place within the top 10, their scores will be displayed on the leaderboard. This leaderboard can also be accessed in the main menu
 
 ## Checklist For Your Project
-- [ ] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
-- [ ] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
+- [ ] Verify if you are on the right branch and/or fetch the updated main 
+- [ ] Discuss, Discuss, Discuss! Specially with teammates on what needs to get done and sort them out
+- [ ] Branches have already been created so start working on your feature!
+- [ ] When faced with a challenge meet up with teammates to discuss solutions before you ask the instructors.
 - [ ] Use pull requests to merge finished features into main branch
-- [ ] Conduct code reviews
+- [ ] Conduct code reviews and don't forget to add Javadocs
 
 **If your team has trouble with any of these steps, please ask on Piazza. For example, with how GitHub Classroom works, your team *may* not have permissions to do some of the first few steps, in which case we'll post alternative instructions as needed.**
 
