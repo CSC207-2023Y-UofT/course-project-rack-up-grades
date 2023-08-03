@@ -7,22 +7,19 @@ public class InputBoundaryImpl implements InputBoundary{
     }
 
     @Override
-    public void setName(String newName) {
-        useCase.setName(newName);
+    public void addToLeaderboard(String newName) {
+        this.useCase.setName(newName);
+        this.useCase.addToLeaderboard();
+        this.useCase.setData();
     }
 
     @Override
     public void click(Integer i) {
-        useCase.click(i);
-    }
-
-    @Override
-    public void setData() {
-        useCase.setData();
+        this.useCase.click(i);
     }
 
     public void run() {
-        useCase.run();
+        this.useCase.run();
     }
 
 

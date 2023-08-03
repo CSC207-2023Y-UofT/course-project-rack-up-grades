@@ -13,8 +13,8 @@ public class EasyUI extends JFrame implements ActionListener {
     final String fs = System.getProperty("file.separator");
     Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Pig.png");
     Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Cat.png");
-    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Bunny.png");
-    Icon panda = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Panda.png");
+    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Magician_Kura.png");
+    Icon panda = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Love&Mimi.png");
     JLabel easy,time,pt;
     JButton but1, but2,but3,but4;
     JFrame easy_game_view = new JFrame("Easy-Rack_Up_Grades");
@@ -66,7 +66,7 @@ public class EasyUI extends JFrame implements ActionListener {
         //
         set_Labels();
         set_buttons();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
         //
         java.util.Timer T = new java.util.Timer();
@@ -100,7 +100,10 @@ public class EasyUI extends JFrame implements ActionListener {
                 }
 
                 else {
-                    setDialog();
+                    time.setText("Time " + viewM.getInfo().get(1) + "s");
+                    pt.setText("Points: " + viewM.getInfo().get(2));
+                    System.out.println(viewM.getInfo());
+                    setDialog(NC);
                     T.cancel();
                     but1.setVisible(false);
                     but2.setVisible(false);
@@ -163,16 +166,20 @@ public class EasyUI extends JFrame implements ActionListener {
                 this.but4.setVisible(false);
                 break;
         }
-
     }
-    public void setDialog(){
+
+    public void setDialog(NavigatorController NC){
 
         int event = JOptionPane.showConfirmDialog(null,
                 "Your Final Grade is "+ this.viewM.getInfo().get(2) +"! Would you like to save it?", "Congratulation!",JOptionPane.YES_NO_OPTION);
         if(event == 0){
             String input_name,output_name;
             input_name = JOptionPane.showInputDialog("Type your name in 8 characters.");
-            output_name = input_name.substring(0,8);
+            this.nc.addToLeaderboard(input_name);
+//            this.nc.setData();
+            Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();
+            dispose();
+
             ///output_name should link with view model
         };
         if(event == 1){

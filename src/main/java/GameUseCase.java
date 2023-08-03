@@ -1,15 +1,10 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.TimerTask;
-import java.util.Random;
+import java.util.*;
 
 public class GameUseCase {
 
-    // use case classes will get point from Entity class directly
     private String name;
     private int score;
     private String difficulty;
-    // private int timeGame;
 
     private GameEntity gameEntity;
     private int increment;
@@ -18,18 +13,16 @@ public class GameUseCase {
     private String currPosition;
     private ArrayList<String> preset;
 
-    private DataAccessInterface DataAccIn;
-    private ArrayList<String> presetGame;
 
-    private int location;
+    final String fs = System.getProperty("file.separator");
+    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+"file.txt";
 
-    final int[] gameTime = {60};
-    private Random randomGen;
+    private final DataAccessInterface DataAccIn = new DataAccess(FILE);;
+
+    private int[] gameTime;
 
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
-    final String fs = System.getProperty("file.separator");
-    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+"file.txt";
 
     /**
      * Initialize GameUseCase
@@ -39,18 +32,22 @@ public class GameUseCase {
         this.name = "";
         this.score = 0;
         this.difficulty = difficulty;
-        this.DataAccIn = new DataAccess(FILE);
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();
-        this.preset = genPreset(difficulty);
+        this.preset = new ArrayList<>();//genPreset(difficulty);
         this.LP = LP;
         this.GP = GP;
+        this.gameTime = new int[1];
 
         // this.run();
     }
 
-    // This genPreset method creates a preset depending on gamemode. Can be combined with the code above
+    /**
+     * This genPreset method creates a preset depending on gamemode. Can be combined with the code above
+     * @param difficulty: a string that represents difficulty
+     * @return an arraylist of strings that will show up as moles when the game runs
+     */
     public ArrayList<String> genPreset(String difficulty){
         ArrayList<String> preset = new ArrayList<>();
         Random r = new Random();
@@ -77,6 +74,10 @@ public class GameUseCase {
         return preset;
     }
 
+    /**
+     * Set the name as the name given through assignment
+     * @param name: string
+     */
     public void setName(String name){
         this.name = name;
     }
@@ -90,52 +91,114 @@ public class GameUseCase {
     }
 
     /*
-    leaderboard will only store top 10 scores
-    read data on leaderboard and store
-    // data          ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
-    // refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
+    - leaderboard will only store top 10 scores
+    - read data on leaderboard, modify appropriately, send it back to store
+
+    [Clarifications on variables used in this method]
+    data          ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
+    refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
+    dataToReturn  ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
      */
-    public void addToLeaderboard(){
+//    public void addToLeaderboard(){
+//        ArrayList<String> data = this.DataAccIn.read();
+//        ArrayList<String[]> refinedData = new ArrayList<>();
+//        ArrayList<String> dataToReturn = this.DataAccIn.read();
+//
+//        if (!this.name.equals("")) {
+//
+//
+//            // Load refinedData (original element: strings, new element: lists of strings)
+//            for (String s : data) {
+//                String[] temp = s.split(",");
+//                refinedData.add(temp);
+//            }
+//
+////        // Remove possible commas in the name
+////        this.name = this.name.replaceAll(",", "");
+////
+////        // Cut the name to 8 letters if longer
+////        if (this.name.length() > 8){
+////            this.name = this.name.substring(0, 7);
+////        }
+//
+//            // If there is no data and so the leaderboard is empty, just add the data
+//            if (refinedData.size() == 0) {
+//                dataToReturn.add(this.name + "," + this.score + "," + this.difficulty);
+//            }
+//
+//            // Leaderboard has one or more data
+//            else {
+//                for (int i = 0; i < refinedData.size(); i++) {
+//                    if (this.score > Integer.parseInt(refinedData.get(i)[1])) {
+//                        dataToReturn.add(i, this.name + "," + this.score + "," + this.difficulty);
+//                        break;
+//                    }
+//                }
+//            }
+//
+//            // If the finalized list for leaderboard is longer than 10, remove the last line
+//            if (dataToReturn.size() > 10) {
+//                dataToReturn.remove(dataToReturn.size() - 1);
+//            }
+//
+//            this.DataAccIn.write(dataToReturn);
+//        }
+//    }
+
+    public void addToLeaderboard() {
         ArrayList<String> data = this.DataAccIn.read();
-        ArrayList<String[]> refinedData = new ArrayList<>();
-        ArrayList<String> dataToReturn = null;
+        ArrayList<Integer> mod = new ArrayList<>();
+        ArrayList<String> r = new ArrayList<>();
 
-        // load refinedData (original element: strings, new element: lists of strings)
-        for (String s : data) {
-            String[] temp = s.split(",");
-            refinedData.add(temp);
-        }
+        if (!this.name.equals("")) {
+            for (String s : data) {
+                String[] temp = s.split(",");
+                mod.add(Integer.parseInt(temp[1]));
+            }
 
-        // at the time of launch of this game, leaderboard is empty, so just add until the list is 10
-        if (refinedData.size() == 0) {
-            dataToReturn.add(this.name + "," + this.score + "," + this.difficulty);
-        }
+            this.name = this.name.replaceAll(",", "");
 
-        // leaderboard has one or more data
-        else {
-            for (int i=refinedData.size(); i>0; i--) {
-                if (this.score < Integer.parseInt(refinedData.get(i)[1])) {
-                    dataToReturn.add(i+1, this.name + "," + this.score + "," + this.difficulty);
+            // Cut the name to 8 letters if longer
+            if (this.name.length() > 8){
+                this.name = this.name.substring(0, 7);
+            }
+
+            data.add(this.name + "," + this.score + "," + this.difficulty);
+
+            class dataComparator implements Comparator<String> {
+                public int compare(String e1, String e2) {
+                    if (Integer.parseInt(e1.split(",")[1]) < Integer.parseInt(e2.split(",")[1])) {
+                        return 1;
+                    }
+                    else if (Integer.parseInt(e1.split(",")[1]) > Integer.parseInt(e2.split(",")[1])) {
+                        return -1;
+                    }
+                    else {
+                        return 0;
+                    }
+
                 }
             }
-        }
+            Collections.sort(data , new dataComparator());
 
-        if (refinedData.size() > 10) {
-            refinedData.remove(refinedData.size()-1);
+            if (data.size() > 10) {
+                data.remove(data.size() - 1);
+            }
+
+            this.DataAccIn.write(data);
         }
-        this.DataAccIn.write(dataToReturn);
     }
-
 
     // give current time
     public int giveCurrentTime(){
         return this.gameTime[0];
     }
 
-    // Initialize data access --> What does this mean?
-
     // Initializes the game
     public void run(){
+        this.preset = genPreset(this.difficulty);
+        this.gameTime = new int[]{60};
+        this.score = 0;
         java.util.Timer T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
@@ -176,7 +239,7 @@ public class GameUseCase {
     // toString sends current position to presenter
 
     public void setData() {
-        this.LP.setData(DataAccIn.read());
+        this.LP.setData(this.DataAccIn.read());
     }
 
 }

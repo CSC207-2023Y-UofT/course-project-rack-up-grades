@@ -20,8 +20,8 @@ public class NavigatorController {
      * Refer to Leaderboard Controller documentation
      * @param newName
      */
-    public void setName(String newName) {
-        this.LC.setName(newName);
+    public void addToLeaderboard(String newName) {
+        this.LC.addToLeaderboard(newName);
     }
 
 
@@ -33,9 +33,6 @@ public class NavigatorController {
         this.GC.click(i);
     }
 
-    public void setData() {
-        this.input.setData();
-    }
 
     public void run() {
         this.input.run();

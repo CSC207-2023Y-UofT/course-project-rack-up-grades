@@ -6,7 +6,6 @@
 public class LeaderboardController {
 
     private InputBoundary input;
-    private String name;
 
     /**
      * constructs a Leaderboard Controller and stores the InputBoundary for use
@@ -19,11 +18,12 @@ public class LeaderboardController {
 
     /**
      * This method is used to set the name that's going to be added to the
-     * leaderboard through the InputBoundary to use case.
+     * leaderboard through the InputBoundary to use case. And also call AddToLeaderboard
      * @param newName
      */
-    public void setName(String newName) {
-        this.input.setName(newName);
+    public void addToLeaderboard(String newName) {
+        this.input.addToLeaderboard(newName);
     }
 
 }
+
