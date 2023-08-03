@@ -176,7 +176,6 @@ public class GameUseCase {
                     else {
                         return 0;
                     }
-
                 }
             }
             Collections.sort(data , new dataComparator());

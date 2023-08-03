@@ -1,2 +1,4 @@
-public class HardUseCase {
+import java.util.*;
+
+public class HardUseCase extends GameUseCase {
 }

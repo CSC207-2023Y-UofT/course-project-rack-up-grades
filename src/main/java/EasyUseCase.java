@@ -1,2 +1,4 @@
-public class EasyUseCase {
+import java.util.*;
+
+public class EasyUseCase extends GameUseCase {
 }
