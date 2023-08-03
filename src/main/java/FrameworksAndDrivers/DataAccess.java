@@ -1,3 +1,7 @@
+package FrameworksAndDrivers;
+
+import ApplicationBusiness.DataAccessInterface;
+
 import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -7,7 +11,7 @@ import java.io.IOException;
 public class DataAccess implements DataAccessInterface {
     private static String fileName;
 
-    DataAccess(String name) {
+    public DataAccess(String name) {
         this.fileName = name;
     }
 

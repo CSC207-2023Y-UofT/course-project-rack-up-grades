@@ -1,11 +1,15 @@
+package InterfaceAdapters;
+
+import ApplicationBusiness.GameOutputBoundary;
+
 import java.util.ArrayList;
 
 public class GamePresenter implements GameOutputBoundary {
     // Not really sure what to do here
     /* Responsibility
-       Translates data from output boundary to be usable by ViewModel
+       Translates data from output boundary to be usable by InterfaceAdapters.ViewModel
 
-       Gives only the information required to produce a view to the ViewModel
+       Gives only the information required to produce a view to the InterfaceAdapters.ViewModel
 
      */
 
@@ -16,7 +20,7 @@ public class GamePresenter implements GameOutputBoundary {
      */
     ViewModel viewModel;
     
-    GamePresenter(ViewModel vm){
+    public GamePresenter(ViewModel vm){
         this.viewModel = vm;
     }
 

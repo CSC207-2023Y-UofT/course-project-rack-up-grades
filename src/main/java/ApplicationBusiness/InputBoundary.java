@@ -1,3 +1,5 @@
+package ApplicationBusiness;
+
 public interface InputBoundary {
     void addToLeaderboard(String newName);
 

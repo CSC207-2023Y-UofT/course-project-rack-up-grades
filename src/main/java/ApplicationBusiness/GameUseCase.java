@@ -1,3 +1,8 @@
+package ApplicationBusiness;
+
+import EnterpriseBusiness.GameEntity;
+import FrameworksAndDrivers.DataAccess;
+
 import java.util.*;
 
 public class GameUseCase {
@@ -15,7 +20,7 @@ public class GameUseCase {
 
 
     final String fs = System.getProperty("file.separator");
-    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+"file.txt";
+    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+ "FrameworksAndDrivers/file.txt";
 
     private final DataAccessInterface DataAccIn = new DataAccess(FILE);;
 
@@ -25,7 +30,7 @@ public class GameUseCase {
     private GameOutputBoundary GP;
 
     /**
-     * Initialize GameUseCase
+     * Initialize ApplicationBusiness.GameUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
      */
     public GameUseCase(String difficulty, InterfaceLeaderboardPresenter LP, GameOutputBoundary GP) {

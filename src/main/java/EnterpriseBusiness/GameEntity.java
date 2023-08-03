@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package EnterpriseBusiness;
+
 import java.util.Objects;
 
 
@@ -14,10 +15,10 @@ public class GameEntity {
             this.negObj = new NegativeObj(0);
         }
         else if(Objects.equals(level, "m")){
-            //this.posObj = new PositiveObj(5);
+            //this.posObj = new Entities.PositiveObj(5);
         }
         else if(Objects.equals(level, "h")){
-            //this.posObj = new PositiveObj(5);
+            //this.posObj = new Entities.PositiveObj(5);
             this.negObj = new NegativeObj(5);
         }
     }

@@ -1,8 +1,13 @@
+package FrameworksAndDrivers;
+
+import ApplicationBusiness.*;
+import InterfaceAdapters.GamePresenter;
+import InterfaceAdapters.LeaderboardPresenter;
+import InterfaceAdapters.NavigatorController;
+import InterfaceAdapters.ViewModel;
+
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.TimerTask;
 
 
 public class Main_Menu extends JFrame {

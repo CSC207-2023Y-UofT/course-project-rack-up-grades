@@ -7,7 +7,7 @@
 //     * Testing for the easy use case
 //     */
 //    public void genPresetTestLength(String difficulty){
-//        GameUseCase guc = new GameUseCase();
+//        ApplicationBusiness.GameUseCase guc = new ApplicationBusiness.GameUseCase();
 //        int expected = 60;
 //        int actual = guc.genPreset("e");
 //        Assertions.assertEquals();

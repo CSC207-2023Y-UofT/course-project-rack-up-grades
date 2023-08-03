@@ -1,3 +1,5 @@
+package EnterpriseBusiness;
+
 public class NegativeObj {
     // This is the class that creates the negative objects and its getter and setters
 
