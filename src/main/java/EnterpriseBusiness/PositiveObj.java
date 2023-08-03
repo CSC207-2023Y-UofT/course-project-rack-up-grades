@@ -1,3 +1,5 @@
+package EnterpriseBusiness;
+
 public class PositiveObj {
     private int point;
 

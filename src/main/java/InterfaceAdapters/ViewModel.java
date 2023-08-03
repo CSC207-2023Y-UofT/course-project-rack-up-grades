@@ -1,7 +1,9 @@
+package InterfaceAdapters;
+
 import java.util.ArrayList;
 
 /**
- * ViewModel for LeaderboardPresenter and GamePresenter
+ * InterfaceAdapters.ViewModel for InterfaceAdapters.LeaderboardPresenter and InterfaceAdapters.GamePresenter
  */
 public class ViewModel {
     static Object[][] data;

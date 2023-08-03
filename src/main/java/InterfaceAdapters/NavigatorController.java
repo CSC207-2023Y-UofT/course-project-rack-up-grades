@@ -1,3 +1,7 @@
+package InterfaceAdapters;
+
+import ApplicationBusiness.InputBoundary;
+
 public class NavigatorController {
     private InputBoundary input;
     private LeaderboardController LC;
@@ -6,7 +10,7 @@ public class NavigatorController {
     /**
      * constructs a Navigator Controller as the central controller for Leaderboard Controller
      * and Game Controller by creating an instance of them and saving them here
-     * stores the instance of InputBoundary
+     * stores the instance of ApplicationBusiness.InputBoundary
      * @param input
      */
     public NavigatorController(InputBoundary input) {

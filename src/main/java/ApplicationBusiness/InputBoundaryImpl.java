@@ -1,8 +1,10 @@
+package ApplicationBusiness;
+
 public class InputBoundaryImpl implements InputBoundary{
 
     private GameUseCase useCase;
 
-    InputBoundaryImpl(GameUseCase useCase) {
+    public InputBoundaryImpl(GameUseCase useCase) {
         this.useCase = useCase;
     }
 

@@ -1,7 +1,11 @@
+package InterfaceAdapters;
+
+import ApplicationBusiness.InterfaceLeaderboardPresenter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class LeaderboardPresenter implements InterfaceLeaderboardPresenter{
+public class LeaderboardPresenter implements InterfaceLeaderboardPresenter {
     private ViewModel v;
 
     public LeaderboardPresenter(ViewModel v) {
