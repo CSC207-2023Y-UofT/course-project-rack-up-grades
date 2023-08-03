@@ -75,7 +75,7 @@ public class Main_Menu extends JFrame {
             }
             if (click == easy){
                 System.out.println("easy");
-                EasyUI temp = new EasyUI(NC, V);
+                EasyUI easy = new EasyUI(NC, V);
                 NC.run();
 
 
@@ -97,7 +97,9 @@ public class Main_Menu extends JFrame {
 
             }
             if (click == medium){
-                System.out.println("medium");
+//                System.out.println("medium");
+//                MediumUI mid = new MediumUI(NC, V);
+//                NC.run();
             }
             if (click == hard){
                 System.out.println("hard");

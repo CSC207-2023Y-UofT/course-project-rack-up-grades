@@ -2,7 +2,8 @@ package ApplicationBusiness;
 
 public class InputBoundaryImpl implements InputBoundary{
 
-    private GameUseCase useCase;
+    private GameUseCase useCase; //change to easy
+    private MediumUseCase midUseCase;
 
     public InputBoundaryImpl(GameUseCase useCase) {
         this.useCase = useCase;

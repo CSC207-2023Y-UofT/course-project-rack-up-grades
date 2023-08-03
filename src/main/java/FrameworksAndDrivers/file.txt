@@ -1,4 +1,6 @@
 ANDY IS BEST!,295,e
+slay,280,e
+kath,105,e
 cathy,100,h
 ivy,99,m
 sakura,98,e
