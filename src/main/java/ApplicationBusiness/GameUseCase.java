@@ -24,7 +24,7 @@ public class GameUseCase {
 
     private final DataAccessInterface DataAccIn = new DataAccess(FILE);;
 
-    private int[] gameTime;
+    private Integer[] gameTime;
 
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
@@ -43,7 +43,7 @@ public class GameUseCase {
         this.preset = new ArrayList<>();//genPreset(difficulty);
         this.LP = LP;
         this.GP = GP;
-        this.gameTime = new int[1];
+        this.gameTime = new Integer[1];
 
         // this.run();
     }
@@ -199,10 +199,30 @@ public class GameUseCase {
         return this.gameTime[0];
     }
 
+    public void setTime(Integer t) {
+        this.gameTime = new Integer[]{t};
+    }
+
+
+    /**
+     * For testing purposes allowing us to get the current preset for assertion
+     * @return
+     */
+    public ArrayList<String> getPreset() {
+        return this.preset;}
+
+    /**
+     * For testing purposes allowing us to set the preset
+     * @param preset
+     */
+    public void setPreset(ArrayList<String> preset) {
+        this.preset = preset;}
+
     // Initializes the game
     public void run(){
         this.preset = genPreset(this.difficulty);
-        this.gameTime = new int[]{60};
+        this.gameTime = new Integer[]{61};
+        this.preset.add(this.preset.get(this.preset.size()-1));
         this.score = 0;
         java.util.Timer T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
@@ -220,6 +240,8 @@ public class GameUseCase {
                     GP.updateGame(currPosition, gameTime[0], score);
                 }
                 else {
+                    GP.updateGame(currPosition, gameTime[0], score);
+
                     System.out.println("You Scored: " + score);
                     System.out.println("Game Over");
                     T.cancel();
