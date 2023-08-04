@@ -164,7 +164,7 @@ public class GameUseCase {
             this.name = this.name.replaceAll(",", "");
 
             // Cut the name to 8 letters if longer
-            if (this.name.length() > 8){
+            if (this.name.length() >= 8){
                 this.name = this.name.substring(0, 7);
             }
 
