@@ -189,7 +189,8 @@ public class EasyUseCase extends GameUseCase {
     // Initializes the game
     public void run(){
         this.preset = genPreset(this.difficulty);
-        this.gameTime = new Integer[]{60};
+        this.preset.add(this.preset.get(this.preset.size()-1));
+        this.gameTime = new Integer[]{61};
         this.score = 0;
         java.util.Timer T = new java.util.Timer();
         TimerTask TT = new TimerTask() {

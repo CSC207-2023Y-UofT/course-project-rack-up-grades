@@ -188,7 +188,8 @@ public class MediumUseCase extends GameUseCase {
     // Initializes the game
     public void run(){
         this.preset = genPreset(this.difficulty);
-        this.gameTime = new int[]{60};
+        this.preset.add(this.preset.get(this.preset.size()-1));
+        this.gameTime = new int[]{61};
         this.score = 0;
         java.util.Timer T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
