@@ -9,7 +9,6 @@ public class EasyUseCase extends GameUseCase {
 
     private String name;
     private int score;
-    private String difficulty;
 
     private GameEntity gameEntity;
     private int increment;
@@ -26,6 +25,7 @@ public class EasyUseCase extends GameUseCase {
 
     private Integer[] gameTime;
 
+    private String difficulty;
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
 
@@ -38,24 +38,24 @@ public class EasyUseCase extends GameUseCase {
      */
     public EasyUseCase(String difficulty, InterfaceLeaderboardPresenter LP, GameOutputBoundary GP) {
         super(difficulty, LP, GP);
+        this.difficulty = difficulty;
+        this.LP = LP;
+        this.GP = GP;
         this.name = "";
         this.score = 0;
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();
-        this.preset = new ArrayList<>();//genPreset(difficulty);
+        this.preset = new ArrayList<>();
         this.gameTime = new Integer[1];
-
-        // this.run();
     }
 
     /**
      * This genPreset method creates a preset depending on gamemode. Can be combined with the code above
-     * @param difficulty: a string that represents difficulty
      * @return an arraylist of strings that will show up as moles when the game runs
      */
     @Override
-    public ArrayList<String> genPreset(String difficulty){
+    public ArrayList<String> genPreset(){
         ArrayList<String> preset = new ArrayList<>();
         Random r = new Random();
 
@@ -66,129 +66,9 @@ public class EasyUseCase extends GameUseCase {
         return preset;
     }
 
-    /**
-     * Set the name as the name given through assignment
-     * @param name: string
-     */
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public void increaseScore(int increment){
-        this.score += this.increment;
-    }
-
-    public void decreaseScore(int decrement){
-        this.score -= this.decrement;
-    }
-
-    /*
-    - leaderboard will only store top 10 scores
-    - read data on leaderboard, modify appropriately, send it back to store
-
-    [Clarifications on variables used in this method]
-    data          ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
-    refinedData   ArrayList<String[]>     EXAMPLE:  [["Cathy", "90", "m"], ["Ivy", "80", "e"]]
-    dataToReturn  ArrayList<String>       EXAMPLE:  ["Cathy,90,e", "Ivy,80,m"]
-     */
-//    public void addToLeaderboard(){
-//        ArrayList<String> data = this.DataAccIn.read();
-//        ArrayList<String[]> refinedData = new ArrayList<>();
-//        ArrayList<String> dataToReturn = this.DataAccIn.read();
-//
-//        if (!this.name.equals("")) {
-//
-//
-//            // Load refinedData (original element: strings, new element: lists of strings)
-//            for (String s : data) {
-//                String[] temp = s.split(",");
-//                refinedData.add(temp);
-//            }
-//
-////        // Remove possible commas in the name
-////        this.name = this.name.replaceAll(",", "");
-////
-////        // Cut the name to 8 letters if longer
-////        if (this.name.length() > 8){
-////            this.name = this.name.substring(0, 7);
-////        }
-//
-//            // If there is no data and so the leaderboard is empty, just add the data
-//            if (refinedData.size() == 0) {
-//                dataToReturn.add(this.name + "," + this.score + "," + this.difficulty);
-//            }
-//
-//            // Leaderboard has one or more data
-//            else {
-//                for (int i = 0; i < refinedData.size(); i++) {
-//                    if (this.score > Integer.parseInt(refinedData.get(i)[1])) {
-//                        dataToReturn.add(i, this.name + "," + this.score + "," + this.difficulty);
-//                        break;
-//                    }
-//                }
-//            }
-//
-//            // If the finalized list for leaderboard is longer than 10, remove the last line
-//            if (dataToReturn.size() > 10) {
-//                dataToReturn.remove(dataToReturn.size() - 1);
-//            }
-//
-//            this.DataAccIn.write(dataToReturn);
-//        }
-//    }
-
-    public void addToLeaderboard() {
-        ArrayList<String> data = this.DataAccIn.read();
-        ArrayList<Integer> mod = new ArrayList<>();
-        ArrayList<String> r = new ArrayList<>();
-
-        if (!this.name.equals("")) {
-            for (String s : data) {
-                String[] temp = s.split(",");
-                mod.add(Integer.parseInt(temp[1]));
-            }
-
-            this.name = this.name.replaceAll(",", "");
-
-            // Cut the name to 8 letters if longer
-            if (this.name.length() > 8){
-                this.name = this.name.substring(0, 7);
-            }
-
-            data.add(this.name + "," + this.score + "," + this.difficulty);
-
-            class dataComparator implements Comparator<String> {
-                public int compare(String e1, String e2) {
-                    if (Integer.parseInt(e1.split(",")[1]) < Integer.parseInt(e2.split(",")[1])) {
-                        return 1;
-                    }
-                    else if (Integer.parseInt(e1.split(",")[1]) > Integer.parseInt(e2.split(",")[1])) {
-                        return -1;
-                    }
-                    else {
-                        return 0;
-                    }
-
-                }
-            }
-            Collections.sort(data , new dataComparator());
-
-            if (data.size() > 10) {
-                data.remove(data.size() - 1);
-            }
-
-            this.DataAccIn.write(data);
-        }
-    }
-
-    // give current time
-    public int giveCurrentTime(){
-        return this.gameTime[0];
-    }
-
     // Initializes the game
     public void run(){
-        this.preset = genPreset(this.difficulty);
+        this.preset = genPreset();
         this.preset.add(this.preset.get(this.preset.size()-1));
         this.gameTime = new Integer[]{61};
         this.score = 0;
@@ -224,15 +104,4 @@ public class EasyUseCase extends GameUseCase {
             this.increaseScore(this.increment);
         }
     }
-
-    public String toString(){
-        return currPosition;
-    }
-
-    // toString sends current position to presenter
-
-    public void setData() {
-        this.LP.setData(this.DataAccIn.read());
-    }
-
 }
