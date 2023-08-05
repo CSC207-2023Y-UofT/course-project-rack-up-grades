@@ -5,7 +5,7 @@ import FrameworksAndDrivers.DataAccess;
 
 import java.util.*;
 
-public class GameUseCase {
+public abstract class GameUseCase {
 
     private String name;
     private int score;
@@ -24,7 +24,7 @@ public class GameUseCase {
 
     private final DataAccessInterface DataAccIn = new DataAccess(FILE);;
 
-    private int[] gameTime;
+    private Integer[] gameTime;
 
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
@@ -43,7 +43,7 @@ public class GameUseCase {
         this.preset = new ArrayList<>();//genPreset(difficulty);
         this.LP = LP;
         this.GP = GP;
-        this.gameTime = new int[1];
+        this.gameTime = new Integer[1];
 
         // this.run();
     }
@@ -53,31 +53,7 @@ public class GameUseCase {
      * @param difficulty: a string that represents difficulty
      * @return an arraylist of strings that will show up as moles when the game runs
      */
-    public ArrayList<String> genPreset(String difficulty){
-        ArrayList<String> preset = new ArrayList<>();
-        Random r = new Random();
-
-        if (difficulty.equals("e") || difficulty.equals("m")) {
-            for (int i=0; i<60; i++) {
-                int rand = r.nextInt(4)+1;
-                preset.add(rand + "P");
-            }
-        }
-
-        // hard mode
-        else {
-            for (int i=0; i<60; i++){
-                int position = r.nextInt(4);
-                int type = r.nextInt(2);
-                if (type == 0){
-                    preset.add((position+1) + "P");
-                } else {
-                    preset.add((position+1) + "N");
-                }
-            }
-        }
-        return preset;
-    }
+    public abstract ArrayList<String> genPreset(String difficulty);
 
     /**
      * Set the name as the name given through assignment
@@ -202,7 +178,7 @@ public class GameUseCase {
     // Initializes the game
     public void run(){
         this.preset = genPreset(this.difficulty);
-        this.gameTime = new int[]{60};
+        this.gameTime = new Integer[]{60};
         this.score = 0;
         java.util.Timer T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
