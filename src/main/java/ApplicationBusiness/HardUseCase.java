@@ -94,7 +94,7 @@ public class HardUseCase extends GameUseCase {
                     GP.updateGame(currPosition, gameTime[0], score);
 
                     if (currPosition.charAt(1) == 'P'){
-                        decreaseScore(increment);
+                        score -= increment;
                     }
                 }
                 else {
@@ -111,12 +111,12 @@ public class HardUseCase extends GameUseCase {
         // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
         if (i==Integer.parseInt(this.currPosition.substring(0, 1)) && currPosition.charAt(1)=='P') {
             System.out.println("Clicked " + this.currPosition + " +" + this.increment);
-            this.increaseScore(this.increment);
-            this.increaseScore(this.increment);
+            score+=increment;
+            score+=increment;
         }
         else if (i==Integer.parseInt(this.currPosition.substring(0, 1)) && currPosition.charAt(1)=='N') {
-            System.out.println("Bomb! " + this.currPosition + " +" + this.decrement);
-            this.decreaseScore(this.decrement);
+            System.out.println("Bomb! " + this.currPosition + " -" + this.decrement);
+            score-=decrement;
         }
     }
 }

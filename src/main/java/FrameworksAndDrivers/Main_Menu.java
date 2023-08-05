@@ -40,16 +40,11 @@ public class Main_Menu extends JFrame {
         Main_Menu mainmenu = new Main_Menu("Rack Up Grade - Main Menu");
         mainmenu.setSize(1200,700);
         mainmenu.setLocationRelativeTo(null);
-
-
         ViewModel V = new ViewModel();
         InterfaceLeaderboardPresenter P = new LeaderboardPresenter(V);
         GameOutputBoundary GP = new GamePresenter(V);
-        GameUseCase G = new GameUseCase("e", P, GP);
-        InputBoundary IB = new InputBoundaryImpl(G);
-        NavigatorController NC = new NavigatorController(IB);
 
-        mainmenu.setUpButtonListeners(NC, V);
+        mainmenu.setUpButtonListeners(V, P, GP);
         JPanel menu = new JPanel();
         menu.setLayout(null);
         mainmenu.setAndAdd(menu);
@@ -60,8 +55,18 @@ public class Main_Menu extends JFrame {
         menu.setVisible(true);
 
     }
-    public void setUpButtonListeners(NavigatorController NC, ViewModel V) {
+    public void setUpButtonListeners(ViewModel V, InterfaceLeaderboardPresenter P, GameOutputBoundary GP) {
         final String fs = System.getProperty("file.separator");
+        EasyUseCase EG = new EasyUseCase("e", P, GP);
+        MediumUseCase MG = new MediumUseCase("m", P, GP);
+        HardUseCase HG = new HardUseCase("h", P, GP);
+        InputBoundary EasyIB = new InputBoundaryImpl(EG);
+        InputBoundary MedIB = new InputBoundaryImpl(MG);
+        InputBoundary HardIB = new InputBoundaryImpl(HG);
+        NavigatorController EasyNav = new NavigatorController(EasyIB);
+        NavigatorController MedNav = new NavigatorController(MedIB);
+        NavigatorController HardNav = new NavigatorController(HardIB);
+
         ActionListener bs = e -> {
             Object click = e.getSource();
             if(click == i) {
@@ -75,37 +80,19 @@ public class Main_Menu extends JFrame {
             }
             if (click == easy){
                 System.out.println("easy");
-                EasyUI easy = new EasyUI(NC, V);
-                NC.run();
-
-
-//                java.util.Timer timer = new java.util.Timer();
-//                TimerTask timertask = new TimerTask() {
-//                    @Override
-//                    public void run() {
-////                        Game_Frame game_frame = new Game_Frame(V.getInfo(), NC);
-//                        if (V.getInfo().get(1) != "0") {
-//                            System.out.println(V.getInfo()); }
-//                        else {
-//                            timer.cancel();
-//                        }
-//                    }
-//                };
-//                //Slight more delay than usecase cause there is some time required for things to set up
-//                timer.scheduleAtFixedRate(timertask, 3050, 1000);
-
-
+                EasyUI easy = new EasyUI(EasyNav, V);
+                EasyNav.run();
             }
             if (click == medium){
-//                System.out.println("medium");
-//                MediumUI mid = new MediumUI(NC, V);
-//                NC.run();
+                System.out.println("medium");
+                MediumUI med = new MediumUI(MedNav, V);
+                MedNav.run();
             }
             if (click == hard){
                 System.out.println("hard");
             }
             if (click == leader){
-                NC.addToLeaderboard("");
+                EasyNav.addToLeaderboard("");
                 Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();
             }
         };

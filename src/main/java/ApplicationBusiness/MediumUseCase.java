@@ -62,7 +62,7 @@ public class MediumUseCase extends GameUseCase {
         Random r = new Random();
 
         for (int i = 0; i < 60; i++) {
-            int rand = r.nextInt(4) + 1;
+            int rand = r.nextInt(5) + 1;
             preset.add(rand + "P");
         }
         return preset;
@@ -91,8 +91,11 @@ public class MediumUseCase extends GameUseCase {
 //                    System.out.println(gameTime[0]);
                     gameTime[0]--;
                     GP.updateGame(currPosition, gameTime[0], score);
-                    decreaseScore(increment);
+                    score -= increment;
                 } else {
+                    if (score<0){
+                        score = 0;
+                    }
                     System.out.println("You Scored: " + score);
                     System.out.println("Game Over");
                     T.cancel();
@@ -106,8 +109,8 @@ public class MediumUseCase extends GameUseCase {
         // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
         if (i == Integer.parseInt(this.currPosition.substring(0, 1))) {
             System.out.println("Clicked " + this.currPosition + " +" + this.increment);
-            this.increaseScore(this.increment);
-            this.increaseScore(this.increment);
+            this.score += increment;
+            this.score += increment;
         }
     }
 }

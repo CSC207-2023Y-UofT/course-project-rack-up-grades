@@ -63,13 +63,6 @@ public abstract class GameUseCase {
         this.name = name;
     }
 
-    public void increaseScore(int increment){
-        this.score += this.increment;
-    }
-
-    public void decreaseScore(int decrement){
-        this.score -= this.decrement;
-    }
 
     /*
     - leaderboard will only store top 10 scores

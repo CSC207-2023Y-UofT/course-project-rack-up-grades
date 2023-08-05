@@ -44,7 +44,7 @@ public class EasyUseCase extends GameUseCase {
         this.name = "";
         this.score = 0;
         this.gameEntity = new GameEntity(difficulty);
-        this.increment = this.gameEntity.getIncrement();
+        this.increment = 5;
         this.decrement = this.gameEntity.getDecrement();
         this.preset = new ArrayList<>();
         this.gameTime = new Integer[1];
@@ -100,8 +100,8 @@ public class EasyUseCase extends GameUseCase {
     public void click(Integer i){
         // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
         if (i==Integer.parseInt(this.currPosition.substring(0, 1))) {
-            System.out.println("Clicked " + this.currPosition + " +" + this.increment);
-            this.increaseScore(this.increment);
+            System.out.println("Easy: Clicked " + this.currPosition + " +" + this.increment);
+            score += increment;
         }
     }
 }

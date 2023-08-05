@@ -18,7 +18,7 @@ public class MediumUI extends JFrame implements ActionListener {
     Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Pig.png");
     Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Cat.png");
     Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Magician_Kura.png");
-    Icon panda = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Love&Mimi.png");
+    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Love&Mimi.png");
     JLabel easy,time,pt;
     JButton but1, but2, but3, but4 ,but5;
     JFrame mid_game_view = new JFrame("Easy-Rack_Up_Grades");
@@ -63,13 +63,13 @@ public class MediumUI extends JFrame implements ActionListener {
         this.but3.addActionListener(this);
         this.but3.setVisible(false);
         //
-        this.but4 = new JButton("4",panda);
+        this.but4 = new JButton("4",mimi);
         view.add(this.but4);
         this.but4.addActionListener(this);
         this.but4.setVisible(false);
         //
-        this.but5 = new JButton("5",panda);
-        view.add(this.but4);
+        this.but5 = new JButton("5",mimi);
+        view.add(this.but5);
         this.but5.addActionListener(this);
         this.but5.setVisible(false);
         //
@@ -137,27 +137,27 @@ public class MediumUI extends JFrame implements ActionListener {
     public void set_buttons(){
         this.but1.setVerticalAlignment(AbstractButton.TOP);
         this.but1.setHorizontalAlignment(AbstractButton.LEFT);
-        this.but1.setBounds(200,300,300,300);
+        this.but1.setBounds(100,300,200,200);
         this.but1.setName("1");
         //
         this.but2.setVerticalAlignment(AbstractButton.TOP);
         this.but2.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but2.setBounds(500,300,300,300);
+        this.but2.setBounds(900,300,200,200);
         this.but2.setName("1");
         //
         this.but3.setVerticalAlignment(AbstractButton.BOTTOM);
         this.but3.setHorizontalAlignment(AbstractButton.LEFT);
-        this.but3.setBounds(800,300,300,300);
+        this.but3.setBounds(300,300,200,200);
         this.but3.setName("1");
         //
         this.but4.setVerticalAlignment(AbstractButton.BOTTOM);
         this.but4.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but4.setBounds(450,250,300,300);
+        this.but4.setBounds(600,250,200,200);
         this.but4.setName("1");
         //
         this.but5.setVerticalAlignment(AbstractButton.BOTTOM);
         this.but5.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but5.setBounds(450,250,300,300);
+        this.but5.setBounds(400,200,400,400);
         this.but5.setName("1");
     }
 
