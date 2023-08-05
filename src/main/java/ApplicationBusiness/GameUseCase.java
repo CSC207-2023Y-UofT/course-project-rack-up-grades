@@ -9,7 +9,6 @@ public abstract class GameUseCase {
 
     private String name;
     private int score;
-    private String difficulty;
 
     private GameEntity gameEntity;
     private int increment;
@@ -26,34 +25,35 @@ public abstract class GameUseCase {
 
     private Integer[] gameTime;
 
+    private String difficulty;
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
 
     /**
      * Initialize ApplicationBusiness.GameUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
+     * @param LP
+     * @param GP
+     *
      */
     public GameUseCase(String difficulty, InterfaceLeaderboardPresenter LP, GameOutputBoundary GP) {
+        this.difficulty = difficulty;
+        this.LP = LP;
+        this.GP = GP;
         this.name = "";
         this.score = 0;
-        this.difficulty = difficulty;
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
         this.decrement = this.gameEntity.getDecrement();
-        this.preset = new ArrayList<>();//genPreset(difficulty);
-        this.LP = LP;
-        this.GP = GP;
+        this.preset = new ArrayList<>();
         this.gameTime = new Integer[1];
-
-        // this.run();
     }
 
     /**
      * This genPreset method creates a preset depending on gamemode. Can be combined with the code above
-     * @param difficulty: a string that represents difficulty
      * @return an arraylist of strings that will show up as moles when the game runs
      */
-    public abstract ArrayList<String> genPreset(String difficulty);
+    public abstract ArrayList<String> genPreset();
 
     /**
      * Set the name as the name given through assignment
@@ -170,55 +170,10 @@ public abstract class GameUseCase {
         }
     }
 
-    // give current time
-    public int giveCurrentTime(){
-        return this.gameTime[0];
-    }
-
     // Initializes the game
-    public void run(){
-        this.preset = genPreset(this.difficulty);
-        this.preset.add(this.preset.get(this.preset.size()-1));
-        this.gameTime = new Integer[]{61};
-        this.score = 0;
-        java.util.Timer T = new java.util.Timer();
-        TimerTask TT = new TimerTask() {
+    public abstract void run();
 
-            @Override
-            public void run() {
-
-                if (!preset.isEmpty()) {
-                    currPosition = preset.remove(0);
-//                    System.out.println(currPosition);
-
-                    // prints out the time left (60, 59, 58, ..., 1, Game Over)
-//                    System.out.println(gameTime[0]);
-                    gameTime[0]--;
-                    GP.updateGame(currPosition, gameTime[0], score);
-                }
-                else {
-                    System.out.println("You Scored: " + score);
-                    System.out.println("Game Over");
-                    T.cancel();
-                }
-            }
-        };
-        T.scheduleAtFixedRate(TT, 3000, 1000);
-    }
-
-    public void click(Integer i){
-        // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
-        if (i==Integer.parseInt(this.currPosition.substring(0, 1))) {
-            System.out.println("Clicked " + this.currPosition + " +" + this.increment);
-            this.increaseScore(this.increment);
-        }
-    }
-
-    public String toString(){
-        return currPosition;
-    }
-
-    // toString sends current position to presenter
+    public abstract void click(Integer i);
 
     public void setData() {
         this.LP.setData(this.DataAccIn.read());
