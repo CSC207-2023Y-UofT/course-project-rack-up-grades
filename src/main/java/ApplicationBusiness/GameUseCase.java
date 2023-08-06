@@ -133,7 +133,7 @@ public abstract class GameUseCase {
             this.name = this.name.replaceAll(",", "");
 
             // Cut the name to 8 letters if longer
-            if (this.name.length() > 8){
+            if (this.name.length() >= 8){
                 this.name = this.name.substring(0, 7);
             }
 
@@ -167,6 +167,7 @@ public abstract class GameUseCase {
     public abstract void run();
 
     public abstract void click(Integer i);
+
 
     public void setData() {
         this.LP.setData(this.DataAccIn.read());
