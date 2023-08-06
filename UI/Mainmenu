@@ -1,7 +1,0 @@
-
-
-
-public class test extends JFrame{
-    Icon background = new ImageIcon();
-};
-
