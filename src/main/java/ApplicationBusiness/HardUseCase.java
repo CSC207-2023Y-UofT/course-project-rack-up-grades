@@ -70,10 +70,11 @@ public class HardUseCase extends GameUseCase {
 
     // Initializes the game
     public void run(){
-        this.preset = genPreset();
-        this.preset.add(this.preset.get(this.preset.size()-1));
-        this.gameTime = new Integer[]{61};
-        this.score = 0;
+        preset = genPreset();
+        preset.add(preset.get(preset.size()-1));
+        gameTime = new Integer[]{61};
+        score = 0;
+
         java.util.Timer T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
@@ -102,10 +103,14 @@ public class HardUseCase extends GameUseCase {
                     System.out.println("Game Over");
                     T.cancel();
                 }
+
             }
         };
         T.scheduleAtFixedRate(TT, 3000, 1000);
+
+
     }
+
 
     public void click(Integer i){
         // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash

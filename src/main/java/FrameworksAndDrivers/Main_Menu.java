@@ -90,8 +90,9 @@ public class Main_Menu extends JFrame {
             }
             if (click == easy){
                 System.out.println("easy");
-                EasyUI easy = new EasyUI(EasyNav, V);
                 EasyNav.run();
+                new EasyUI(EasyNav, V);
+
             }
             if (click == medium){
                 System.out.println("medium");

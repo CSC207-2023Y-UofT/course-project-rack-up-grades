@@ -37,10 +37,10 @@ public class EasyUI extends JFrame implements ActionListener {
         bdeasy.setBounds(0,0,1200,700);
         easy_game_view.getContentPane().add(bdeasy);
         //
-        this.easy = new JLabel("Easy Model");
+        this.easy = new JLabel("Easy Mode");
         bdeasy.add(this.easy);
         //
-        this.time = new JLabel("Time: 60");
+        this.time = new JLabel("Time: 60s");
         bdeasy.add(this.time);
         //
         this.pt = new JLabel("Points: 0");

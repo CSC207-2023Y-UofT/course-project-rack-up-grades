@@ -68,10 +68,11 @@ public class EasyUseCase extends GameUseCase {
 
     // Initializes the game
     public void run(){
-        this.preset = genPreset();
-        this.preset.add(this.preset.get(this.preset.size()-1));
-        this.gameTime = new Integer[]{61};
-        this.score = 0;
+
+        preset = genPreset();
+        preset.add(preset.get(preset.size()-1));
+        gameTime = new Integer[]{61};
+        score = 0;
         java.util.Timer T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
