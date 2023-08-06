@@ -104,4 +104,16 @@ public class EasyUseCase extends GameUseCase {
             score += increment;
         }
     }
+
+    /**
+     * for testing purposes
+     * @param preset
+     */
+    public void setPreset(ArrayList<String> preset) {
+        this.preset = preset;
+    }
+
+    public ArrayList<String> getPreset() {
+        return preset;
+    }
 }
