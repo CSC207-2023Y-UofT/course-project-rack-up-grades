@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.TimerTask;
 
-
 public class Main_Menu extends JFrame {
     JButton i,easy,medium,hard,leader;
     JDialog leaderboard;
@@ -15,45 +14,48 @@ public class Main_Menu extends JFrame {
         this.medium = new JButton("Medium");
         this.hard = new JButton("Hard");
         this.leader = new JButton("Leaderboard");//buttons
+
     }
 
-    public void setAndAdd(JPanel menu) {
-        menu.add(i);
+
+    public void setAndAdd(JComponent bdmainmenu) {
         i.setBounds(1000,100,100,100);
-        menu.add(easy);
+        bdmainmenu.add(i);
+
         easy.setBounds(200,350,200,100);
-        menu.add(medium);
+        bdmainmenu.add(easy);
+
         medium.setBounds(500,350,200,100);
-        menu.add(hard);
+        bdmainmenu.add(medium);
+
         hard.setBounds(800,350,200,100);
-        menu.add(leader);
+        bdmainmenu.add(hard);
+
         leader.setBounds(400,500,400,80);
+        bdmainmenu.add(leader);
+
     }
 
     public static void main(String[] args) {
-
         Main_Menu mainmenu = new Main_Menu("Rack Up Grade - Main Menu");
         mainmenu.setSize(1200,700);
         mainmenu.setLocationRelativeTo(null);
-
-
         ViewModel V = new ViewModel();
         InterfaceLeaderboardPresenter P = new LeaderboardPresenter(V);
         GameOutputBoundary GP = new GamePresenter(V);
         GameUseCase G = new GameUseCase("e", P, GP);
         InputBoundary IB = new InputBoundaryImpl(G);
         NavigatorController NC = new NavigatorController(IB);
-
         mainmenu.setUpButtonListeners(NC, V);
-        JPanel menu = new JPanel();
-        menu.setLayout(null);
-        mainmenu.setAndAdd(menu);
-        mainmenu.add(menu);
+        //
+        JLabel bdmainmenu = new JLabel(new ImageIcon("/Users/magicbook/Desktop/UI/UI/Background-MainMenu.jpg"));
+        bdmainmenu.setBounds(0,0,1200,700);
+        mainmenu.getContentPane().add(bdmainmenu);
+        //
+        mainmenu.setAndAdd(bdmainmenu);
         mainmenu.setResizable(false);
         mainmenu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainmenu.setVisible(true);
-        menu.setVisible(true);
-
     }
     public void setUpButtonListeners(NavigatorController NC, ViewModel V) {
         ActionListener bs = e -> {
