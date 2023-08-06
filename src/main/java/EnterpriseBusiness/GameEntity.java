@@ -15,10 +15,11 @@ public class GameEntity {
             this.negObj = new NegativeObj(0);
         }
         else if(Objects.equals(level, "m")){
-            //this.posObj = new Entities.PositiveObj(5);
+            this.posObj = new PositiveObj(5);
+            this.negObj = new NegativeObj(0);
         }
         else if(Objects.equals(level, "h")){
-            //this.posObj = new Entities.PositiveObj(5);
+            this.posObj = new PositiveObj(5);
             this.negObj = new NegativeObj(5);
         }
     }
