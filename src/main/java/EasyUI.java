@@ -29,38 +29,36 @@ public class EasyUI extends JFrame implements ActionListener {
         this.setSize(1200,700);
         this.setLocationRelativeTo(null);
         //
-        Container view = easy_game_view.getContentPane();
-        //
-        view.setLayout(null);
-        view.setBounds(0,0,1200,700);
-        this.add(view);
+        JLabel bdeasy = new JLabel(new ImageIcon("/Users/magicbook/Desktop/UI/UI/Background-Easy.jpg"));
+        bdeasy.setBounds(0,0,1200,700);
+        easy_game_view.getContentPane().add(bdeasy);
         //
         this.easy = new JLabel("Easy Model");
-        view.add(this.easy);
+        bdeasy.add(this.easy);
         //
         this.time = new JLabel("Time: 60");
-        view.add(this.time);
+        bdeasy.add(this.time);
         //
         this.pt = new JLabel("Points: 0");
-        view.add(this.pt);
+        bdeasy.add(this.pt);
         //
         this.but1 = new JButton("1",pig);
-        view.add(this.but1);
+        bdeasy.add(this.but1);
         this.but1.addActionListener(this);
         this.but1.setVisible(false);
         //
         this.but2 = new JButton("2",cat);
-        view.add(this.but2);
+        bdeasy.add(this.but2);
         this.but2.addActionListener(this);
         this.but2.setVisible(false);
         //
         this.but3 = new JButton("3",bunny);
-        view.add(this.but3);
+        bdeasy.add(this.but3);
         this.but3.addActionListener(this);
         this.but3.setVisible(false);
         //
         this.but4 = new JButton("4",panda);
-        view.add(this.but4);
+        bdeasy.add(this.but4);
         this.but4.addActionListener(this);
         this.but4.setVisible(false);
         //
