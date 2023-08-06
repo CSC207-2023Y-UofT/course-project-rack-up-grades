@@ -10,7 +10,9 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 import java.util.TimerTask;
 
-
+/**
+ * set a medium mode game
+ */
 public class MediumUI extends JFrame implements ActionListener {
     private ViewModel viewM;
     private NavigatorController nc;
@@ -23,7 +25,11 @@ public class MediumUI extends JFrame implements ActionListener {
     JButton but1, but2, but3, but4 ,but5;
     JFrame med_game_view = new JFrame("Easy-Rack_Up_Grades");
 
-
+    /**
+     * set a medium mode game frame,ContentPane,labels,buttons.
+     * @param NC Navigator Controller
+     * @param V View Model
+     */
     public MediumUI(NavigatorController NC, ViewModel V){
         //
         this.nc = NC;
@@ -118,7 +124,7 @@ public class MediumUI extends JFrame implements ActionListener {
                     time.setText("Time " + viewM.getInfo().get(1) + "s");
                     pt.setText("Points: " + viewM.getInfo().get(2));
                     System.out.println(viewM.getInfo());
-                    setDialog(NC);
+                    setDialog();
                     T.cancel();
                     but1.setVisible(false);
                     but2.setVisible(false);
@@ -130,12 +136,19 @@ public class MediumUI extends JFrame implements ActionListener {
             }
         };
         T.scheduleAtFixedRate(TT, 3050, 1000);};
+
+    /**
+     * set the location and size for labels, which shows up at upper frame.
+     */
     public void set_Labels(){
         this.medium.setBounds(100,65,100,50);
         this.time.setBounds(565,50,100,50);
         this.pt.setBounds(1000,65,100,50);
     };
 
+    /**
+     * set the names, location and size for buttons.
+     */
     public void set_buttons(){
         this.but1.setVerticalAlignment(AbstractButton.TOP);
         this.but1.setHorizontalAlignment(AbstractButton.LEFT);
@@ -163,7 +176,10 @@ public class MediumUI extends JFrame implements ActionListener {
         this.but5.setName("5");
     }
 
-
+    /**
+     * set the action performed for the event for click on the buttons.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton o = (JButton)e.getSource(); //the button that was clicked name
@@ -192,7 +208,11 @@ public class MediumUI extends JFrame implements ActionListener {
         }
     }
 
-    public void setDialog(NavigatorController NC){
+    /**
+     * Set a confirm Dialog for end_game, with info and two option for player
+     * save their name or leave the current game.
+     */
+    public void setDialog(){
 
         int event = JOptionPane.showConfirmDialog(null,
                 "Your Final Grade is "+ this.viewM.getInfo().get(2) +"! Would you like to save it?", "Congratulation!",JOptionPane.YES_NO_OPTION);
