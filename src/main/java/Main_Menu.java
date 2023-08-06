@@ -58,6 +58,7 @@ public class Main_Menu extends JFrame {
         mainmenu.setVisible(true);
     }
     public void setUpButtonListeners(NavigatorController NC, ViewModel V) {
+        final String fs = System.getProperty("file.separator");
         ActionListener bs = e -> {
             Object click = e.getSource();
             if(click == i) {
@@ -67,7 +68,7 @@ public class Main_Menu extends JFrame {
                                 "protect the library and stop moles'" +
                                 "evil plan by clicking them!",
                         "Introduction",JOptionPane.INFORMATION_MESSAGE,
-                        new ImageIcon("/Users/magicbook/Desktop/UI/intro.png"));
+                        new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Intro.png"));
             }
             if (click == easy){
                 System.out.println("easy");
