@@ -70,6 +70,7 @@ public class EasyUI extends JFrame implements ActionListener {
         set_buttons();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
+        add(bdeasy);
         //
         java.util.Timer T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
