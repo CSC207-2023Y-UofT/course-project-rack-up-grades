@@ -8,13 +8,25 @@ import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+
+/**
+ * DataAccess for our file
+ */
 public class DataAccess implements DataAccessInterface {
     private static String fileName;
 
+    /**
+     * create and instance this class
+     * @param name name of the file to read/write from and to
+     */
     public DataAccess(String name) {
         this.fileName = name;
     }
 
+    /**
+     * Read from the file and process it into something to return
+     * @return a ArrayList of strings being everything in the file line by line
+     */
     @Override
     public ArrayList<String> read() {
         try {
@@ -32,6 +44,10 @@ public class DataAccess implements DataAccessInterface {
         }
     }
 
+    /**
+     * Write everything in param to file line by line
+     * @param scores a ArrayList of string being everything in the file line by line
+     */
     @Override
     public void write(ArrayList<String> scores) {
         try {

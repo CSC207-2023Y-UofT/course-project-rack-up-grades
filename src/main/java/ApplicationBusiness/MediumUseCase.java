@@ -52,7 +52,7 @@ public class MediumUseCase extends GameUseCase {
     }
 
     /**
-     * This genPreset method creates a preset depending on gamemode. Can be combined with the code above
+     * This genPreset method creates a preset of the game.
      *
      * @return an arraylist of strings that will show up as moles when the game runs
      */
@@ -68,7 +68,9 @@ public class MediumUseCase extends GameUseCase {
         return preset;
     }
 
-    // Initializes the game
+    /**
+     * runs the game using TimerTask scheduled at fixed rate
+     */
     public void run() {
         preset = genPreset();
         preset.add(preset.get(preset.size() - 1));
@@ -105,6 +107,10 @@ public class MediumUseCase extends GameUseCase {
         T.scheduleAtFixedRate(TT, 3000, 1000);
     }
 
+    /**
+     * process a click, if position is correct
+     * @param i
+     */
     public void click(Integer i) {
         // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
         if (i == Integer.parseInt(this.currPosition.substring(0, 1))) {

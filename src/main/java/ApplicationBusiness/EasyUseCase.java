@@ -30,7 +30,7 @@ public class EasyUseCase extends GameUseCase {
     private GameOutputBoundary GP;
 
     /**
-     * Initialize ApplicationBusiness.GameUseCase
+     * Initialize ApplicationBusiness.EasyUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
      * @param LP
      * @param GP
@@ -51,7 +51,7 @@ public class EasyUseCase extends GameUseCase {
     }
 
     /**
-     * This genPreset method creates a preset depending on gamemode. Can be combined with the code above
+     * This genPreset method creates a preset of the game
      * @return an arraylist of strings that will show up as moles when the game runs
      */
     @Override
@@ -66,7 +66,9 @@ public class EasyUseCase extends GameUseCase {
         return preset;
     }
 
-    // Initializes the game
+    /**
+     * run the game using a TimerTask running at a scheduled rate
+     */
     public void run(){
 
         preset = genPreset();
@@ -98,6 +100,10 @@ public class EasyUseCase extends GameUseCase {
         T.scheduleAtFixedRate(TT, 3000, 1000);
     }
 
+    /**
+     * process a click, if click is the current position, it will add points
+     * @param i where it was clicked
+     */
     public void click(Integer i){
         // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
         if (i==Integer.parseInt(this.currPosition.substring(0, 1))) {
@@ -106,14 +112,18 @@ public class EasyUseCase extends GameUseCase {
         }
     }
 
+
     /**
-     * for testing purposes
+     * setter for testing purposes
      * @param preset
      */
     public void setPreset(ArrayList<String> preset) {
         this.preset = preset;
     }
 
+    /**
+     * getter for testing purposes
+     */
     public ArrayList<String> getPreset() {
         return preset;
     }

@@ -68,6 +68,9 @@ public class HardUseCase extends GameUseCase {
         return preset;
     }
 
+    /**
+     * run the game using TimerTask scheduled at fixed rate
+     */
     // Initializes the game
     public void run(){
         preset = genPreset();
@@ -111,7 +114,11 @@ public class HardUseCase extends GameUseCase {
 
     }
 
-
+    /**
+     * process a click, if position is correct and is positive object add point
+     * if position is correct and is negative object subtract point
+     * @param i
+     */
     public void click(Integer i){
         // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
         if (i==Integer.parseInt(this.currPosition.substring(0, 1)) && currPosition.charAt(1)=='P') {

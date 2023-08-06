@@ -9,6 +9,9 @@ import static org.junit.Assert.assertTrue;
 
 public class EntityTest {
 
+    /**
+     * test if entities are being initialized properly
+     */
     @Test
     public void testAllEntities(){
         GameEntity entEasy = new GameEntity("e");

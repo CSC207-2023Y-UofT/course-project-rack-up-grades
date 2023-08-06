@@ -5,7 +5,10 @@ public class NegativeObj {
 
     private int point;
 
-
+    /**
+     * create an instance of this class and point is always negative for any param
+     * @param point the amount to subtract when a bomb is clicked
+     */
     public NegativeObj(int point){
         //the point has to be negative
         if(Math.signum(point) >= 0){
@@ -17,6 +20,10 @@ public class NegativeObj {
 
     }
 
+    /**
+     * getter for pouint
+     * @return point
+     */
     public int getPoint(){
         return this.point;
     }

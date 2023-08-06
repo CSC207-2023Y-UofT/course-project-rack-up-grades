@@ -5,6 +5,9 @@ import FrameworksAndDrivers.DataAccess;
 
 import java.util.*;
 
+/**
+ * The GameUseCase class is the parent of easy medium hard usecase, it is abstract and has some abstract methods
+ */
 public abstract class GameUseCase {
 
     private String name;
@@ -32,8 +35,8 @@ public abstract class GameUseCase {
     /**
      * Initialize ApplicationBusiness.GameUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
-     * @param LP
-     * @param GP
+     * @param LP a leaderboard presenter interface (OutputBoundary)
+     * @param GP a game presenter interface (OutputBoundary)
      *
      */
     public GameUseCase(String difficulty, InterfaceLeaderboardPresenter LP, GameOutputBoundary GP) {
@@ -119,6 +122,12 @@ public abstract class GameUseCase {
 //        }
 //    }
 
+    /**
+     * Add to leaderboard, it will read the data from the file using DataAccess read() through the interface
+     * which is an ArrayList of string being per line of file.txt
+     * it will process and add the new name, score, difficulty to the ArrayList and remove the 10th+ person if it exists
+     * then write that to the file using DataAccess write() through the interface
+     */
     public void addToLeaderboard() {
         ArrayList<String> data = this.DataAccIn.read();
         ArrayList<Integer> mod = new ArrayList<>();
@@ -163,12 +172,22 @@ public abstract class GameUseCase {
         }
     }
 
+    /**
+     * abstract run() method
+     */
     // Initializes the game
     public abstract void run();
 
+    /**
+     * abstract click() method
+     * @param i
+     */
     public abstract void click(Integer i);
 
 
+    /**
+     * set the data on the leaderboard presenter through the interface
+     */
     public void setData() {
         this.LP.setData(this.DataAccIn.read());
     }
