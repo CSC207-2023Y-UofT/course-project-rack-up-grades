@@ -131,9 +131,9 @@ public class MediumUI extends JFrame implements ActionListener {
         };
         T.scheduleAtFixedRate(TT, 3050, 1000);};
     public void set_Labels(){
-        this.medium.setBounds(50,50,100,50);
-        this.time.setBounds(500,50,100,50);
-        this.pt.setBounds(1050,50,100,50);
+        this.medium.setBounds(100,65,100,50);
+        this.time.setBounds(565,50,100,50);
+        this.pt.setBounds(1000,65,100,50);
     };
 
     public void set_buttons(){
@@ -159,7 +159,7 @@ public class MediumUI extends JFrame implements ActionListener {
         //
         this.but5.setVerticalAlignment(AbstractButton.BOTTOM);
         this.but5.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but5.setBounds(400,200,400,400);
+        this.but5.setBounds(400,200,300,300);
         this.but5.setName("5");
     }
 

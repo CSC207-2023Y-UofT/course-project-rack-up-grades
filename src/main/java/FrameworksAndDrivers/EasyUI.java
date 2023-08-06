@@ -118,9 +118,9 @@ public class EasyUI extends JFrame implements ActionListener {
         };
         T.scheduleAtFixedRate(TT, 3050, 1000);};
         public void set_Labels(){
-            this.easy.setBounds(50,50,100,50);
-            this.time.setBounds(500,50,100,50);
-            this.pt.setBounds(1050,50,100,50);
+            this.easy.setBounds(100,65,100,50);
+            this.time.setBounds(565,50,100,50);
+            this.pt.setBounds(1000,65,100,50);
     };
 
         public void set_buttons(){
