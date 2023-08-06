@@ -37,7 +37,9 @@ public class NavigatorController {
         this.GC.click(i);
     }
 
-
+    /**
+     * run the game
+     */
     public void run() {
         this.input.run();
     }

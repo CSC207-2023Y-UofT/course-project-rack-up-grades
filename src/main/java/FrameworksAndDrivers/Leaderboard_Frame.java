@@ -4,6 +4,11 @@ import InterfaceAdapters.ViewModel;
 
 import javax.swing.*;
 
+/**
+ * set a Leaderboard with size,title,include a Scroll panel and a JTable on it
+ * to show the top 10 info with NO, Player name, points and Game level.
+ * get the data from View Model.
+ */
 public class Leaderboard_Frame extends JFrame {
 
     public Leaderboard_Frame(){
