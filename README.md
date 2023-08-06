@@ -47,4 +47,4 @@ Another accessibility feature we implemented was the file system for the leaderb
 ## Scenario Walk-Throughs
 Provided is a visual representation of the key features of our game in the console level. 
 
-
+https://scontent.xx.fbcdn.net/v/t1.15752-9/356965009_986311105750773_4892014696163980439_n.jpg?stp=dst-jpg_s403x403&_nc_cat=103&ccb=1-7&_nc_sid=aee45a&_nc_ohc=42yoU3VwfeAAX8rmhBZ&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdQEXMcVqSZ8r8dxCpyNM_F5wEd8hfY9Fidw3KlvYeXvGw&oe=64F602D9
