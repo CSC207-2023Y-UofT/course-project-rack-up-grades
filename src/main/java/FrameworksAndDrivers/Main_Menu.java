@@ -9,7 +9,9 @@ import InterfaceAdapters.ViewModel;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-
+/**
+ * set Main Menu and the name of labels.
+ */
 public class Main_Menu extends JFrame {
     JButton i,easy,medium,hard,leader;
     JDialog leaderboard;
@@ -22,7 +24,10 @@ public class Main_Menu extends JFrame {
         this.leader = new JButton("Leaderboard");//buttons
     }
 
-
+    /**
+     * set and add the buttons for Content Pane.
+     * @param bdmainmenu background ContentPane for Main Menu
+     */
     public void setAndAdd(JComponent bdmainmenu) {
         i.setBounds(1000,100,100,100);
         bdmainmenu.add(i);
@@ -40,6 +45,11 @@ public class Main_Menu extends JFrame {
         bdmainmenu.add(leader);
 
     }
+    /**
+     * Set the Main Menu size, location and title,
+     * add the background image and Content Pane.
+     * @param args
+     */
 
     public static void main(String[] args) {
 
@@ -65,6 +75,16 @@ public class Main_Menu extends JFrame {
         mainmenu.setVisible(true);
 
     }
+
+    /**
+     * A button listener work as Action Performance,
+     * click on easy/medium/hard lead to a different difficultly level game window;
+     * click on i to the Message dialog that introduce the game;
+     * click on leaderboard to the leaderboard frame.
+     * @param V View Model
+     * @param P Interface Leaderboard Presenter
+     * @param GP Game Presenter
+     */
     public void setUpButtonListeners(ViewModel V, InterfaceLeaderboardPresenter P, GameOutputBoundary GP) {
         final String fs = System.getProperty("file.separator");
         EasyUseCase EG = new EasyUseCase("e", P, GP);
