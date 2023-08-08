@@ -121,6 +121,8 @@ public class Main_Menu extends JFrame {
             }
             if (click == hard){
                 System.out.println("hard");
+                HardUI hard = new HardUI(HardNav, V);
+                HardNav.run();
             }
             if (click == leader){
                 EasyNav.addToLeaderboard("");
