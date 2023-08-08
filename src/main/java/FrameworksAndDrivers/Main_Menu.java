@@ -9,7 +9,9 @@ import InterfaceAdapters.ViewModel;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-
+/**
+ * set Main Menu and the name of labels.
+ */
 public class Main_Menu extends JFrame {
     JButton i,easy,medium,hard,leader;
     JDialog leaderboard;
@@ -22,20 +24,37 @@ public class Main_Menu extends JFrame {
         this.leader = new JButton("Leaderboard");//buttons
     }
 
-    public void setAndAdd(JPanel menu) {
-        menu.add(i);
+    /**
+     * set and add the buttons for Content Pane.
+     * @param bdmainmenu background ContentPane for Main Menu
+     */
+    public void setAndAdd(JComponent bdmainmenu) {
         i.setBounds(1000,100,100,100);
-        menu.add(easy);
+        bdmainmenu.add(i);
+
         easy.setBounds(200,350,200,100);
-        menu.add(medium);
+        bdmainmenu.add(easy);
+
         medium.setBounds(500,350,200,100);
-        menu.add(hard);
+        bdmainmenu.add(medium);
+
         hard.setBounds(800,350,200,100);
-        menu.add(leader);
+        bdmainmenu.add(hard);
+
         leader.setBounds(400,500,400,80);
+        bdmainmenu.add(leader);
+
     }
+    /**
+     * Set the Main Menu size, location and title,
+     * add the background image and Content Pane.
+     * @param args
+     */
 
     public static void main(String[] args) {
+
+        final String fs = System.getProperty("file.separator");
+
 
         Main_Menu mainmenu = new Main_Menu("Rack Up Grade - Main Menu");
         mainmenu.setSize(1200,700);
@@ -43,18 +62,29 @@ public class Main_Menu extends JFrame {
         ViewModel V = new ViewModel();
         InterfaceLeaderboardPresenter P = new LeaderboardPresenter(V);
         GameOutputBoundary GP = new GamePresenter(V);
-
         mainmenu.setUpButtonListeners(V, P, GP);
-        JPanel menu = new JPanel();
-        menu.setLayout(null);
-        mainmenu.setAndAdd(menu);
-        mainmenu.add(menu);
+
+        //
+        JLabel bdmainmenu = new JLabel(new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Background-MainMenu.jpg"));
+        bdmainmenu.setBounds(0,0,1200,700);
+        mainmenu.getContentPane().add(bdmainmenu);
+        //
+        mainmenu.setAndAdd(bdmainmenu);
         mainmenu.setResizable(false);
         mainmenu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainmenu.setVisible(true);
-        menu.setVisible(true);
 
     }
+
+    /**
+     * A button listener work as Action Performance,
+     * click on easy/medium/hard lead to a different difficultly level game window;
+     * click on i to the Message dialog that introduce the game;
+     * click on leaderboard to the leaderboard frame.
+     * @param V View Model
+     * @param P Interface Leaderboard Presenter
+     * @param GP Game Presenter
+     */
     public void setUpButtonListeners(ViewModel V, InterfaceLeaderboardPresenter P, GameOutputBoundary GP) {
         final String fs = System.getProperty("file.separator");
         EasyUseCase EG = new EasyUseCase("e", P, GP);
@@ -80,8 +110,9 @@ public class Main_Menu extends JFrame {
             }
             if (click == easy){
                 System.out.println("easy");
-                EasyUI easy = new EasyUI(EasyNav, V);
                 EasyNav.run();
+                EasyUI eUI = new EasyUI(EasyNav, V);
+
             }
             if (click == medium){
                 System.out.println("medium");

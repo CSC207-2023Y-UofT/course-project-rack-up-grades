@@ -29,6 +29,8 @@ public class MediumUseCase extends GameUseCase {
     private String difficulty;
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
+    private java.util.Timer T;
+
 
     /**
      * Initialize ApplicationBusiness.GameUseCase
@@ -52,7 +54,7 @@ public class MediumUseCase extends GameUseCase {
     }
 
     /**
-     * This genPreset method creates a preset depending on gamemode. Can be combined with the code above
+     * This genPreset method creates a preset of the game.
      *
      * @return an arraylist of strings that will show up as moles when the game runs
      */
@@ -68,13 +70,15 @@ public class MediumUseCase extends GameUseCase {
         return preset;
     }
 
-    // Initializes the game
+    /**
+     * runs the game using TimerTask scheduled at fixed rate
+     */
     public void run() {
-        this.preset = genPreset();
-        this.preset.add(this.preset.get(this.preset.size() - 1));
-        this.gameTime = new Integer[]{61};
-        this.score = 0;
-        java.util.Timer T = new java.util.Timer();
+        preset = genPreset();
+        preset.add(preset.get(preset.size() - 1));
+        gameTime = new Integer[]{61};
+        score = 0;
+        T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override
@@ -105,6 +109,10 @@ public class MediumUseCase extends GameUseCase {
         T.scheduleAtFixedRate(TT, 3000, 1000);
     }
 
+    /**
+     * process a click, if position is correct
+     * @param i
+     */
     public void click(Integer i) {
         // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
         if (i == Integer.parseInt(this.currPosition.substring(0, 1))) {
@@ -112,5 +120,12 @@ public class MediumUseCase extends GameUseCase {
             this.score += increment;
             this.score += increment;
         }
+    }
+
+    /**
+     * to stop the timer if needed
+     */
+    public void stop(){
+        this.T.cancel();
     }
 }

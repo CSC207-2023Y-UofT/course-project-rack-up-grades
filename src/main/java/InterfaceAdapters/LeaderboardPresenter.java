@@ -5,13 +5,25 @@ import ApplicationBusiness.InterfaceLeaderboardPresenter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * This is the adapter for this project
+ */
 public class LeaderboardPresenter implements InterfaceLeaderboardPresenter {
     private ViewModel v;
 
+    /**
+     * Create an instance of this class
+     * @param v
+     */
     public LeaderboardPresenter(ViewModel v) {
         this.v = v;
     }
 
+    /**
+     * This is the where the adapter is implemented, it takes data and translate it into something
+     * used in view that is going to be used by our 3-rd party JTable
+     * @param data that comes from usecase is pass into here
+     */
     @Override
     public void setData(ArrayList<String> data) {
         ArrayList<ArrayList<Object>> arr = new ArrayList<>();

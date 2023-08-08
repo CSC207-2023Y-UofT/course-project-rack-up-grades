@@ -28,6 +28,7 @@ public class HardUseCase extends GameUseCase {
     private String difficulty;
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
+    private java.util.Timer T;
 
     /**
      * Initialize ApplicationBusiness.GameUseCase
@@ -68,13 +69,17 @@ public class HardUseCase extends GameUseCase {
         return preset;
     }
 
+    /**
+     * run the game using TimerTask scheduled at fixed rate
+     */
     // Initializes the game
     public void run(){
-        this.preset = genPreset();
-        this.preset.add(this.preset.get(this.preset.size()-1));
-        this.gameTime = new Integer[]{61};
-        this.score = 0;
-        java.util.Timer T = new java.util.Timer();
+        preset = genPreset();
+        preset.add(preset.get(preset.size()-1));
+        gameTime = new Integer[]{61};
+        score = 0;
+
+        T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override
@@ -102,11 +107,19 @@ public class HardUseCase extends GameUseCase {
                     System.out.println("Game Over");
                     T.cancel();
                 }
+
             }
         };
         T.scheduleAtFixedRate(TT, 3000, 1000);
+
+
     }
 
+    /**
+     * process a click, if position is correct and is positive object add point
+     * if position is correct and is negative object subtract point
+     * @param i
+     */
     public void click(Integer i){
         // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
         if (i==Integer.parseInt(this.currPosition.substring(0, 1)) && currPosition.charAt(1)=='P') {
@@ -118,5 +131,12 @@ public class HardUseCase extends GameUseCase {
             System.out.println("Bomb! " + this.currPosition + " -" + this.decrement);
             score-=decrement;
         }
+    }
+
+    /**
+     * to stop the timer if needed
+     */
+    public void stop(){
+        this.T.cancel();
     }
 }
