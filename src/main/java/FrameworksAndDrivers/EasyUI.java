@@ -1,17 +1,17 @@
 package FrameworksAndDrivers;
 
+import ApplicationBusiness.EasyUseCase;
 import InterfaceAdapters.NavigatorController;
 import InterfaceAdapters.ViewModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Objects;
 import java.util.TimerTask;
 
 
-public class EasyUI extends JFrame implements ActionListener {
+public class EasyUI extends JFrame implements ActionListener{
     private ViewModel viewM;
     private NavigatorController nc;
     final String fs = System.getProperty("file.separator");
@@ -22,9 +22,24 @@ public class EasyUI extends JFrame implements ActionListener {
     JLabel easy,time,pt;
     JButton but1, but2,but3,but4;
     JFrame easy_game_view = new JFrame("Easy-Rack_Up_Grades");
+    boolean closed;
+    private java.util.Timer T;
 
 
+    /**
+     * set up easy mode UI, set up & add frame, buttons, ContentPane
+     * @param NC
+     * @param V
+     */
     public EasyUI(NavigatorController NC, ViewModel V){
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                NC.stop();
+                T.cancel();
+            }
+        });
+        this.closed = false;
         //
         this.nc = NC;
         this.viewM = V;
@@ -68,11 +83,11 @@ public class EasyUI extends JFrame implements ActionListener {
         //
         set_Labels();
         set_buttons();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
         setVisible(true);
         add(bdeasy);
         //
-        java.util.Timer T = new java.util.Timer();
+        T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override
@@ -97,33 +112,42 @@ public class EasyUI extends JFrame implements ActionListener {
                             but4.setVisible(true);
                             break;
                     }
-                    time.setText("Time " + viewM.getInfo().get(1) + "s");
+                    time.setText("Time: " + viewM.getInfo().get(1) + "s");
                     pt.setText("Points: " + viewM.getInfo().get(2));
                     System.out.println(viewM.getInfo());
                 }
-
                 else {
                     time.setText("Time " + viewM.getInfo().get(1) + "s");
                     pt.setText("Points: " + viewM.getInfo().get(2));
                     System.out.println(viewM.getInfo());
-                    setDialog(NC);
+                    setDialog();
                     T.cancel();
                     but1.setVisible(false);
                     but2.setVisible(false);
                     but3.setVisible(false);
                     but4.setVisible(false);
-
                 }
             }
         };
-        T.scheduleAtFixedRate(TT, 3050, 1000);};
-        public void set_Labels(){
+        T.scheduleAtFixedRate(TT, 3050, 1000);
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+
+    /**
+     * Set location and size for labels
+     */
+    public void set_Labels(){
             this.easy.setBounds(100,65,100,50);
             this.time.setBounds(565,50,100,50);
             this.pt.setBounds(1000,65,100,50);
     };
 
-        public void set_buttons(){
+    /**
+     * set button name, size and location.
+     */
+    public void set_buttons(){
             this.but1.setVerticalAlignment(AbstractButton.TOP);
             this.but1.setHorizontalAlignment(AbstractButton.LEFT);
             this.but1.setBounds(200,300,300,300);
@@ -132,21 +156,26 @@ public class EasyUI extends JFrame implements ActionListener {
             this.but2.setVerticalAlignment(AbstractButton.TOP);
             this.but2.setHorizontalAlignment(AbstractButton.RIGHT);
             this.but2.setBounds(500,300,300,300);
-            this.but2.setName("1");
+            this.but2.setName("2");
             //
             this.but3.setVerticalAlignment(AbstractButton.BOTTOM);
             this.but3.setHorizontalAlignment(AbstractButton.LEFT);
             this.but3.setBounds(800,300,300,300);
-            this.but3.setName("1");
+            this.but3.setName("3");
             //
             this.but4.setVerticalAlignment(AbstractButton.BOTTOM);
             this.but4.setHorizontalAlignment(AbstractButton.RIGHT);
             this.but4.setBounds(450,250,300,300);
-            this.but4.setName("1");
+            this.but4.setName("4");
             //
         }
 
-
+    /**
+     * process clicks for buttons, after a button is clicked it will call navigator controller to click
+     * on the location of the button
+     *
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton o = (JButton)e.getSource(); //the button that was clicked name
@@ -171,7 +200,11 @@ public class EasyUI extends JFrame implements ActionListener {
         }
     }
 
-    public void setDialog(NavigatorController NC){
+    /**
+     * the end game popup, it will give the options to add to leaderboard or not.
+     *
+     */
+    public void setDialog(){
 
         int event = JOptionPane.showConfirmDialog(null,
                 "Your Final Grade is "+ this.viewM.getInfo().get(2) +"! Would you like to save it?", "Congratulation!",JOptionPane.YES_NO_OPTION);

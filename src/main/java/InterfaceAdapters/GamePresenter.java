@@ -16,7 +16,7 @@ public class GamePresenter implements GameOutputBoundary {
     /**
      * This is the constructor that is used by the Use case in order to present the information onto the view model
      * It stores the view model so that it can be accessed by the presenter in the later methods
-     * @param vm
+     * @param vm takes in and stores viewmodel
      */
     ViewModel viewModel;
     

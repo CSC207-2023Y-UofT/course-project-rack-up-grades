@@ -6,6 +6,8 @@ import InterfaceAdapters.ViewModel;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Objects;
 import java.util.TimerTask;
 
@@ -15,11 +17,13 @@ public class HardUI extends JFrame implements ActionListener {
     final String fs = System.getProperty("file.separator");
     Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Pig.png");
     Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Cat.png");
-    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-Magician_Kura.png");
-    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-Love&Mimi.png");
+    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Magician_Kura.png");
+    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Love&Mimi.png");
+    Icon bomb = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Bomb.png");
     JLabel hard,time,pt;
     JButton but1, but2, but3, but4 ,but5;
     JFrame hard_game_view = new JFrame("Easy-Rack_Up_Grades");
+    private java.util.Timer T;
 
     /**
      * set a medium mode game frame,ContentPane,labels,buttons.
@@ -27,6 +31,13 @@ public class HardUI extends JFrame implements ActionListener {
      * @param V View Model
      */
     public HardUI(NavigatorController NC, ViewModel V){
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                NC.stop();
+                T.cancel();
+            }
+        });
         //
         this.nc = NC;
         this.viewM = V;
@@ -82,32 +93,52 @@ public class HardUI extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
         //
-        java.util.Timer T = new java.util.Timer();
+        T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override
             public void run() {
                 if (!Objects.equals(viewM.getInfo().get(1), "0")) {
+                    but1.setIcon(pig);
+                    but2.setIcon(cat);
+                    but3.setIcon(bunny);
+                    but4.setIcon(mimi);
+                    but5.setIcon(mimi);
                     but1.setVisible(false);
                     but2.setVisible(false);
                     but3.setVisible(false);
                     but4.setVisible(false);
                     but5.setVisible(false);
-                    String position = (viewM.getInfo().get(0)).substring(0,1);
-                    switch (position){
+                    String position = (viewM.getInfo().get(0));
+                    switch (position.substring(0,1)){
                         case "1":
+                            if (position.substring(1,2).equals("N")) {
+                                but1.setIcon(bomb);
+                            }
                             but1.setVisible(true);
                             break;
                         case "2":
+                            if (position.substring(1,2).equals("N")) {
+                                but2.setIcon(bomb);
+                            }
                             but2.setVisible(true);
                             break;
                         case "3":
+                            if (position.substring(1,2).equals("N")) {
+                                but3.setIcon(bomb);
+                            }
                             but3.setVisible(true);
                             break;
                         case "4":
+                            if (position.substring(1,2).equals("N")) {
+                                but4.setIcon(bomb);
+                            }
                             but4.setVisible(true);
                             break;
                         case "5":
+                            if (position.substring(1,2).equals("N")) {
+                                but5.setIcon(bomb);
+                            }
                             but5.setVisible(true);
                             break;
                     }
@@ -148,27 +179,27 @@ public class HardUI extends JFrame implements ActionListener {
     public void set_buttons(){
         this.but1.setVerticalAlignment(AbstractButton.TOP);
         this.but1.setHorizontalAlignment(AbstractButton.LEFT);
-        this.but1.setBounds(100,300,200,200);
+        this.but1.setBounds(100,300,300,300);
         this.but1.setName("1");
         //
         this.but2.setVerticalAlignment(AbstractButton.TOP);
         this.but2.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but2.setBounds(900,300,200,200);
+        this.but2.setBounds(900,300,300,300);
         this.but2.setName("2");
         //
         this.but3.setVerticalAlignment(AbstractButton.BOTTOM);
         this.but3.setHorizontalAlignment(AbstractButton.LEFT);
-        this.but3.setBounds(300,300,200,200);
+        this.but3.setBounds(300,300,300,300);
         this.but3.setName("3");
         //
         this.but4.setVerticalAlignment(AbstractButton.BOTTOM);
         this.but4.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but4.setBounds(600,250,200,200);
+        this.but4.setBounds(600,250,300,300);
         this.but4.setName("4");
         //
         this.but5.setVerticalAlignment(AbstractButton.BOTTOM);
         this.but5.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but5.setBounds(400,200,200,200);
+        this.but5.setBounds(400,200,300,300);
         this.but5.setName("5");
     }
 
