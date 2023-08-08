@@ -130,7 +130,7 @@ public class HardUseCase extends GameUseCase {
 //        else if (i==Integer.parseInt(this.currPosition.substring(0, 1)) && currPosition.charAt(1)=='N')
         else {
             System.out.println("Bomb! " + this.currPosition + " -" + this.decrement);
-            score = score - 5;
+            score = score + decrement;
         }
     }
 
