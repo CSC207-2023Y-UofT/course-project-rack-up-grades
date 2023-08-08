@@ -32,6 +32,7 @@ public abstract class GameUseCase {
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
 
+
     /**
      * Initialize ApplicationBusiness.GameUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
@@ -191,6 +192,8 @@ public abstract class GameUseCase {
     public void setData() {
         this.LP.setData(this.DataAccIn.read());
     }
+
+    public abstract void stop();
 
 }
 

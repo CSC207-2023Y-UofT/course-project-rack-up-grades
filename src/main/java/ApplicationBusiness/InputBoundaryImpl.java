@@ -7,7 +7,6 @@ package ApplicationBusiness;
 public class InputBoundaryImpl implements InputBoundary{
 
     private GameUseCase useCase;
-    private MediumUseCase midUseCase;
 
     /**
      * Create an instance of this class
@@ -42,6 +41,13 @@ public class InputBoundaryImpl implements InputBoundary{
      */
     public void run() {
         this.useCase.run();
+    }
+
+    /**
+     * stops the timer when the window closes
+     */
+    public void stop(){
+        this.useCase.stop();
     }
 
 

@@ -1,17 +1,17 @@
 package FrameworksAndDrivers;
 
+import ApplicationBusiness.EasyUseCase;
 import InterfaceAdapters.NavigatorController;
 import InterfaceAdapters.ViewModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Objects;
 import java.util.TimerTask;
 
 
-public class EasyUI extends JFrame implements ActionListener {
+public class EasyUI extends JFrame implements ActionListener{
     private ViewModel viewM;
     private NavigatorController nc;
     final String fs = System.getProperty("file.separator");
@@ -22,6 +22,8 @@ public class EasyUI extends JFrame implements ActionListener {
     JLabel easy,time,pt;
     JButton but1, but2,but3,but4;
     JFrame easy_game_view = new JFrame("Easy-Rack_Up_Grades");
+    boolean closed;
+    private java.util.Timer T;
 
 
     /**
@@ -30,6 +32,14 @@ public class EasyUI extends JFrame implements ActionListener {
      * @param V
      */
     public EasyUI(NavigatorController NC, ViewModel V){
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                NC.stop();
+                T.cancel();
+            }
+        });
+        this.closed = false;
         //
         this.nc = NC;
         this.viewM = V;
@@ -73,11 +83,11 @@ public class EasyUI extends JFrame implements ActionListener {
         //
         set_Labels();
         set_buttons();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
         setVisible(true);
         add(bdeasy);
         //
-        java.util.Timer T = new java.util.Timer();
+        T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override
@@ -102,11 +112,10 @@ public class EasyUI extends JFrame implements ActionListener {
                             but4.setVisible(true);
                             break;
                     }
-                    time.setText("Time " + viewM.getInfo().get(1) + "s");
+                    time.setText("Time: " + viewM.getInfo().get(1) + "s");
                     pt.setText("Points: " + viewM.getInfo().get(2));
                     System.out.println(viewM.getInfo());
                 }
-
                 else {
                     time.setText("Time " + viewM.getInfo().get(1) + "s");
                     pt.setText("Points: " + viewM.getInfo().get(2));
@@ -117,11 +126,14 @@ public class EasyUI extends JFrame implements ActionListener {
                     but2.setVisible(false);
                     but3.setVisible(false);
                     but4.setVisible(false);
-
                 }
             }
         };
-        T.scheduleAtFixedRate(TT, 3050, 1000);};
+        T.scheduleAtFixedRate(TT, 3050, 1000);
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
 
     /**
      * Set location and size for labels

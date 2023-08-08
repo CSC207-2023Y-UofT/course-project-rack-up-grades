@@ -29,6 +29,8 @@ public class MediumUseCase extends GameUseCase {
     private String difficulty;
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
+    private java.util.Timer T;
+
 
     /**
      * Initialize ApplicationBusiness.GameUseCase
@@ -76,7 +78,7 @@ public class MediumUseCase extends GameUseCase {
         preset.add(preset.get(preset.size() - 1));
         gameTime = new Integer[]{61};
         score = 0;
-        java.util.Timer T = new java.util.Timer();
+        T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override
@@ -118,5 +120,12 @@ public class MediumUseCase extends GameUseCase {
             this.score += increment;
             this.score += increment;
         }
+    }
+
+    /**
+     * to stop the timer if needed
+     */
+    public void stop(){
+        this.T.cancel();
     }
 }

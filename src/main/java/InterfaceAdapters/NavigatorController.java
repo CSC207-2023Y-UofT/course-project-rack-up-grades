@@ -44,4 +44,8 @@ public class NavigatorController {
         this.input.run();
     }
 
+    public void stop(){
+        this.input.stop();
+    }
+
 }

@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Objects;
 import java.util.TimerTask;
 
@@ -24,6 +26,7 @@ public class MediumUI extends JFrame implements ActionListener {
     JLabel medium,time,pt;
     JButton but1, but2, but3, but4 ,but5;
     JFrame med_game_view = new JFrame("Easy-Rack_Up_Grades");
+    private java.util.Timer T;
 
     /**
      * set a medium mode game frame,ContentPane,labels,buttons.
@@ -31,6 +34,13 @@ public class MediumUI extends JFrame implements ActionListener {
      * @param V View Model
      */
     public MediumUI(NavigatorController NC, ViewModel V){
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                NC.stop();
+                T.cancel();
+            }
+        });
         //
         this.nc = NC;
         this.viewM = V;
@@ -86,7 +96,7 @@ public class MediumUI extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
         //
-        java.util.Timer T = new java.util.Timer();
+        T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override

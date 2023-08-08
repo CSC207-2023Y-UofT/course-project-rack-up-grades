@@ -28,6 +28,7 @@ public class HardUseCase extends GameUseCase {
     private String difficulty;
     private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
+    private java.util.Timer T;
 
     /**
      * Initialize ApplicationBusiness.GameUseCase
@@ -78,7 +79,7 @@ public class HardUseCase extends GameUseCase {
         gameTime = new Integer[]{61};
         score = 0;
 
-        java.util.Timer T = new java.util.Timer();
+        T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override
@@ -130,5 +131,12 @@ public class HardUseCase extends GameUseCase {
             System.out.println("Bomb! " + this.currPosition + " -" + this.decrement);
             score-=decrement;
         }
+    }
+
+    /**
+     * to stop the timer if needed
+     */
+    public void stop(){
+        this.T.cancel();
     }
 }
