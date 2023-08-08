@@ -193,7 +193,17 @@ public abstract class GameUseCase {
         this.LP.setData(this.DataAccIn.read());
     }
 
+    /**
+     * abstract class for the child to overwrite
+     */
     public abstract void stop();
 
+    /**
+     * set score method for the tests
+     * @param i
+     */
+    public void setScore(int i) {
+        this.score = i;
+    }
 }
 
