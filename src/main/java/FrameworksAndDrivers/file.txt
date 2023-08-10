@@ -1,10 +1,10 @@
+bobd,300,m
 ANDY IS BEST!,295,e
+mike,290,e
+mike,290,e
 slay,280,e
+asdfds,215,h
+abcdefg,160,h
+1234543,135,m
 kath,105,e
 cathy,100,h
-ivy,99,m
-sakura,98,e
-henry,97,e
-andy,96,m
-test,10,e
-k,0,m

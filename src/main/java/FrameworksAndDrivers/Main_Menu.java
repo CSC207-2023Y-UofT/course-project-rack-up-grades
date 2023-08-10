@@ -87,12 +87,12 @@ public class Main_Menu extends JFrame {
      */
     public void setUpButtonListeners(ViewModel V, InterfaceLeaderboardPresenter P, GameOutputBoundary GP) {
         final String fs = System.getProperty("file.separator");
-        EasyUseCase EG = new EasyUseCase("e", P, GP);
-        MediumUseCase MG = new MediumUseCase("m", P, GP);
-        HardUseCase HG = new HardUseCase("h", P, GP);
-        InputBoundary EasyIB = new InputBoundaryImpl(EG);
-        InputBoundary MedIB = new InputBoundaryImpl(MG);
-        InputBoundary HardIB = new InputBoundaryImpl(HG);
+        EasyUseCase EG = new EasyUseCase("e", GP);
+        MediumUseCase MG = new MediumUseCase("m", GP);
+        HardUseCase HG = new HardUseCase("h", GP);
+        InputBoundary EasyIB = new InputBoundaryImpl(EG, P);
+        InputBoundary MedIB = new InputBoundaryImpl(MG, P);
+        InputBoundary HardIB = new InputBoundaryImpl(HG, P);
         NavigatorController EasyNav = new NavigatorController(EasyIB);
         NavigatorController MedNav = new NavigatorController(MedIB);
         NavigatorController HardNav = new NavigatorController(HardIB);

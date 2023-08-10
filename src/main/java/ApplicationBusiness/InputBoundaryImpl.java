@@ -1,18 +1,22 @@
 package ApplicationBusiness;
 
+import InterfaceAdapters.LeaderboardPresenter;
+
 /**
  * Implementation for methods in input boundary to withhold SOLID.
  * For both Liskov's principle and Dependency inversion principle
  */
 public class InputBoundaryImpl implements InputBoundary{
 
+    private InterfaceLeaderboardPresenter LP;
     private GameUseCase useCase;
 
     /**
      * Create an instance of this class
      * @param useCase the useCase that can be a easy, medium, or hard useCase
      */
-    public InputBoundaryImpl(GameUseCase useCase) {
+    public InputBoundaryImpl(GameUseCase useCase, InterfaceLeaderboardPresenter LP) {
+        this.LP = LP;
         this.useCase = useCase;
     }
 
@@ -22,9 +26,10 @@ public class InputBoundaryImpl implements InputBoundary{
      */
     @Override
     public void addToLeaderboard(String newName) {
-        this.useCase.setName(newName);
-        this.useCase.addToLeaderboard();
-        this.useCase.setData();
+        LeaderboardUseCase LbUse = new LeaderboardUseCase(useCase, LP);
+        LbUse.setName(newName);
+        LbUse.addToLeaderboard();
+        LbUse.setData();
     }
 
     /**

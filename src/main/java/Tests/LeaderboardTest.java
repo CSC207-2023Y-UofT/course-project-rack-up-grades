@@ -18,9 +18,9 @@ public class LeaderboardTest {
     ViewModel V = new ViewModel();
     InterfaceLeaderboardPresenter P = new LeaderboardPresenter(V);
     GameOutputBoundary GP = new GamePresenter(V);
-    EasyUseCase EG = new EasyUseCase("e", P, GP);
+    EasyUseCase EG = new EasyUseCase("e", GP);
     GameEntity GEasy = new GameEntity("e");
-    InputBoundary IB = new InputBoundaryImpl(EG);
+    InputBoundary IB = new InputBoundaryImpl(EG, P);
     NavigatorController NC = new NavigatorController(IB);
     final String fs = System.getProperty("file.separator");
     final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+ "FrameworksAndDrivers/file.txt";

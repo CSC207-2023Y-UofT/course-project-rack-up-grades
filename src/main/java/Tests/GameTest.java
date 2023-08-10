@@ -17,9 +17,9 @@ public class GameTest {
     ViewModel V = new ViewModel();
     InterfaceLeaderboardPresenter P = new LeaderboardPresenter(V);
     GameOutputBoundary GP = new GamePresenter(V);
-    EasyUseCase G = new EasyUseCase("e", P, GP);
+    EasyUseCase G = new EasyUseCase("e", GP);
     GameEntity GEasy = new GameEntity("e");
-    InputBoundary IB = new InputBoundaryImpl(G);
+    InputBoundary IB = new InputBoundaryImpl(G, P);
     NavigatorController NC = new NavigatorController(IB);
 
 

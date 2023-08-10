@@ -66,27 +66,27 @@ public class MediumUI extends JFrame implements ActionListener {
         this.pt = new JLabel("Points: 0");
         bdmed.add(this.pt);
         //
-        this.but1 = new JButton("1",pig);
+        this.but1 = new JButton(pig);
         bdmed.add(this.but1);
         this.but1.addActionListener(this);
         this.but1.setVisible(false);
         //
-        this.but2 = new JButton("2",cat);
+        this.but2 = new JButton(cat);
         bdmed.add(this.but2);
         this.but2.addActionListener(this);
         this.but2.setVisible(false);
         //
-        this.but3 = new JButton("3",bunny);
+        this.but3 = new JButton(bunny);
         bdmed.add(this.but3);
         this.but3.addActionListener(this);
         this.but3.setVisible(false);
         //
-        this.but4 = new JButton("4",mimi);
+        this.but4 = new JButton(mimi);
         bdmed.add(this.but4);
         this.but4.addActionListener(this);
         this.but4.setVisible(false);
         //
-        this.but5 = new JButton("5",mimi);
+        this.but5 = new JButton(mimi);
         bdmed.add(this.but5);
         this.but5.addActionListener(this);
         this.but5.setVisible(false);

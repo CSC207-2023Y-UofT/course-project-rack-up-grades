@@ -26,7 +26,6 @@ public class EasyUseCase extends GameUseCase {
     private Integer[] gameTime;
 
     private String difficulty;
-    private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
 
     private java.util.Timer T;
@@ -34,16 +33,13 @@ public class EasyUseCase extends GameUseCase {
     /**
      * Initialize ApplicationBusiness.EasyUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
-     * @param LP
      * @param GP
      *
      */
-    public EasyUseCase(String difficulty, InterfaceLeaderboardPresenter LP, GameOutputBoundary GP) {
-        super(difficulty, LP, GP);
+    public EasyUseCase(String difficulty, GameOutputBoundary GP) {
+        super(difficulty, GP);
         this.difficulty = difficulty;
-        this.LP = LP;
         this.GP = GP;
-        this.name = "";
         this.score = 0;
         this.gameEntity = new GameEntity(difficulty);
         this.increment = 5;
@@ -61,7 +57,7 @@ public class EasyUseCase extends GameUseCase {
         ArrayList<String> preset = new ArrayList<>();
         Random r = new Random();
 
-        for (int i=0; i<60; i++) {
+        for (int i=0; i<10; i++) {
             int rand = r.nextInt(4)+1;
             preset.add(rand + "P");
         }
@@ -76,7 +72,7 @@ public class EasyUseCase extends GameUseCase {
         preset = genPreset();
         preset.add(preset.get(preset.size()-1));
         gameTime = new Integer[]{61};
-        score = 0;
+        this.score = 0;
         T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
@@ -110,7 +106,7 @@ public class EasyUseCase extends GameUseCase {
         // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
         if (i==Integer.parseInt(this.currPosition.substring(0, 1))) {
             System.out.println("Easy: Clicked " + this.currPosition + " +" + this.increment);
-            score += increment;
+            this.score += increment;
         }
     }
 
@@ -135,5 +131,21 @@ public class EasyUseCase extends GameUseCase {
      */
     public void stop(){
         this.T.cancel();
+    }
+
+    /**
+     * getter for score
+     * @return score
+     */
+    public int getScore() {
+        return this.score;
+    }
+
+    /**
+     * set score method for the tests
+     * @param i
+     */
+    public void setScore(int i) {
+        score = i;
     }
 }

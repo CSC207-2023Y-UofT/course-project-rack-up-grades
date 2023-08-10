@@ -7,7 +7,6 @@ import java.util.*;
 
 public class HardUseCase extends GameUseCase {
 
-    private String name;
     private int score;
 
     private GameEntity gameEntity;
@@ -17,16 +16,9 @@ public class HardUseCase extends GameUseCase {
     private String currPosition;
     private ArrayList<String> preset;
 
-
-    final String fs = System.getProperty("file.separator");
-    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+ "FrameworksAndDrivers/file.txt";
-
-    private final DataAccessInterface DataAccIn = new DataAccess(FILE);;
-
     private Integer[] gameTime;
 
     private String difficulty;
-    private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
     private java.util.Timer T;
 
@@ -34,12 +26,10 @@ public class HardUseCase extends GameUseCase {
      * Initialize ApplicationBusiness.GameUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
      */
-    public HardUseCase(String difficulty, InterfaceLeaderboardPresenter LP, GameOutputBoundary GP) {
-        super(difficulty, LP, GP);
+    public HardUseCase(String difficulty, GameOutputBoundary GP) {
+        super(difficulty, GP);
         this.difficulty = difficulty;
-        this.LP = LP;
         this.GP = GP;
-        this.name = "";
         this.score = 0;
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
@@ -98,11 +88,14 @@ public class HardUseCase extends GameUseCase {
                     gameTime[0]--;
                     GP.updateGame(currPosition, gameTime[0], score);
 
-                    if (currPosition.charAt(1) == 'P'){
+                    if (currPosition.charAt(1) == 'P' && !gameTime.equals(0)){
                         score -= increment;
                     }
                 }
                 else {
+                    // score -= increment runs once more even when game ends, must fix below
+                    if (currPosition.charAt(1) == 'P') {
+                        score += increment;}
                     System.out.println("You Scored: " + score);
                     System.out.println("Game Over");
                     T.cancel();
@@ -139,5 +132,21 @@ public class HardUseCase extends GameUseCase {
      */
     public void stop(){
         this.T.cancel();
+    }
+
+    /**
+     * getter for score
+     * @return score
+     */
+    public int getScore() {
+        return this.score;
+    }
+
+    /**
+     * set score method for the tests
+     * @param i
+     */
+    public void setScore(int i) {
+        score = i;
     }
 }
