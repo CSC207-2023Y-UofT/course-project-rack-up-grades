@@ -15,11 +15,12 @@ public class HardUI extends JFrame implements ActionListener {
     private ViewModel viewM;
     private NavigatorController nc;
     final String fs = System.getProperty("file.separator");
-    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Pig.png");
-    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Cat.png");
-    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Magician_Kura.png");
-    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Love&Mimi.png");
-    Icon bomb = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Bomb.png");
+    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-1.png");
+    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-2.png");
+    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-3.png");
+    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-4.png");
+    Icon louis = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-5.png");
+    Icon bomb = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Mini-Bomb.png");
     JLabel hard,time,pt;
     JButton but1, but2, but3, but4 ,but5;
     JFrame hard_game_view = new JFrame("Easy-Rack_Up_Grades");
@@ -46,7 +47,7 @@ public class HardUI extends JFrame implements ActionListener {
         this.setSize(1200,700);
         this.setLocationRelativeTo(null);
         //
-        JLabel bdhard = new JLabel(new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Background-Easy.jpg"));
+        JLabel bdhard = new JLabel(new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Background-Hard.jpg"));
         bdhard.setBounds(0,0,1200,700);
         hard_game_view.getContentPane().add(bdhard);
         //
@@ -83,7 +84,7 @@ public class HardUI extends JFrame implements ActionListener {
         this.but4.addActionListener(this);
         this.but4.setVisible(false);
         //
-        this.but5 = new JButton("5",mimi);
+        this.but5 = new JButton("5",louis);
         bdhard.add(this.but5);
         this.but5.addActionListener(this);
         this.but5.setVisible(false);
@@ -179,27 +180,27 @@ public class HardUI extends JFrame implements ActionListener {
     public void set_buttons(){
         this.but1.setVerticalAlignment(AbstractButton.TOP);
         this.but1.setHorizontalAlignment(AbstractButton.LEFT);
-        this.but1.setBounds(100,300,300,300);
+        this.but1.setBounds(100,300,200,200);
         this.but1.setName("1");
         //
         this.but2.setVerticalAlignment(AbstractButton.TOP);
         this.but2.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but2.setBounds(900,300,300,300);
+        this.but2.setBounds(900,300,200,200);
         this.but2.setName("2");
         //
         this.but3.setVerticalAlignment(AbstractButton.BOTTOM);
         this.but3.setHorizontalAlignment(AbstractButton.LEFT);
-        this.but3.setBounds(300,300,300,300);
+        this.but3.setBounds(300,300,200,200);
         this.but3.setName("3");
         //
         this.but4.setVerticalAlignment(AbstractButton.BOTTOM);
         this.but4.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but4.setBounds(600,250,300,300);
+        this.but4.setBounds(600,250,200,200);
         this.but4.setName("4");
         //
         this.but5.setVerticalAlignment(AbstractButton.BOTTOM);
         this.but5.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but5.setBounds(400,200,300,300);
+        this.but5.setBounds(400,200,200,200);
         this.but5.setName("5");
     }
 

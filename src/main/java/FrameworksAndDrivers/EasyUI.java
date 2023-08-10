@@ -15,8 +15,8 @@ public class EasyUI extends JFrame implements ActionListener{
     private ViewModel viewM;
     private NavigatorController nc;
     final String fs = System.getProperty("file.separator");
-    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Pig.png");
-    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Cat.png");
+    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-GiantMole_Cathy.png");
+    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Abstract_Hery.png");
     Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Magician_Kura.png");
     Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Love&Mimi.png");
     JLabel easy,time,pt;
@@ -48,7 +48,8 @@ public class EasyUI extends JFrame implements ActionListener{
         this.setSize(1200,700);
         this.setLocationRelativeTo(null);
         //
-        JLabel bdeasy = new JLabel(new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Background-Easy.jpg"));
+        JLabel bdeasy = new JLabel(new ImageIcon(System.getProperty("user.dir")
+                + fs+"src"+fs+"main"+fs+"UI"+fs+"Background-Easy.jpg"));
         bdeasy.setBounds(0,0,1200,700);
         easy_game_view.getContentPane().add(bdeasy);
         //
@@ -207,7 +208,8 @@ public class EasyUI extends JFrame implements ActionListener{
     public void setDialog(){
 
         int event = JOptionPane.showConfirmDialog(null,
-                "Your Final Grade is "+ this.viewM.getInfo().get(2) +"! Would you like to save it?", "Congratulation!",JOptionPane.YES_NO_OPTION);
+                "Your Final Grade is "+ this.viewM.getInfo().get(2) +"! Would you like to save it?",
+                "Congratulation!",JOptionPane.YES_NO_OPTION);
         if(event == 0){
             String input_name,output_name;
             input_name = JOptionPane.showInputDialog("Type your name in 8 characters.");
