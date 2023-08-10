@@ -28,5 +28,19 @@ public class GameController {
         this.input.click(i);
     }
 
+     /**
+     * run the game
+     */
+    public void run() {
+        this.input.run();
+    }
+
+    /**
+     * stops the game if needed
+     */
+    public void stop(){
+        this.input.stop();
+    }
+
 
 }
