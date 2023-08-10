@@ -1,7 +1,7 @@
 package ApplicationBusiness;
 
 import EnterpriseBusiness.GameEntity;
-import FrameworksAndDrivers.DataAccess;
+import UI.FrameworksAndDrivers.DataAccess;
 
 import java.util.*;
 
@@ -19,7 +19,7 @@ public class EasyUseCase extends GameUseCase {
 
 
     final String fs = System.getProperty("file.separator");
-    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+ "FrameworksAndDrivers/file.txt";
+    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+ "UI/FrameworksAndDrivers/file.txt";
 
     private final DataAccessInterface DataAccIn = new DataAccess(FILE);;
 

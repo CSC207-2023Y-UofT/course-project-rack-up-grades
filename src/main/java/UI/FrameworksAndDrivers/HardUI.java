@@ -1,4 +1,4 @@
-package FrameworksAndDrivers;
+package UI.FrameworksAndDrivers;
 
 import InterfaceAdapters.NavigatorController;
 import InterfaceAdapters.ViewModel;
@@ -15,12 +15,12 @@ public class HardUI extends JFrame implements ActionListener {
     private ViewModel viewM;
     private NavigatorController nc;
     final String fs = System.getProperty("file.separator");
-    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-1.png");
-    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-2.png");
-    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-3.png");
-    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-4.png");
-    Icon louis = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"MiniButton-5.png");
-    Icon bomb = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Mini-Bomb.png");
+    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"MiniButton-1.png");
+    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"MiniButton-2.png");
+    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"MiniButton-3.png");
+    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"MiniButton-4.png");
+    Icon louis = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"MiniButton-5.png");
+    Icon bomb = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Mini-Bomb.png");
     JLabel hard,time,pt;
     JButton but1, but2, but3, but4 ,but5;
     JFrame hard_game_view = new JFrame("Easy-Rack_Up_Grades");
@@ -47,7 +47,7 @@ public class HardUI extends JFrame implements ActionListener {
         this.setSize(1200,700);
         this.setLocationRelativeTo(null);
         //
-        JLabel bdhard = new JLabel(new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Background-Hard.jpg"));
+        JLabel bdhard = new JLabel(new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Background-Hard.jpg"));
         bdhard.setBounds(0,0,1200,700);
         hard_game_view.getContentPane().add(bdhard);
         //

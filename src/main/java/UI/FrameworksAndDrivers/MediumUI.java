@@ -1,10 +1,9 @@
-package FrameworksAndDrivers;
+package UI.FrameworksAndDrivers;
 
 import InterfaceAdapters.NavigatorController;
 import InterfaceAdapters.ViewModel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -19,10 +18,10 @@ public class MediumUI extends JFrame implements ActionListener {
     private ViewModel viewM;
     private NavigatorController nc;
     final String fs = System.getProperty("file.separator");
-    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-GiantMole_Cathy.png");
-    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Abstract_Hery.png");
-    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Magician_Kura.png");
-    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Love&Mimi.png");
+    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Button-GiantMole_Cathy.png");
+    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Button-Abstract_Hery.png");
+    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"java" +fs+ "UI" +fs+"Button-Magician_Kura.png");
+    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Button-Love&Mimi.png");
     JLabel medium,time,pt;
     JButton but1, but2, but3, but4 ,but5;
     JFrame med_game_view = new JFrame("Easy-Rack_Up_Grades");
@@ -49,7 +48,7 @@ public class MediumUI extends JFrame implements ActionListener {
         this.setSize(1200,700);
         this.setLocationRelativeTo(null);
         //
-        JLabel bdmed = new JLabel(new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Background-Easy.jpg"));
+        JLabel bdmed = new JLabel(new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Background-Easy.jpg"));
         bdmed.setBounds(0,0,1200,700);
         med_game_view.getContentPane().add(bdmed);
         //

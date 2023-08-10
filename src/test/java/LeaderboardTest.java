@@ -1,17 +1,14 @@
-package Tests;
 import ApplicationBusiness.*;
 import EnterpriseBusiness.GameEntity;
-import FrameworksAndDrivers.DataAccess;
+import UI.FrameworksAndDrivers.DataAccess;
 import InterfaceAdapters.GamePresenter;
 import InterfaceAdapters.LeaderboardPresenter;
 import InterfaceAdapters.NavigatorController;
 import InterfaceAdapters.ViewModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Random;
-
-import static org.junit.Assert.*;
 
 
 public class LeaderboardTest {
@@ -23,7 +20,7 @@ public class LeaderboardTest {
     InputBoundary IB = new InputBoundaryImpl(EG, P);
     NavigatorController NC = new NavigatorController(IB);
     final String fs = System.getProperty("file.separator");
-    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+ "FrameworksAndDrivers/file.txt";
+    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+ "UI/FrameworksAndDrivers/file.txt";
 
     private final DataAccessInterface DataAccIn = new DataAccess(FILE);
 
@@ -43,7 +40,7 @@ public class LeaderboardTest {
             }
         }
 
-        assertTrue("the data is found in the file", result);
+        Assertions.assertTrue(result, "the data is found in the file");
 
     }
 
@@ -63,7 +60,7 @@ public class LeaderboardTest {
             }
         }
 
-        assertFalse("the data is not found in file since score is too low", res);
+        Assertions.assertFalse(res, "the data is not found in file since score is too low");
 
     }
 }

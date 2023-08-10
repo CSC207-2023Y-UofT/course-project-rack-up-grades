@@ -1,11 +1,9 @@
-package FrameworksAndDrivers;
+package UI.FrameworksAndDrivers;
 
-import ApplicationBusiness.EasyUseCase;
 import InterfaceAdapters.NavigatorController;
 import InterfaceAdapters.ViewModel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.util.Objects;
 import java.util.TimerTask;
@@ -15,10 +13,10 @@ public class EasyUI extends JFrame implements ActionListener{
     private ViewModel viewM;
     private NavigatorController nc;
     final String fs = System.getProperty("file.separator");
-    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-GiantMole_Cathy.png");
-    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Abstract_Hery.png");
-    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Magician_Kura.png");
-    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Love&Mimi.png");
+    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Button-GiantMole_Cathy.png");
+    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Button-Abstract_Hery.png");
+    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Button-Magician_Kura.png");
+    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Button-Love&Mimi.png");
     JLabel easy,time,pt;
     JButton but1, but2,but3,but4;
     JFrame easy_game_view = new JFrame("Easy-Rack_Up_Grades");
@@ -49,7 +47,7 @@ public class EasyUI extends JFrame implements ActionListener{
         this.setLocationRelativeTo(null);
         //
         JLabel bdeasy = new JLabel(new ImageIcon(System.getProperty("user.dir")
-                + fs+"src"+fs+"main"+fs+"UI"+fs+"Background-Easy.jpg"));
+                + fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Background-Easy.jpg"));
         bdeasy.setBounds(0,0,1200,700);
         easy_game_view.getContentPane().add(bdeasy);
         //
@@ -214,7 +212,6 @@ public class EasyUI extends JFrame implements ActionListener{
             String input_name,output_name;
             input_name = JOptionPane.showInputDialog("Type your name in 8 characters.");
             this.nc.addToLeaderboard(input_name);
-//            this.nc.setData();
             Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();
             dispose();
 

@@ -1,6 +1,8 @@
-package FrameworksAndDrivers;
-
 import ApplicationBusiness.*;
+import UI.FrameworksAndDrivers.EasyUI;
+import UI.FrameworksAndDrivers.HardUI;
+import UI.FrameworksAndDrivers.Leaderboard_Frame;
+import UI.FrameworksAndDrivers.MediumUI;
 import InterfaceAdapters.GamePresenter;
 import InterfaceAdapters.LeaderboardPresenter;
 import InterfaceAdapters.NavigatorController;
@@ -65,7 +67,7 @@ public class Main_Menu extends JFrame {
         mainmenu.setUpButtonListeners(V, P, GP);
 
         //
-        JLabel bdmainmenu = new JLabel(new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Background-MainMenu.jpg"));
+        JLabel bdmainmenu = new JLabel(new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"java" +fs+ "UI" +fs+"Background-MainMenu.jpg"));
         bdmainmenu.setBounds(0,0,1200,700);
         mainmenu.getContentPane().add(bdmainmenu);
         //
@@ -102,11 +104,11 @@ public class Main_Menu extends JFrame {
             if(click == i) {
                 JOptionPane.showMessageDialog(this,
                         "Moles living underground of Toronto" +
-                                " are taking over the U of T library," +
-                                "protect the library and stop moles'" +
-                                "evil plan by clicking them!",
+                                " are taking over the U of T library, \n" +
+                                "protect the library and stop moles' " +
+                                "evil plan by clicking them! \nIn the medium level you can't miss the moles and in the hard you can't click the bomb!",
                         "Introduction",JOptionPane.INFORMATION_MESSAGE,
-                        new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Intro.png"));
+                        new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Intro.png"));
             }
             if (click == easy){
                 System.out.println("easy");

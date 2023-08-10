@@ -1,6 +1,6 @@
 package ApplicationBusiness;
 
-import FrameworksAndDrivers.DataAccess;
+import UI.FrameworksAndDrivers.DataAccess;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +10,7 @@ public class LeaderboardUseCase {
 
 
     final String fs = System.getProperty("file.separator");
-    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+ "FrameworksAndDrivers/file.txt";
+    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"java"+fs+ "UI/FrameworksAndDrivers/file.txt";
 
     private final DataAccessInterface DataAccIn = new DataAccess(FILE);
 
