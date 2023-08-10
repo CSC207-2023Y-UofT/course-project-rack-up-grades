@@ -41,11 +41,14 @@ public class NavigatorController {
      * run the game
      */
     public void run() {
-        this.input.run();
+        this.GC.run();
     }
 
+    /**
+     * stops the game if needed
+     */
     public void stop(){
-        this.input.stop();
+        this.GC.stop();
     }
 
 }
