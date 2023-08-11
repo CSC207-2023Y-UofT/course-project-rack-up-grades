@@ -211,7 +211,7 @@ public class HardUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton o = (JButton)e.getSource(); //the button that was clicked name
-        String name = o.getText();
+        String name = o.getName();
         switch (name){
             case "1":
                 this.nc.click(1);
