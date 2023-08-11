@@ -57,7 +57,7 @@ public class EasyUseCase extends GameUseCase {
         ArrayList<String> preset = new ArrayList<>();
         Random r = new Random();
 
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<60; i++) {
             int rand = r.nextInt(4)+1;
             preset.add(rand + "P");
         }
