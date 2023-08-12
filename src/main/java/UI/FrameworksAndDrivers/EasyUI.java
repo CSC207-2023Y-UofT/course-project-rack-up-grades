@@ -1,36 +1,43 @@
-package FrameworksAndDrivers;
+package UI.FrameworksAndDrivers;
 
 import InterfaceAdapters.NavigatorController;
 import InterfaceAdapters.ViewModel;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Objects;
 import java.util.TimerTask;
 
-/**
- * set a medium mode game
- */
-public class MediumUI extends JFrame implements ActionListener {
+
+public class EasyUI extends JFrame implements ActionListener{
     private ViewModel viewM;
     private NavigatorController nc;
     final String fs = System.getProperty("file.separator");
-    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Pig.png");
-    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Test-Cat.png");
-    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Magician_Kura.png");
-    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Button-Love&Mimi.png");
-    JLabel medium,time,pt;
-    JButton but1, but2, but3, but4 ,but5;
-    JFrame med_game_view = new JFrame("Easy-Rack_Up_Grades");
+    Icon pig = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Button-GiantMole_Cathy.png");
+    Icon cat = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Button-Abstract_Hery.png");
+    Icon bunny = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Button-Magician_Kura.png");
+    Icon mimi = new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Button-Love&Mimi.png");
+    JLabel easy,time,pt;
+    JButton but1, but2,but3,but4;
+    JFrame easy_game_view = new JFrame("Easy-Rack_Up_Grades");
+    boolean closed;
+    private java.util.Timer T;
+
 
     /**
-     * set a medium mode game frame,ContentPane,labels,buttons.
-     * @param NC Navigator Controller
-     * @param V View Model
+     * set up easy mode UI, set up & add frame, buttons, ContentPane
+     * @param NC
+     * @param V
      */
-    public MediumUI(NavigatorController NC, ViewModel V){
+    public EasyUI(NavigatorController NC, ViewModel V){
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                NC.stop();
+                T.cancel();
+            }
+        });
+        this.closed = false;
         //
         this.nc = NC;
         this.viewM = V;
@@ -39,54 +46,47 @@ public class MediumUI extends JFrame implements ActionListener {
         this.setSize(1200,700);
         this.setLocationRelativeTo(null);
         //
-        JLabel bdmed = new JLabel(new ImageIcon(System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"UI"+fs+"Background-Easy.jpg"));
-        bdmed.setBounds(0,0,1200,700);
-        med_game_view.getContentPane().add(bdmed);
+        JLabel bdeasy = new JLabel(new ImageIcon(System.getProperty("user.dir")
+                + fs+"src"+fs+"main"+fs+ "java" +fs+"UI" +fs+"Background-Easy.jpg"));
+        bdeasy.setBounds(0,0,1200,700);
+        easy_game_view.getContentPane().add(bdeasy);
         //
-        bdmed.setLayout(null);
-        bdmed.setBounds(0,0,1200,700);
-        this.add(bdmed);
+        this.easy = new JLabel("Easy Mode");
+        bdeasy.add(this.easy);
         //
-        this.medium = new JLabel("Medium Mode");
-        bdmed.add(this.medium);
-        //
-        this.time = new JLabel("Time: 60");
-        bdmed.add(this.time);
+        this.time = new JLabel("Time: 60s");
+        bdeasy.add(this.time);
         //
         this.pt = new JLabel("Points: 0");
-        bdmed.add(this.pt);
+        bdeasy.add(this.pt);
         //
         this.but1 = new JButton("1",pig);
-        bdmed.add(this.but1);
+        bdeasy.add(this.but1);
         this.but1.addActionListener(this);
         this.but1.setVisible(false);
         //
         this.but2 = new JButton("2",cat);
-        bdmed.add(this.but2);
+        bdeasy.add(this.but2);
         this.but2.addActionListener(this);
         this.but2.setVisible(false);
         //
         this.but3 = new JButton("3",bunny);
-        bdmed.add(this.but3);
+        bdeasy.add(this.but3);
         this.but3.addActionListener(this);
         this.but3.setVisible(false);
         //
         this.but4 = new JButton("4",mimi);
-        bdmed.add(this.but4);
+        bdeasy.add(this.but4);
         this.but4.addActionListener(this);
         this.but4.setVisible(false);
         //
-        this.but5 = new JButton("5",mimi);
-        bdmed.add(this.but5);
-        this.but5.addActionListener(this);
-        this.but5.setVisible(false);
-        //
         set_Labels();
         set_buttons();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
         setVisible(true);
+        add(bdeasy);
         //
-        java.util.Timer T = new java.util.Timer();
+        T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override
@@ -96,7 +96,6 @@ public class MediumUI extends JFrame implements ActionListener {
                     but2.setVisible(false);
                     but3.setVisible(false);
                     but4.setVisible(false);
-                    but5.setVisible(false);
                     String position = (viewM.getInfo().get(0)).substring(0,1);
                     switch (position){
                         case "1":
@@ -111,15 +110,11 @@ public class MediumUI extends JFrame implements ActionListener {
                         case "4":
                             but4.setVisible(true);
                             break;
-                        case "5":
-                            but5.setVisible(true);
-                            break;
                     }
-                    time.setText("Time " + viewM.getInfo().get(1) + "s");
+                    time.setText("Time: " + viewM.getInfo().get(1) + "s");
                     pt.setText("Points: " + viewM.getInfo().get(2));
                     System.out.println(viewM.getInfo());
                 }
-
                 else {
                     time.setText("Time " + viewM.getInfo().get(1) + "s");
                     pt.setText("Points: " + viewM.getInfo().get(2));
@@ -130,54 +125,54 @@ public class MediumUI extends JFrame implements ActionListener {
                     but2.setVisible(false);
                     but3.setVisible(false);
                     but4.setVisible(false);
-                    but5.setVisible(false);
-
                 }
             }
         };
-        T.scheduleAtFixedRate(TT, 3050, 1000);};
+        T.scheduleAtFixedRate(TT, 3050, 1000);
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
 
     /**
-     * set the location and size for labels, which shows up at upper frame.
+     * Set location and size for labels
      */
     public void set_Labels(){
-        this.medium.setBounds(100,65,100,50);
-        this.time.setBounds(565,50,100,50);
-        this.pt.setBounds(1000,65,100,50);
+            this.easy.setBounds(100,65,100,50);
+            this.time.setBounds(565,50,100,50);
+            this.pt.setBounds(1000,65,100,50);
     };
 
     /**
-     * set the names, location and size for buttons.
+     * set button name, size and location.
      */
     public void set_buttons(){
-        this.but1.setVerticalAlignment(AbstractButton.TOP);
-        this.but1.setHorizontalAlignment(AbstractButton.LEFT);
-        this.but1.setBounds(100,300,300,300);
-        this.but1.setName("1");
-        //
-        this.but2.setVerticalAlignment(AbstractButton.TOP);
-        this.but2.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but2.setBounds(900,300,300,300);
-        this.but2.setName("2");
-        //
-        this.but3.setVerticalAlignment(AbstractButton.BOTTOM);
-        this.but3.setHorizontalAlignment(AbstractButton.LEFT);
-        this.but3.setBounds(300,300,300,300);
-        this.but3.setName("3");
-        //
-        this.but4.setVerticalAlignment(AbstractButton.BOTTOM);
-        this.but4.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but4.setBounds(600,250,300,300);
-        this.but4.setName("4");
-        //
-        this.but5.setVerticalAlignment(AbstractButton.BOTTOM);
-        this.but5.setHorizontalAlignment(AbstractButton.RIGHT);
-        this.but5.setBounds(400,200,300,300);
-        this.but5.setName("5");
-    }
+            this.but1.setVerticalAlignment(AbstractButton.TOP);
+            this.but1.setHorizontalAlignment(AbstractButton.LEFT);
+            this.but1.setBounds(200,300,300,300);
+            this.but1.setName("1");
+            //
+            this.but2.setVerticalAlignment(AbstractButton.TOP);
+            this.but2.setHorizontalAlignment(AbstractButton.RIGHT);
+            this.but2.setBounds(500,300,300,300);
+            this.but2.setName("2");
+            //
+            this.but3.setVerticalAlignment(AbstractButton.BOTTOM);
+            this.but3.setHorizontalAlignment(AbstractButton.LEFT);
+            this.but3.setBounds(800,300,300,300);
+            this.but3.setName("3");
+            //
+            this.but4.setVerticalAlignment(AbstractButton.BOTTOM);
+            this.but4.setHorizontalAlignment(AbstractButton.RIGHT);
+            this.but4.setBounds(450,250,300,300);
+            this.but4.setName("4");
+            //
+        }
 
     /**
-     * set the action performed for the event for click on the buttons.
+     * process clicks for buttons, after a button is clicked it will call navigator controller to click
+     * on the location of the button
+     *
      * @param e the event to be processed
      */
     @Override
@@ -201,26 +196,22 @@ public class MediumUI extends JFrame implements ActionListener {
                 this.nc.click(4);
                 this.but4.setVisible(false);
                 break;
-            case "5":
-                this.nc.click(5);
-                this.but5.setVisible(false);
-                break;
         }
     }
 
     /**
-     * Set a confirm Dialog for end_game, with info and two option for player
-     * save their name or leave the current game.
+     * the end game popup, it will give the options to add to leaderboard or not.
+     *
      */
     public void setDialog(){
 
         int event = JOptionPane.showConfirmDialog(null,
-                "Your Final Grade is "+ this.viewM.getInfo().get(2) +"! Would you like to save it?", "Congratulation!",JOptionPane.YES_NO_OPTION);
+                "Your Final Grade is "+ this.viewM.getInfo().get(2) +"! Would you like to save it?",
+                "Congratulation!",JOptionPane.YES_NO_OPTION);
         if(event == 0){
             String input_name,output_name;
             input_name = JOptionPane.showInputDialog("Type your name in 8 characters.");
             this.nc.addToLeaderboard(input_name);
-//            this.nc.setData();
             Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();
             dispose();
 
@@ -230,6 +221,7 @@ public class MediumUI extends JFrame implements ActionListener {
             dispose();
         };
     }
+
 
 
 }

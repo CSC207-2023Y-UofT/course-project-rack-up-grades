@@ -1,7 +1,7 @@
 package ApplicationBusiness;
 
 import EnterpriseBusiness.GameEntity;
-import FrameworksAndDrivers.DataAccess;
+import UI.FrameworksAndDrivers.DataAccess;
 
 import java.util.*;
 
@@ -19,29 +19,27 @@ public class EasyUseCase extends GameUseCase {
 
 
     final String fs = System.getProperty("file.separator");
-    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+ "FrameworksAndDrivers/file.txt";
+    final String FILE = System.getProperty("user.dir")+fs+"src"+fs+"main"+fs+"JAVA"+fs+ "UI/FrameworksAndDrivers/file.txt";
 
     private final DataAccessInterface DataAccIn = new DataAccess(FILE);;
 
     private Integer[] gameTime;
 
     private String difficulty;
-    private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
+
+    private java.util.Timer T;
 
     /**
      * Initialize ApplicationBusiness.EasyUseCase
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
-     * @param LP
      * @param GP
      *
      */
-    public EasyUseCase(String difficulty, InterfaceLeaderboardPresenter LP, GameOutputBoundary GP) {
-        super(difficulty, LP, GP);
+    public EasyUseCase(String difficulty, GameOutputBoundary GP) {
+        super(difficulty, GP);
         this.difficulty = difficulty;
-        this.LP = LP;
         this.GP = GP;
-        this.name = "";
         this.score = 0;
         this.gameEntity = new GameEntity(difficulty);
         this.increment = 5;
@@ -74,8 +72,8 @@ public class EasyUseCase extends GameUseCase {
         preset = genPreset();
         preset.add(preset.get(preset.size()-1));
         gameTime = new Integer[]{61};
-        score = 0;
-        java.util.Timer T = new java.util.Timer();
+        this.score = 0;
+        T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override
@@ -108,7 +106,7 @@ public class EasyUseCase extends GameUseCase {
         // Throws error if currPosition is nothing yet, temporary throws the program doesn't crash
         if (i==Integer.parseInt(this.currPosition.substring(0, 1))) {
             System.out.println("Easy: Clicked " + this.currPosition + " +" + this.increment);
-            score += increment;
+            this.score += increment;
         }
     }
 
@@ -126,5 +124,28 @@ public class EasyUseCase extends GameUseCase {
      */
     public ArrayList<String> getPreset() {
         return preset;
+    }
+
+    /**
+     * to stop the timer if needed
+     */
+    public void stop(){
+        this.T.cancel();
+    }
+
+    /**
+     * getter for score
+     * @return score
+     */
+    public int getScore() {
+        return this.score;
+    }
+
+    /**
+     * set score method for the tests
+     * @param i
+     */
+    public void setScore(int i) {
+        score = i;
     }
 }

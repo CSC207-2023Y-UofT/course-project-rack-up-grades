@@ -32,7 +32,7 @@ public class GameEntity {
         else if(Objects.equals(level, "h")){
 
             this.posObj = new PositiveObj(5);
-            this.negObj = new NegativeObj(5);
+            this.negObj = new NegativeObj(10);
         }
     }
 

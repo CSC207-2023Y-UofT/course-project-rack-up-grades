@@ -1,13 +1,11 @@
 package ApplicationBusiness;
 
 import EnterpriseBusiness.GameEntity;
-import FrameworksAndDrivers.DataAccess;
 
 import java.util.*;
 
 public class MediumUseCase extends GameUseCase {
 
-    private String name;
     private int score;
 
     private GameEntity gameEntity;
@@ -17,32 +15,23 @@ public class MediumUseCase extends GameUseCase {
     private String currPosition;
     private ArrayList<String> preset;
 
-
-    final String fs = System.getProperty("file.separator");
-    final String FILE = System.getProperty("user.dir") + fs + "src" + fs + "main" + fs + "JAVA" + fs + "FrameworksAndDrivers/file.txt";
-
-    private final DataAccessInterface DataAccIn = new DataAccess(FILE);
-    ;
-
     private Integer[] gameTime;
 
     private String difficulty;
-    private InterfaceLeaderboardPresenter LP;
     private GameOutputBoundary GP;
+    private java.util.Timer T;
+
 
     /**
      * Initialize ApplicationBusiness.GameUseCase
      *
      * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
-     * @param LP
      * @param GP
      */
-    public MediumUseCase(String difficulty, InterfaceLeaderboardPresenter LP, GameOutputBoundary GP) {
-        super(difficulty, LP, GP);
+    public MediumUseCase(String difficulty, GameOutputBoundary GP) {
+        super(difficulty, GP);
         this.difficulty = difficulty;
-        this.LP = LP;
         this.GP = GP;
-        this.name = "";
         this.score = 0;
         this.gameEntity = new GameEntity(difficulty);
         this.increment = this.gameEntity.getIncrement();
@@ -75,8 +64,8 @@ public class MediumUseCase extends GameUseCase {
         preset = genPreset();
         preset.add(preset.get(preset.size() - 1));
         gameTime = new Integer[]{61};
-        score = 0;
-        java.util.Timer T = new java.util.Timer();
+        this.score = 0;
+        T = new java.util.Timer();
         TimerTask TT = new TimerTask() {
 
             @Override
@@ -93,8 +82,11 @@ public class MediumUseCase extends GameUseCase {
 //                    System.out.println(gameTime[0]);
                     gameTime[0]--;
                     GP.updateGame(currPosition, gameTime[0], score);
-                    score -= increment;
+                    if (!gameTime.equals(0)) {
+                    score -= increment;}
                 } else {
+                    // score -= increment runs once more even when game ends, must fix below
+                    score += increment;
                     if (score<0){
                         score = 0;
                     }
@@ -118,5 +110,28 @@ public class MediumUseCase extends GameUseCase {
             this.score += increment;
             this.score += increment;
         }
+    }
+
+    /**
+     * to stop the timer if needed
+     */
+    public void stop(){
+        this.T.cancel();
+    }
+
+    /**
+     * getter for score
+     * @return score
+     */
+    public int getScore() {
+        return this.score;
+    }
+
+    /**
+     * set score method for the tests
+     * @param i
+     */
+    public void setScore(int i) {
+        score = i;
     }
 }

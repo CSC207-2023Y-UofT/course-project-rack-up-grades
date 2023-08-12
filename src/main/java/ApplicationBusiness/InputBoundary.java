@@ -10,4 +10,6 @@ public interface InputBoundary {
     void click(Integer i);
 
     void run();
+
+    void stop();
 }

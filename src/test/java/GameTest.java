@@ -1,25 +1,23 @@
-package Tests;
-
 import ApplicationBusiness.*;
 import EnterpriseBusiness.GameEntity;
 import InterfaceAdapters.GamePresenter;
 import InterfaceAdapters.LeaderboardPresenter;
 import InterfaceAdapters.NavigatorController;
 import InterfaceAdapters.ViewModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import static org.junit.Assert.assertEquals;
 
 public class GameTest {
     ViewModel V = new ViewModel();
     InterfaceLeaderboardPresenter P = new LeaderboardPresenter(V);
     GameOutputBoundary GP = new GamePresenter(V);
-    EasyUseCase G = new EasyUseCase("e", P, GP);
+    EasyUseCase G = new EasyUseCase("e", GP);
     GameEntity GEasy = new GameEntity("e");
-    InputBoundary IB = new InputBoundaryImpl(G);
+    InputBoundary IB = new InputBoundaryImpl(G, P);
     NavigatorController NC = new NavigatorController(IB);
 
 
@@ -63,7 +61,7 @@ public class GameTest {
         int ExpectedFinalScore = 5*this.GEasy.getIncrement();
 
         //Check if score is correct. The score in our data structure is ExpectedFinalScore
-        assertEquals(ExpectedFinalScore, Integer.parseInt(this.V.getInfo().get(2)));
+        Assertions.assertEquals(ExpectedFinalScore, Integer.parseInt(this.V.getInfo().get(2)));
 
     }
 
@@ -112,7 +110,7 @@ public class GameTest {
         int expectedScore = j*this.GEasy.getIncrement();
 
         //The score that is processed in the game should be the same as the calculated expected score
-        assertEquals(expectedScore, Integer.parseInt(this.V.getInfo().get(2)));
+        Assertions.assertEquals(expectedScore, Integer.parseInt(this.V.getInfo().get(2)));
 
 
     }
