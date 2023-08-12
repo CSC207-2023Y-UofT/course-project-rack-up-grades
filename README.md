@@ -28,9 +28,9 @@ The file directory is compatible with any operating system that works with Java.
 
 We decided to use 2 design patterns in our work: Adapter and Facade
 
-Adapter: The problem that the adapter solves is the use of the third-party file format might break the code and introduce dependencies if we don't put another layer of abstraction on top of it. We do this in our project when we are outputting the results of the leaderboard from the file to the JTable through the use case and the Leaderboard output boundary (called InterfaceLeaderboardPresenter). This was because our program's persistent data reading produces an ArrayList of string, which JTable required a 2d array for our use case.
+Adapter: The problem that the adapter solves is the use of the third-party file format might break the code and introduce dependencies if we don't put another layer of abstraction on top of it. We do this in our project when we are outputting the results of the leaderboard from the file to the JTable through the use case and the Leaderboard output boundary (called InterfaceLeaderboardPresenter). This was because our program's persistent data reading produces an ArrayList of strings, which JTable required a 2d array for our use case. This design pattern is seen between the use case, output boundary, Leaderboard Presenter, and Leaderboard Frame which uses J Table.
 
-Facade: The facade layer was set up in the inputBoundaryImpl class in the application business layer because we saw that in order to add data to the leaderboard after a game we needed to do multiple things; get and set the user name, call a method to write to our file, read and update the presenter. This facade makes sure that we are not calling three different methods to get the job done but just one which gets all of it done.
+Facade: The facade layer was set up in the inputBoundaryImpl class in the application business layer because we saw that in order to add data to the leaderboard after a game we needed to do multiple things; get and set the user name, call a method to write to our file, read and update the presenter. This facade makes sure that we are not calling three different methods to get the job done but just one which gets all of it done. The facade itself is stored in the Input Boundary Implementation class. 
 
 
 ## Unit Testing
