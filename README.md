@@ -34,8 +34,10 @@ Facade: The facade layer was set up in the inputBoundaryImpl class in the applic
 
 
 ## Unit Testing
+For testing we used org.junit.jupiter.api.Assertions; org.junit.jupiter.api.Test;
 
 The tests we have made cover: test what happens if there are 10 ppl on the leaderboard but you want to add your score which is lower than all of theirs. In this case, the score should not be added to the leaderboard, as only the top 10 scores should be added. In addition, if the leaderboard is not full of users (there are less than 10 entries), any new score should be added by default, until there are 10 entries, which then any new score will be compared and added if necessary. Also, other tests include: clicking on 5 items in a simulation of the game and clicking on all items at one position in a simulation of the game. This test the EasyUseCase and the controllers as well. Because the UseCases are so similar we have decided to omit the test for Medium and Hard as they work similarly. We also test lower-level programs in our CA to make sure the entities work. 
+### Test Coverage Report is included in tests folder
 
 ## Accessibility
 Size and space for approach and use: 
