@@ -44,6 +44,11 @@ public class LeaderboardTest {
 
     }
 
+    /**
+     * Representation Invariants:
+     * We require the file to have all 10 slots of the leaderboard filled with players whose score is greater than 1
+     * inorder for this test to work.
+     */
     @Test
     public void testNotAddToLeaderboard(){
         // Checks the case that name is added to leaderboard because score too low
@@ -51,16 +56,16 @@ public class LeaderboardTest {
         EG.setScore(0);
         IB.addToLeaderboard("name");
         String expected = "name,0,e";
-        boolean res = false;
+        boolean itsin = false;
 
         ArrayList<String> data = DataAccIn.read();
         for (int i = 0; i < data.size(); i++){
             if(expected.equals(data.get(i))){
-                res = true;
+                itsin = true;
             }
         }
 
-        Assertions.assertFalse(res, "the data is not found in file since score is too low");
+        Assertions.assertFalse(itsin, "the data is not found in file since score is too low");
 
     }
 }
