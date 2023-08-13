@@ -1,10 +1,2 @@
 bobd,300,m
 ANDY IS BEST!,295,e
-mike,290,e
-mike,290,e
-mike,290,e
-mike,290,e
-mike,290,e
-mike,290,e
-mike,290,e
-mike,290,e
