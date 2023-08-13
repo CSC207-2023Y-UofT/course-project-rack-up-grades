@@ -1,0 +1,192 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GameUseCase</title>
+  <style type="text/css">
+    @import "coverage.css";
+    @import "idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ApplicationBusiness</a>
+</div>
+
+<h1>Coverage Summary for Class: GameUseCase (ApplicationBusiness)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameUseCase</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ApplicationBusiness;
+&nbsp;
+&nbsp;import EnterpriseBusiness.GameEntity;
+&nbsp;
+&nbsp;import java.util.*;
+&nbsp;
+&nbsp;/**
+&nbsp; * The GameUseCase class is the parent of easy medium hard usecase, it is abstract and has some abstract methods
+&nbsp; */
+&nbsp;public abstract class GameUseCase {
+&nbsp;    private int score;
+&nbsp;
+&nbsp;    private GameEntity gameEntity;
+&nbsp;    private int increment;
+&nbsp;    private int decrement;
+&nbsp;
+&nbsp;    private String currPosition;
+&nbsp;    private ArrayList&lt;String&gt; preset;
+&nbsp;
+&nbsp;    private Integer[] gameTime;
+&nbsp;
+&nbsp;    private String difficulty;
+&nbsp;    private GameOutputBoundary GP;
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Initialize ApplicationBusiness.GameUseCase
+&nbsp;     * @param difficulty a param e, m, and h for easy, medium, and hard, respectively
+&nbsp;     * @param GP a game presenter interface (OutputBoundary)
+&nbsp;     *
+&nbsp;     */
+<b class="fc">&nbsp;    public GameUseCase(String difficulty, GameOutputBoundary GP) {</b>
+<b class="fc">&nbsp;        this.difficulty = difficulty;</b>
+<b class="fc">&nbsp;        this.GP = GP;</b>
+<b class="fc">&nbsp;        this.score = 0;</b>
+<b class="fc">&nbsp;        this.gameEntity = new GameEntity(difficulty);</b>
+<b class="fc">&nbsp;        this.increment = this.gameEntity.getIncrement();</b>
+<b class="fc">&nbsp;        this.decrement = this.gameEntity.getDecrement();</b>
+<b class="fc">&nbsp;        this.preset = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.gameTime = new Integer[1];</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * This genPreset method creates a preset depending on gamemode. Can be combined with the code above
+&nbsp;     * @return an arraylist of strings that will show up as moles when the game runs
+&nbsp;     */
+&nbsp;    public abstract ArrayList&lt;String&gt; genPreset();
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * abstract run() method
+&nbsp;     */
+&nbsp;    // Initializes the game
+&nbsp;    public abstract void run();
+&nbsp;
+&nbsp;    /**
+&nbsp;     * abstract click() method
+&nbsp;     * @param i
+&nbsp;     */
+&nbsp;    public abstract void click(Integer i);
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * abstract class for the child to overwrite
+&nbsp;     */
+&nbsp;    public abstract void stop();
+&nbsp;
+&nbsp;    /**
+&nbsp;     * set score method for the tests
+&nbsp;     * @param i
+&nbsp;     */
+&nbsp;    public abstract void setScore(int i);
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * getter for score
+&nbsp;     * @return score
+&nbsp;     */
+&nbsp;    public abstract int getScore();
+&nbsp;
+&nbsp;    /**
+&nbsp;     * getter for difficulty
+&nbsp;     * @return difficulty
+&nbsp;     */
+&nbsp;    public String getDifficulty() {
+<b class="fc">&nbsp;        return difficulty;</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-12 22:57</div>
+</div>
+</body>
+</html>

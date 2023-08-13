@@ -112,6 +112,24 @@ public class MediumUseCase extends GameUseCase {
         }
     }
 
+
+    /**
+     * setter for testing purposes
+     * @param preset
+     */
+    public void setPreset(ArrayList<String> preset) {
+        this.preset = preset;
+    }
+
+    /**
+     * setter for testing purposes
+     * @param i
+     */
+    public void setTime(int i) {
+        this.gameTime = new Integer[]{i};
+    }
+
+
     /**
      * to stop the timer if needed
      */

@@ -1,0 +1,411 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HardUI</title>
+  <style type="text/css">
+    @import "coverage.css";
+    @import "idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">UI.FrameworksAndDrivers</a>
+</div>
+
+<h1>Coverage Summary for Class: HardUI (UI.FrameworksAndDrivers)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HardUI</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/103)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">HardUI$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HardUI$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/47)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/153)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package UI.FrameworksAndDrivers;
+&nbsp;
+&nbsp;import InterfaceAdapters.NavigatorController;
+&nbsp;import InterfaceAdapters.ViewModel;
+&nbsp;
+&nbsp;import javax.swing.*;
+&nbsp;import java.awt.event.ActionEvent;
+&nbsp;import java.awt.event.ActionListener;
+&nbsp;import java.awt.event.WindowAdapter;
+&nbsp;import java.awt.event.WindowEvent;
+&nbsp;import java.util.Objects;
+&nbsp;import java.util.TimerTask;
+&nbsp;
+&nbsp;public class HardUI extends JFrame implements ActionListener {
+&nbsp;    private ViewModel viewM;
+&nbsp;    private NavigatorController nc;
+<b class="nc">&nbsp;    final String fs = System.getProperty(&quot;file.separator&quot;);</b>
+<b class="nc">&nbsp;    Icon pig = new ImageIcon(System.getProperty(&quot;user.dir&quot;)+fs+&quot;src&quot;+fs+&quot;main&quot;+fs+ &quot;java&quot; +fs+&quot;UI&quot; +fs+&quot;MiniButton-1.png&quot;);</b>
+<b class="nc">&nbsp;    Icon cat = new ImageIcon(System.getProperty(&quot;user.dir&quot;)+fs+&quot;src&quot;+fs+&quot;main&quot;+fs+ &quot;java&quot; +fs+&quot;UI&quot; +fs+&quot;MiniButton-2.png&quot;);</b>
+<b class="nc">&nbsp;    Icon bunny = new ImageIcon(System.getProperty(&quot;user.dir&quot;)+fs+&quot;src&quot;+fs+&quot;main&quot;+fs+ &quot;java&quot; +fs+&quot;UI&quot; +fs+&quot;MiniButton-3.png&quot;);</b>
+<b class="nc">&nbsp;    Icon mimi = new ImageIcon(System.getProperty(&quot;user.dir&quot;)+fs+&quot;src&quot;+fs+&quot;main&quot;+fs+ &quot;java&quot; +fs+&quot;UI&quot; +fs+&quot;MiniButton-4.png&quot;);</b>
+<b class="nc">&nbsp;    Icon louis = new ImageIcon(System.getProperty(&quot;user.dir&quot;)+fs+&quot;src&quot;+fs+&quot;main&quot;+fs+ &quot;java&quot; +fs+&quot;UI&quot; +fs+&quot;MiniButton-5.png&quot;);</b>
+<b class="nc">&nbsp;    Icon bomb = new ImageIcon(System.getProperty(&quot;user.dir&quot;)+fs+&quot;src&quot;+fs+&quot;main&quot;+fs+ &quot;java&quot; +fs+&quot;UI&quot; +fs+&quot;Mini-Bomb.png&quot;);</b>
+&nbsp;    JLabel hard,time,pt;
+&nbsp;    JButton but1, but2, but3, but4 ,but5;
+<b class="nc">&nbsp;    JFrame hard_game_view = new JFrame(&quot;Easy-Rack_Up_Grades&quot;);</b>
+&nbsp;    private java.util.Timer T;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * set a medium mode game frame,ContentPane,labels,buttons.
+&nbsp;     * @param NC Navigator Controller
+&nbsp;     * @param V View Model
+&nbsp;     */
+<b class="nc">&nbsp;    public HardUI(NavigatorController NC, ViewModel V){</b>
+<b class="nc">&nbsp;        addWindowListener(new WindowAdapter() {</b>
+&nbsp;            @Override
+&nbsp;            public void windowClosed(WindowEvent e) {
+<b class="nc">&nbsp;                NC.stop();</b>
+<b class="nc">&nbsp;                T.cancel();</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;        //
+<b class="nc">&nbsp;        this.nc = NC;</b>
+<b class="nc">&nbsp;        this.viewM = V;</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.setLayout(null);</b>
+<b class="nc">&nbsp;        this.setSize(1200,700);</b>
+<b class="nc">&nbsp;        this.setLocationRelativeTo(null);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        JLabel bdhard = new JLabel(new ImageIcon(System.getProperty(&quot;user.dir&quot;)+fs+&quot;src&quot;+fs+&quot;main&quot;+fs+ &quot;java&quot; +fs+&quot;UI&quot; +fs+&quot;Background-Hard.jpg&quot;));</b>
+<b class="nc">&nbsp;        bdhard.setBounds(0,0,1200,700);</b>
+<b class="nc">&nbsp;        hard_game_view.getContentPane().add(bdhard);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        bdhard.setLayout(null);</b>
+<b class="nc">&nbsp;        bdhard.setBounds(0,0,1200,700);</b>
+<b class="nc">&nbsp;        this.add(bdhard);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.hard = new JLabel(&quot;Hard Mode&quot;);</b>
+<b class="nc">&nbsp;        bdhard.add(this.hard);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.time = new JLabel(&quot;Time: 60&quot;);</b>
+<b class="nc">&nbsp;        bdhard.add(this.time);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.pt = new JLabel(&quot;Points: 0&quot;);</b>
+<b class="nc">&nbsp;        bdhard.add(this.pt);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.but1 = new JButton(pig);</b>
+<b class="nc">&nbsp;        bdhard.add(this.but1);</b>
+<b class="nc">&nbsp;        this.but1.addActionListener(this);</b>
+<b class="nc">&nbsp;        this.but1.setVisible(false);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.but2 = new JButton(cat);</b>
+<b class="nc">&nbsp;        bdhard.add(this.but2);</b>
+<b class="nc">&nbsp;        this.but2.addActionListener(this);</b>
+<b class="nc">&nbsp;        this.but2.setVisible(false);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.but3 = new JButton(bunny);</b>
+<b class="nc">&nbsp;        bdhard.add(this.but3);</b>
+<b class="nc">&nbsp;        this.but3.addActionListener(this);</b>
+<b class="nc">&nbsp;        this.but3.setVisible(false);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.but4 = new JButton(mimi);</b>
+<b class="nc">&nbsp;        bdhard.add(this.but4);</b>
+<b class="nc">&nbsp;        this.but4.addActionListener(this);</b>
+<b class="nc">&nbsp;        this.but4.setVisible(false);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.but5 = new JButton(louis);</b>
+<b class="nc">&nbsp;        bdhard.add(this.but5);</b>
+<b class="nc">&nbsp;        this.but5.addActionListener(this);</b>
+<b class="nc">&nbsp;        this.but5.setVisible(false);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        set_Labels();</b>
+<b class="nc">&nbsp;        set_buttons();</b>
+<b class="nc">&nbsp;        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);</b>
+<b class="nc">&nbsp;        setVisible(true);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        T = new java.util.Timer();</b>
+<b class="nc">&nbsp;        TimerTask TT = new TimerTask() {</b>
+&nbsp;
+&nbsp;            @Override
+&nbsp;            public void run() {
+<b class="nc">&nbsp;                if (!Objects.equals(viewM.getInfo().get(1), &quot;0&quot;)) {</b>
+<b class="nc">&nbsp;                    but1.setIcon(pig);</b>
+<b class="nc">&nbsp;                    but2.setIcon(cat);</b>
+<b class="nc">&nbsp;                    but3.setIcon(bunny);</b>
+<b class="nc">&nbsp;                    but4.setIcon(mimi);</b>
+<b class="nc">&nbsp;                    but5.setIcon(mimi);</b>
+<b class="nc">&nbsp;                    but1.setVisible(false);</b>
+<b class="nc">&nbsp;                    but2.setVisible(false);</b>
+<b class="nc">&nbsp;                    but3.setVisible(false);</b>
+<b class="nc">&nbsp;                    but4.setVisible(false);</b>
+<b class="nc">&nbsp;                    but5.setVisible(false);</b>
+<b class="nc">&nbsp;                    String position = (viewM.getInfo().get(0));</b>
+<b class="nc">&nbsp;                    switch (position.substring(0,1)){</b>
+&nbsp;                        case &quot;1&quot;:
+<b class="nc">&nbsp;                            if (position.substring(1,2).equals(&quot;N&quot;)) {</b>
+<b class="nc">&nbsp;                                but1.setIcon(bomb);</b>
+&nbsp;                            }
+<b class="nc">&nbsp;                            but1.setVisible(true);</b>
+<b class="nc">&nbsp;                            break;</b>
+&nbsp;                        case &quot;2&quot;:
+<b class="nc">&nbsp;                            if (position.substring(1,2).equals(&quot;N&quot;)) {</b>
+<b class="nc">&nbsp;                                but2.setIcon(bomb);</b>
+&nbsp;                            }
+<b class="nc">&nbsp;                            but2.setVisible(true);</b>
+<b class="nc">&nbsp;                            break;</b>
+&nbsp;                        case &quot;3&quot;:
+<b class="nc">&nbsp;                            if (position.substring(1,2).equals(&quot;N&quot;)) {</b>
+<b class="nc">&nbsp;                                but3.setIcon(bomb);</b>
+&nbsp;                            }
+<b class="nc">&nbsp;                            but3.setVisible(true);</b>
+<b class="nc">&nbsp;                            break;</b>
+&nbsp;                        case &quot;4&quot;:
+<b class="nc">&nbsp;                            if (position.substring(1,2).equals(&quot;N&quot;)) {</b>
+<b class="nc">&nbsp;                                but4.setIcon(bomb);</b>
+&nbsp;                            }
+<b class="nc">&nbsp;                            but4.setVisible(true);</b>
+<b class="nc">&nbsp;                            break;</b>
+&nbsp;                        case &quot;5&quot;:
+<b class="nc">&nbsp;                            if (position.substring(1,2).equals(&quot;N&quot;)) {</b>
+<b class="nc">&nbsp;                                but5.setIcon(bomb);</b>
+&nbsp;                            }
+<b class="nc">&nbsp;                            but5.setVisible(true);</b>
+&nbsp;                            break;
+&nbsp;                    }
+<b class="nc">&nbsp;                    time.setText(&quot;Time &quot; + viewM.getInfo().get(1) + &quot;s&quot;);</b>
+<b class="nc">&nbsp;                    pt.setText(&quot;Points: &quot; + viewM.getInfo().get(2));</b>
+<b class="nc">&nbsp;                    System.out.println(viewM.getInfo());</b>
+<b class="nc">&nbsp;                }</b>
+&nbsp;
+&nbsp;                else {
+<b class="nc">&nbsp;                    time.setText(&quot;Time &quot; + viewM.getInfo().get(1) + &quot;s&quot;);</b>
+<b class="nc">&nbsp;                    pt.setText(&quot;Points: &quot; + viewM.getInfo().get(2));</b>
+<b class="nc">&nbsp;                    System.out.println(viewM.getInfo());</b>
+<b class="nc">&nbsp;                    setDialog();</b>
+<b class="nc">&nbsp;                    T.cancel();</b>
+<b class="nc">&nbsp;                    but1.setVisible(false);</b>
+<b class="nc">&nbsp;                    but2.setVisible(false);</b>
+<b class="nc">&nbsp;                    but3.setVisible(false);</b>
+<b class="nc">&nbsp;                    but4.setVisible(false);</b>
+<b class="nc">&nbsp;                    but5.setVisible(false);</b>
+&nbsp;
+&nbsp;                }
+&nbsp;            }
+&nbsp;        };
+<b class="nc">&nbsp;        T.scheduleAtFixedRate(TT, 3050, 1000);};</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * set the location and size for labels, which shows up at upper frame.
+&nbsp;     */
+&nbsp;    public void set_Labels(){
+<b class="nc">&nbsp;        this.hard.setBounds(100,65,100,50);</b>
+<b class="nc">&nbsp;        this.time.setBounds(565,50,100,50);</b>
+<b class="nc">&nbsp;        this.pt.setBounds(1000,65,100,50);</b>
+&nbsp;    };
+&nbsp;
+&nbsp;    /**
+&nbsp;     * set the names, location and size for buttons.
+&nbsp;     */
+&nbsp;    public void set_buttons(){
+<b class="nc">&nbsp;        this.but1.setVerticalAlignment(AbstractButton.TOP);</b>
+<b class="nc">&nbsp;        this.but1.setHorizontalAlignment(AbstractButton.LEFT);</b>
+<b class="nc">&nbsp;        this.but1.setBounds(100,300,200,200);</b>
+<b class="nc">&nbsp;        this.but1.setName(&quot;1&quot;);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.but2.setVerticalAlignment(AbstractButton.TOP);</b>
+<b class="nc">&nbsp;        this.but2.setHorizontalAlignment(AbstractButton.RIGHT);</b>
+<b class="nc">&nbsp;        this.but2.setBounds(900,300,200,200);</b>
+<b class="nc">&nbsp;        this.but2.setName(&quot;2&quot;);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.but3.setVerticalAlignment(AbstractButton.BOTTOM);</b>
+<b class="nc">&nbsp;        this.but3.setHorizontalAlignment(AbstractButton.LEFT);</b>
+<b class="nc">&nbsp;        this.but3.setBounds(300,300,200,200);</b>
+<b class="nc">&nbsp;        this.but3.setName(&quot;3&quot;);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.but4.setVerticalAlignment(AbstractButton.BOTTOM);</b>
+<b class="nc">&nbsp;        this.but4.setHorizontalAlignment(AbstractButton.RIGHT);</b>
+<b class="nc">&nbsp;        this.but4.setBounds(600,250,200,200);</b>
+<b class="nc">&nbsp;        this.but4.setName(&quot;4&quot;);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        this.but5.setVerticalAlignment(AbstractButton.BOTTOM);</b>
+<b class="nc">&nbsp;        this.but5.setHorizontalAlignment(AbstractButton.RIGHT);</b>
+<b class="nc">&nbsp;        this.but5.setBounds(400,200,200,200);</b>
+<b class="nc">&nbsp;        this.but5.setName(&quot;5&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * set the action performed for the event for click on the buttons.
+&nbsp;     * @param e the event to be processed
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void actionPerformed(ActionEvent e) {
+<b class="nc">&nbsp;        JButton o = (JButton)e.getSource(); //the button that was clicked name</b>
+<b class="nc">&nbsp;        String name = o.getName();</b>
+<b class="nc">&nbsp;        switch (name){</b>
+&nbsp;            case &quot;1&quot;:
+<b class="nc">&nbsp;                this.nc.click(1);</b>
+<b class="nc">&nbsp;                this.but1.setVisible(false);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;2&quot;:
+<b class="nc">&nbsp;                this.nc.click(2);</b>
+<b class="nc">&nbsp;                this.but2.setVisible(false);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;3&quot;:
+<b class="nc">&nbsp;                this.nc.click(3);</b>
+<b class="nc">&nbsp;                this.but3.setVisible(false);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;4&quot;:
+<b class="nc">&nbsp;                this.nc.click(4);</b>
+<b class="nc">&nbsp;                this.but4.setVisible(false);</b>
+<b class="nc">&nbsp;                break;</b>
+&nbsp;            case &quot;5&quot;:
+<b class="nc">&nbsp;                this.nc.click(5);</b>
+<b class="nc">&nbsp;                this.but5.setVisible(false);</b>
+&nbsp;                break;
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set a confirm Dialog for end_game, with info and two option for player
+&nbsp;     * save their name or leave the current game.
+&nbsp;     */
+&nbsp;    public void setDialog(){
+&nbsp;
+<b class="nc">&nbsp;        int event = JOptionPane.showConfirmDialog(null,</b>
+<b class="nc">&nbsp;                &quot;Your Final Grade is &quot;+ this.viewM.getInfo().get(2) +&quot;! Would you like to save it?&quot;, &quot;Congratulation!&quot;,JOptionPane.YES_NO_OPTION);</b>
+<b class="nc">&nbsp;        if(event == 0){</b>
+&nbsp;            String input_name,output_name;
+<b class="nc">&nbsp;            input_name = JOptionPane.showInputDialog(&quot;Type your name in 8 characters.&quot;);</b>
+<b class="nc">&nbsp;            this.nc.addToLeaderboard(input_name);</b>
+&nbsp;//            this.nc.setData();
+<b class="nc">&nbsp;            Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();</b>
+<b class="nc">&nbsp;            dispose();</b>
+&nbsp;
+&nbsp;            ///output_name should link with view model
+&nbsp;        };
+<b class="nc">&nbsp;        if(event == 1){</b>
+<b class="nc">&nbsp;            dispose();</b>
+&nbsp;        };
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-12 22:57</div>
+</div>
+</body>
+</html>
