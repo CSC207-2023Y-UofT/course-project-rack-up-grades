@@ -1,0 +1,229 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LeaderboardUseCase</title>
+  <style type="text/css">
+    @import "coverage.css";
+    @import "idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ApplicationBusiness</a>
+</div>
+
+<h1>Coverage Summary for Class: LeaderboardUseCase (ApplicationBusiness)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LeaderboardUseCase</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95.8%
+  </span>
+  <span class="absValue">
+    (23/24)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">LeaderboardUseCase$1dataComparator</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.7%
+  </span>
+  <span class="absValue">
+    (29/30)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ApplicationBusiness;
+&nbsp;
+&nbsp;import UI.FrameworksAndDrivers.DataAccess;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.Collections;
+&nbsp;import java.util.Comparator;
+&nbsp;
+&nbsp;public class LeaderboardUseCase {
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    final String fs = System.getProperty(&quot;file.separator&quot;);</b>
+<b class="fc">&nbsp;    final String FILE = System.getProperty(&quot;user.dir&quot;)+fs+&quot;src&quot;+fs+&quot;main&quot;+fs+&quot;java&quot;+fs+ &quot;UI/FrameworksAndDrivers/file.txt&quot;;</b>
+&nbsp;
+<b class="fc">&nbsp;    private final DataAccessInterface DataAccIn = new DataAccess(FILE);</b>
+&nbsp;
+&nbsp;    private String name;
+&nbsp;
+&nbsp;    private int score;
+&nbsp;    private String diff;
+&nbsp;    private InterfaceLeaderboardPresenter lp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * create an instance of this class
+&nbsp;     * @param useCase
+&nbsp;     * @param lp
+&nbsp;     */
+<b class="fc">&nbsp;    public LeaderboardUseCase(GameUseCase useCase, InterfaceLeaderboardPresenter lp) {</b>
+<b class="fc">&nbsp;        this.score = useCase.getScore();</b>
+<b class="fc">&nbsp;        this.diff = useCase.getDifficulty();</b>
+<b class="fc">&nbsp;        this.lp = lp;</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Set the name as the name given through assignment
+&nbsp;     * @param name: string
+&nbsp;     */
+&nbsp;    public void setName(String name){
+<b class="fc">&nbsp;        this.name = name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Add to leaderboard, it will read the data from the file using DataAccess read() through the interface
+&nbsp;     * which is an ArrayList of string being per line of file.txt
+&nbsp;     * it will process and add the new name, score, difficulty to the ArrayList and remove the 10th+ person if it exists
+&nbsp;     * then write that to the file using DataAccess write() through the interface
+&nbsp;     */
+&nbsp;    public void addToLeaderboard() {
+<b class="fc">&nbsp;        ArrayList&lt;String&gt; data = this.DataAccIn.read();</b>
+<b class="fc">&nbsp;        ArrayList&lt;Integer&gt; mod = new ArrayList&lt;&gt;();</b>
+&nbsp;
+<b class="fc">&nbsp;        if (!this.name.equals(&quot;&quot;)) {</b>
+<b class="fc">&nbsp;            for (String s : data) {</b>
+<b class="fc">&nbsp;                String[] temp = s.split(&quot;,&quot;);</b>
+<b class="fc">&nbsp;                mod.add(Integer.parseInt(temp[1]));</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;
+<b class="fc">&nbsp;            this.name = this.name.replaceAll(&quot;,&quot;, &quot;&quot;);</b>
+&nbsp;
+&nbsp;            // Cut the name to 8 letters if longer
+<b class="fc">&nbsp;            if (this.name.length() &gt;= 8){</b>
+<b class="nc">&nbsp;                this.name = this.name.substring(0, 7);</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            data.add(name + &quot;,&quot; + score + &quot;,&quot; + diff);</b>
+&nbsp;
+<b class="fc">&nbsp;            class dataComparator implements Comparator&lt;String&gt; {</b>
+&nbsp;                public int compare(String e1, String e2) {
+<b class="fc">&nbsp;                    if (Integer.parseInt(e1.split(&quot;,&quot;)[1]) &lt; Integer.parseInt(e2.split(&quot;,&quot;)[1])) {</b>
+<b class="fc">&nbsp;                        return 1;</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    else if (Integer.parseInt(e1.split(&quot;,&quot;)[1]) &gt; Integer.parseInt(e2.split(&quot;,&quot;)[1])) {</b>
+<b class="fc">&nbsp;                        return -1;</b>
+&nbsp;                    }
+&nbsp;                    else {
+<b class="fc">&nbsp;                        return 0;</b>
+&nbsp;                    }
+&nbsp;
+&nbsp;                }
+&nbsp;            }
+<b class="fc">&nbsp;            Collections.sort(data, new dataComparator());</b>
+&nbsp;
+<b class="fc">&nbsp;            if (data.size() &gt; 10) {</b>
+<b class="fc">&nbsp;                data.remove(data.size() - 1);</b>
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            this.DataAccIn.write(data);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * set the data on the leaderboard presenter through the interface
+&nbsp;     */
+&nbsp;    public void setData() {
+<b class="fc">&nbsp;        this.lp.setData(this.DataAccIn.read());</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-12 22:57</div>
+</div>
+</body>
+</html>

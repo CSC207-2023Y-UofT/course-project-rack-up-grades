@@ -1,0 +1,245 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Main_Menu</title>
+  <style type="text/css">
+    @import "coverage.css";
+    @import "idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">&lt;empty package name&gt;</a>
+</div>
+
+<h1>Coverage Summary for Class: Main_Menu (&lt;empty package name&gt;)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Main_Menu</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/66)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;import ApplicationBusiness.*;
+&nbsp;import UI.FrameworksAndDrivers.EasyUI;
+&nbsp;import UI.FrameworksAndDrivers.HardUI;
+&nbsp;import UI.FrameworksAndDrivers.Leaderboard_Frame;
+&nbsp;import UI.FrameworksAndDrivers.MediumUI;
+&nbsp;import InterfaceAdapters.GamePresenter;
+&nbsp;import InterfaceAdapters.LeaderboardPresenter;
+&nbsp;import InterfaceAdapters.NavigatorController;
+&nbsp;import InterfaceAdapters.ViewModel;
+&nbsp;
+&nbsp;import javax.swing.*;
+&nbsp;import java.awt.event.ActionListener;
+&nbsp;
+&nbsp;/**
+&nbsp; * set Main Menu and the name of labels.
+&nbsp; */
+&nbsp;public class Main_Menu extends JFrame {
+&nbsp;    JButton i,easy,medium,hard,leader;
+&nbsp;    JDialog leaderboard;
+&nbsp;    public Main_Menu(String title) {
+<b class="nc">&nbsp;        super(title);</b>
+<b class="nc">&nbsp;        this.i = new JButton(&quot;I&quot;); //Icon will be done</b>
+<b class="nc">&nbsp;        this.easy = new JButton(&quot;Easy&quot;);</b>
+<b class="nc">&nbsp;        this.medium = new JButton(&quot;Medium&quot;);</b>
+<b class="nc">&nbsp;        this.hard = new JButton(&quot;Hard&quot;);</b>
+<b class="nc">&nbsp;        this.leader = new JButton(&quot;Leaderboard&quot;);//buttons</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * set and add the buttons for Content Pane.
+&nbsp;     * @param bdmainmenu background ContentPane for Main Menu
+&nbsp;     */
+&nbsp;    public void setAndAdd(JComponent bdmainmenu) {
+<b class="nc">&nbsp;        i.setBounds(1000,100,100,100);</b>
+<b class="nc">&nbsp;        bdmainmenu.add(i);</b>
+&nbsp;
+<b class="nc">&nbsp;        easy.setBounds(200,350,200,100);</b>
+<b class="nc">&nbsp;        bdmainmenu.add(easy);</b>
+&nbsp;
+<b class="nc">&nbsp;        medium.setBounds(500,350,200,100);</b>
+<b class="nc">&nbsp;        bdmainmenu.add(medium);</b>
+&nbsp;
+<b class="nc">&nbsp;        hard.setBounds(800,350,200,100);</b>
+<b class="nc">&nbsp;        bdmainmenu.add(hard);</b>
+&nbsp;
+<b class="nc">&nbsp;        leader.setBounds(400,500,400,80);</b>
+<b class="nc">&nbsp;        bdmainmenu.add(leader);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;    /**
+&nbsp;     * Set the Main Menu size, location and title,
+&nbsp;     * add the background image and Content Pane.
+&nbsp;     * @param args
+&nbsp;     */
+&nbsp;
+&nbsp;    public static void main(String[] args) {
+&nbsp;
+<b class="nc">&nbsp;        final String fs = System.getProperty(&quot;file.separator&quot;);</b>
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;        Main_Menu mainmenu = new Main_Menu(&quot;Rack Up Grade - Main Menu&quot;);</b>
+<b class="nc">&nbsp;        mainmenu.setSize(1200,700);</b>
+<b class="nc">&nbsp;        mainmenu.setLocationRelativeTo(null);</b>
+<b class="nc">&nbsp;        ViewModel V = new ViewModel();</b>
+<b class="nc">&nbsp;        InterfaceLeaderboardPresenter P = new LeaderboardPresenter(V);</b>
+<b class="nc">&nbsp;        GameOutputBoundary GP = new GamePresenter(V);</b>
+<b class="nc">&nbsp;        mainmenu.setUpButtonListeners(V, P, GP);</b>
+&nbsp;
+&nbsp;        //
+<b class="nc">&nbsp;        JLabel bdmainmenu = new JLabel(new ImageIcon(System.getProperty(&quot;user.dir&quot;)+fs+&quot;src&quot;+fs+&quot;main&quot;+fs+&quot;java&quot; +fs+ &quot;UI&quot; +fs+&quot;Background-MainMenu.jpg&quot;));</b>
+<b class="nc">&nbsp;        bdmainmenu.setBounds(0,0,1200,700);</b>
+<b class="nc">&nbsp;        mainmenu.getContentPane().add(bdmainmenu);</b>
+&nbsp;        //
+<b class="nc">&nbsp;        mainmenu.setAndAdd(bdmainmenu);</b>
+<b class="nc">&nbsp;        mainmenu.setResizable(false);</b>
+<b class="nc">&nbsp;        mainmenu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);</b>
+<b class="nc">&nbsp;        mainmenu.setVisible(true);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * A button listener work as Action Performance,
+&nbsp;     * click on easy/medium/hard lead to a different difficultly level game window;
+&nbsp;     * click on i to the Message dialog that introduce the game;
+&nbsp;     * click on leaderboard to the leaderboard frame.
+&nbsp;     * @param V View Model
+&nbsp;     * @param P Interface Leaderboard Presenter
+&nbsp;     * @param GP Game Presenter
+&nbsp;     */
+&nbsp;    public void setUpButtonListeners(ViewModel V, InterfaceLeaderboardPresenter P, GameOutputBoundary GP) {
+<b class="nc">&nbsp;        final String fs = System.getProperty(&quot;file.separator&quot;);</b>
+<b class="nc">&nbsp;        EasyUseCase EG = new EasyUseCase(&quot;e&quot;, GP);</b>
+<b class="nc">&nbsp;        MediumUseCase MG = new MediumUseCase(&quot;m&quot;, GP);</b>
+<b class="nc">&nbsp;        HardUseCase HG = new HardUseCase(&quot;h&quot;, GP);</b>
+<b class="nc">&nbsp;        InputBoundary EasyIB = new InputBoundaryImpl(EG, P);</b>
+<b class="nc">&nbsp;        InputBoundary MedIB = new InputBoundaryImpl(MG, P);</b>
+<b class="nc">&nbsp;        InputBoundary HardIB = new InputBoundaryImpl(HG, P);</b>
+<b class="nc">&nbsp;        NavigatorController EasyNav = new NavigatorController(EasyIB);</b>
+<b class="nc">&nbsp;        NavigatorController MedNav = new NavigatorController(MedIB);</b>
+<b class="nc">&nbsp;        NavigatorController HardNav = new NavigatorController(HardIB);</b>
+&nbsp;
+<b class="nc">&nbsp;        ActionListener bs = e -&gt; {</b>
+<b class="nc">&nbsp;            Object click = e.getSource();</b>
+<b class="nc">&nbsp;            if(click == i) {</b>
+<b class="nc">&nbsp;                JOptionPane.showMessageDialog(this,</b>
+&nbsp;                        &quot;Moles living underground of Toronto&quot; +
+&nbsp;                                &quot; are taking over the U of T library, \n&quot; +
+&nbsp;                                &quot;protect the library and stop moles&#39; &quot; +
+&nbsp;                                &quot;evil plan by clicking them! \nIn the medium level you can&#39;t miss the moles and in the hard you can&#39;t click the bomb!&quot;,
+&nbsp;                        &quot;Introduction&quot;,JOptionPane.INFORMATION_MESSAGE,
+<b class="nc">&nbsp;                        new ImageIcon(System.getProperty(&quot;user.dir&quot;)+fs+&quot;src&quot;+fs+&quot;main&quot;+fs+ &quot;java&quot; +fs+&quot;UI&quot; +fs+&quot;Intro.png&quot;));</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if (click == easy){</b>
+<b class="nc">&nbsp;                System.out.println(&quot;easy&quot;);</b>
+<b class="nc">&nbsp;                EasyNav.run();</b>
+<b class="nc">&nbsp;                EasyUI eUI = new EasyUI(EasyNav, V);</b>
+&nbsp;
+&nbsp;            }
+<b class="nc">&nbsp;            if (click == medium){</b>
+<b class="nc">&nbsp;                System.out.println(&quot;medium&quot;);</b>
+<b class="nc">&nbsp;                MediumUI med = new MediumUI(MedNav, V);</b>
+<b class="nc">&nbsp;                MedNav.run();</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if (click == hard){</b>
+<b class="nc">&nbsp;                System.out.println(&quot;hard&quot;);</b>
+<b class="nc">&nbsp;                HardUI hard = new HardUI(HardNav, V);</b>
+<b class="nc">&nbsp;                HardNav.run();</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if (click == leader){</b>
+<b class="nc">&nbsp;                EasyNav.addToLeaderboard(&quot;&quot;);</b>
+<b class="nc">&nbsp;                Leaderboard_Frame leaderboard_Frame = new Leaderboard_Frame();</b>
+&nbsp;            }
+&nbsp;        };
+<b class="nc">&nbsp;        i.addActionListener(bs);</b>
+<b class="nc">&nbsp;        easy.addActionListener(bs);</b>
+<b class="nc">&nbsp;        medium.addActionListener(bs);</b>
+<b class="nc">&nbsp;        hard.addActionListener(bs);</b>
+<b class="nc">&nbsp;        leader.addActionListener(bs);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-12 22:57</div>
+</div>
+</body>
+</html>

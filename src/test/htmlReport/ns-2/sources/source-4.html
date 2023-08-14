@@ -1,0 +1,162 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > InputBoundaryImpl</title>
+  <style type="text/css">
+    @import "coverage.css";
+    @import "idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ApplicationBusiness</a>
+</div>
+
+<h1>Coverage Summary for Class: InputBoundaryImpl (ApplicationBusiness)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">InputBoundaryImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ApplicationBusiness;
+&nbsp;
+&nbsp;import InterfaceAdapters.LeaderboardPresenter;
+&nbsp;
+&nbsp;/**
+&nbsp; * Implementation for methods in input boundary to withhold SOLID.
+&nbsp; * For both Liskov&#39;s principle and Dependency inversion principle
+&nbsp; */
+&nbsp;public class InputBoundaryImpl implements InputBoundary{
+&nbsp;
+&nbsp;    private InterfaceLeaderboardPresenter LP;
+&nbsp;    private GameUseCase useCase;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Create an instance of this class
+&nbsp;     * @param useCase the useCase that can be a easy, medium, or hard useCase
+&nbsp;     */
+<b class="fc">&nbsp;    public InputBoundaryImpl(GameUseCase useCase, InterfaceLeaderboardPresenter LP) {</b>
+<b class="fc">&nbsp;        this.LP = LP;</b>
+<b class="fc">&nbsp;        this.useCase = useCase;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Facade design pattern that will call useCases methods to update name, add to leaderboard, and tell presenter its updated
+&nbsp;     * @param newName
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void addToLeaderboard(String newName) {
+<b class="fc">&nbsp;        LeaderboardUseCase LbUse = new LeaderboardUseCase(useCase, LP);</b>
+<b class="fc">&nbsp;        LbUse.setName(newName);</b>
+<b class="fc">&nbsp;        LbUse.addToLeaderboard();</b>
+<b class="fc">&nbsp;        LbUse.setData();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * if a click happens in controller, this will be called and the useCase&#39;s click method will be called
+&nbsp;     * @param i
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void click(Integer i) {
+<b class="fc">&nbsp;        this.useCase.click(i);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * run the game in the useCase&#39;s run
+&nbsp;     */
+&nbsp;    public void run() {
+<b class="fc">&nbsp;        this.useCase.run();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * stops the timer when the window closes
+&nbsp;     */
+&nbsp;    public void stop(){
+<b class="fc">&nbsp;        this.useCase.stop();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-12 22:57</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,154 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GameEntity</title>
+  <style type="text/css">
+    @import "coverage.css";
+    @import "idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">EnterpriseBusiness</a>
+</div>
+
+<h1>Coverage Summary for Class: GameEntity (EnterpriseBusiness)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameEntity</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package EnterpriseBusiness;
+&nbsp;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;
+&nbsp;public class GameEntity {
+&nbsp;    private PositiveObj posObj;
+&nbsp;    private NegativeObj negObj;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * create an instance of GameEntity, it will create positive and negative objects
+&nbsp;     * @param level the difficulty of the game where this is called
+&nbsp;     */
+<b class="fc">&nbsp;    public GameEntity(String level){</b>
+&nbsp;        // thinking of using a factory here to create the types
+&nbsp;
+&nbsp;        //for easy mode
+<b class="fc">&nbsp;        if(Objects.equals(level, &quot;e&quot;)){</b>
+&nbsp;        // Only makes the positive objects
+<b class="fc">&nbsp;            this.posObj = new PositiveObj(5);</b>
+<b class="fc">&nbsp;            this.negObj = new NegativeObj(0);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        //for medium mode
+<b class="fc">&nbsp;        else if(Objects.equals(level, &quot;m&quot;)){</b>
+&nbsp;
+&nbsp;            //this.posObj = new Entities.PositiveObj(5);
+<b class="fc">&nbsp;            this.posObj = new PositiveObj(5);</b>
+<b class="fc">&nbsp;            this.negObj = new NegativeObj(0);</b>
+&nbsp;        }
+&nbsp;        //for hard mode
+<b class="fc">&nbsp;        else if(Objects.equals(level, &quot;h&quot;)){</b>
+&nbsp;
+<b class="fc">&nbsp;            this.posObj = new PositiveObj(5);</b>
+<b class="fc">&nbsp;            this.negObj = new NegativeObj(10);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * getter for how much to add for click good object
+&nbsp;     * @return positive objects point
+&nbsp;     */
+<b class="fc">&nbsp;    public int getIncrement() {return this.posObj.getPoint();}</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * getter for how much a bomb should subtract
+&nbsp;     * @return negative object&#39;s point
+&nbsp;     */
+<b class="fc">&nbsp;    public int getDecrement() {return this.negObj.getPoint();}</b>
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-12 22:57</div>
+</div>
+</body>
+</html>

@@ -22,6 +22,7 @@ public class EntityTest {
 
         Assertions.assertTrue(entHard.getDecrement() < 0);
         Assertions.assertTrue(entHard.getIncrement() > 0);
+
     }
 
 

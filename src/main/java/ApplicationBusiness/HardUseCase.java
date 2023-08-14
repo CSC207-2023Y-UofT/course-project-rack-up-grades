@@ -126,6 +126,15 @@ public class HardUseCase extends GameUseCase {
         }
     }
 
+
+    /**
+     * setter for testing purposes
+     * @param preset
+     */
+    public void setPreset(ArrayList<String> preset) {
+        this.preset = preset;
+    }
+
     /**
      * to stop the timer if needed
      */

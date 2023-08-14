@@ -11,19 +11,24 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class GameTest {
+public class EasyGameTest {
     ViewModel V = new ViewModel();
     InterfaceLeaderboardPresenter P = new LeaderboardPresenter(V);
     GameOutputBoundary GP = new GamePresenter(V);
+
+    //Easy
     EasyUseCase G = new EasyUseCase("e", GP);
     GameEntity GEasy = new GameEntity("e");
     InputBoundary IB = new InputBoundaryImpl(G, P);
     NavigatorController NC = new NavigatorController(IB);
 
 
+
+
+
     /**
      * The purpose of this test is to test as a unit Controllers, InputBoundary, UseCase, OutputBoundary & Presenter
-     * as a whole to ensure that the correct final score is being outputted in the ViewModel
+     * as a whole for easy to ensure that the correct final score is being outputted in the ViewModel
      * @throws InterruptedException
      */
     @Test
@@ -56,6 +61,8 @@ public class GameTest {
         Thread.sleep(1000);
         NC.click(2);
         Thread.sleep(1000);
+
+        NC.stop();
 
         //Calculating expected score
         int ExpectedFinalScore = 5*this.GEasy.getIncrement();
@@ -105,6 +112,7 @@ public class GameTest {
             Thread.sleep(1000);
 
         }
+        NC.stop();
 
         //Calculate expectedScore with number of clicks and how much that mole is worth
         int expectedScore = j*this.GEasy.getIncrement();
@@ -114,6 +122,5 @@ public class GameTest {
 
 
     }
-
 
 }

@@ -1,0 +1,164 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LeaderboardPresenter</title>
+  <style type="text/css">
+    @import "coverage.css";
+    @import "idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">InterfaceAdapters</a>
+</div>
+
+<h1>Coverage Summary for Class: LeaderboardPresenter (InterfaceAdapters)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LeaderboardPresenter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (23/23)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package InterfaceAdapters;
+&nbsp;
+&nbsp;import ApplicationBusiness.InterfaceLeaderboardPresenter;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.Arrays;
+&nbsp;
+&nbsp;/**
+&nbsp; * This is the adapter for this project
+&nbsp; */
+&nbsp;public class LeaderboardPresenter implements InterfaceLeaderboardPresenter {
+&nbsp;    private ViewModel v;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Create an instance of this class
+&nbsp;     * @param v
+&nbsp;     */
+<b class="fc">&nbsp;    public LeaderboardPresenter(ViewModel v) {</b>
+<b class="fc">&nbsp;        this.v = v;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * This is the where the adapter is implemented, it takes data and translate it into something
+&nbsp;     * used in view that is going to be used by our 3-rd party JTable
+&nbsp;     * @param data that comes from usecase is pass into here
+&nbsp;     */
+&nbsp;    @Override
+&nbsp;    public void setData(ArrayList&lt;String&gt; data) {
+<b class="fc">&nbsp;        ArrayList&lt;ArrayList&lt;Object&gt;&gt; arr = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        ArrayList&lt;Object&gt; subarr = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        Integer i = 0;</b>
+&nbsp;        // convert [&quot;Cathy,90,e&quot;, &quot;Ivy,80,m&quot;] to -&gt;
+&nbsp;        // [[1, &quot;Cathy&quot;, &quot;90&quot;, &quot;Easy&quot;], [2, &quot;Ivy&quot;, &quot;80&quot;, &quot;Medium&quot;]] to -&gt;
+&nbsp;        // {{1, &quot;Cathy&quot;, &quot;90&quot;, &quot;Easy&quot;}, {2, &quot;Ivy&quot;, &quot;80&quot;, &quot;Medium&quot;}}
+<b class="fc">&nbsp;        for (String s : data) {</b>
+<b class="fc">&nbsp;            char k = s.charAt(s.length()-1);</b>
+<b class="fc">&nbsp;            switch (k) {</b>
+&nbsp;                case &#39;e&#39;:
+<b class="fc">&nbsp;                    s = s.substring(0,s.length()-1) + &quot;Easy&quot;;</b>
+<b class="fc">&nbsp;                    break;</b>
+&nbsp;                case &#39;m&#39;:
+<b class="fc">&nbsp;                    s = s.substring(0,s.length()-1) + &quot;Medium&quot;;</b>
+<b class="fc">&nbsp;                    break;</b>
+&nbsp;                case &#39;h&#39;:
+<b class="fc">&nbsp;                    s = s.substring(0,s.length()-1) + &quot;Hard&quot;;</b>
+&nbsp;                    break;
+&nbsp;            }
+&nbsp;
+<b class="fc">&nbsp;            i++;</b>
+<b class="fc">&nbsp;            subarr.add(i);</b>
+<b class="fc">&nbsp;            subarr.addAll(new ArrayList&lt;&gt;(Arrays.asList(s.split(&quot;,&quot;))));</b>
+<b class="fc">&nbsp;            arr.add(subarr);</b>
+<b class="fc">&nbsp;            subarr = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        Object[][] arr2 = new Object[arr.size()][];</b>
+<b class="fc">&nbsp;        for (int a = 0; a &lt; arr.size(); a++) {</b>
+<b class="fc">&nbsp;            arr2[a] = arr.get(a).toArray(new Object[0]);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        v.setData(arr2);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-08-12 22:57</div>
+</div>
+</body>
+</html>
